@@ -16,11 +16,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-button {
-  background-color: #f11d1d;
-}
-
-
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
