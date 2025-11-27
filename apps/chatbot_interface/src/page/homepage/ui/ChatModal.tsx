@@ -2,15 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icons from '../../../constants/icons';
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from 'react';
 import colors from '../../../constants/colors';
-
-type Sender = 'user' | 'bot';
-
-interface ChatMessage {
-    id: string;
-    sender: Sender;
-    text: string;
-    createAt: Date;
-}
+import type { ChatMessage } from '../../../constants/type/chat';
 
 function ChatModal() {
     const [messages, setMessages] = useState<ChatMessage[]>([
@@ -22,7 +14,10 @@ function ChatModal() {
         },
     ]);
     const [inputText, setInputText] = useState('');
+    const [isBotTyping, setIsBotTyping] = useState(false);
+
     const messagesEndRef = useRef<HTMLDivElement>(null);
+    const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
     const bgColor = colors.colors.primary;
 
@@ -46,10 +41,17 @@ function ChatModal() {
         setMessages((prevMessages) => [...prevMessages, userMessage]);
         setInputText('');
 
+        if (textAreaRef.current) {
+            textAreaRef.current.style.height = 'auto';
+        }
+
+        // AI bot response start
+        setIsBotTyping(true);
+
         try {
-            // Simulate bot response
+            // AI handling logic
             const botReply = await new Promise<string>((resolve) =>
-                setTimeout(() => resolve("I'm here to help!"), 1000),
+                setTimeout(() => resolve("I'm here to help!"), 2000),
             );
 
             const botMessage: ChatMessage = {
@@ -59,8 +61,11 @@ function ChatModal() {
                 createAt: new Date(),
             };
 
+            // AI bot response end
+            setIsBotTyping(false);
             setMessages((prev) => [...prev, botMessage]);
         } catch (error) {
+            setIsBotTyping(false);
             setMessages((prev) => [
                 ...prev,
                 {
@@ -77,7 +82,8 @@ function ChatModal() {
     const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setInputText(e.target.value);
 
-        e.target.style.height = 'auto';
+        const el = e.target;
+        el.style.height = 'auto';
         e.target.style.height = Math.min(e.target.scrollHeight, 72) + 'px';
     };
 
@@ -86,7 +92,7 @@ function ChatModal() {
             {/* Header */}
             <div className="p-3 flex items-center border border-b-gray-200 border-b-2">
                 <div className="avatar">
-                    <div className={`w-10 rounded-full bg-[${bgColor}] items-center justify-center flex mr-3`}>
+                    <div className={`w-10 bg-[#f11d1d] rounded-full items-center justify-center flex mr-3`}>
                         <FontAwesomeIcon icon={icons.icon.bot} />
                     </div>
                 </div>
@@ -98,26 +104,51 @@ function ChatModal() {
             </div>
 
             {/* Chat content */}
-            <div className="flex-1 space-y-2 overflow-y-auto p-3">
+            <div
+                className="flex-1 space-y-2 overflow-y-auto p-3"
+                style={{
+                    scrollbarColor: '#d1d5db transparent',
+                }}
+            >
                 {messages.map((m) => (
                     <div key={m.id} className={`flex items-end gap-2 ${m.sender === 'user' ? 'justify-end' : ''}`}>
                         <div
-                            className={`max-w-[75%] rounded-2xl px-3 py-2 text-sm leading-snug ${m.sender === 'user' ? `bg-[${bgColor}] text-white rounded-br-none` : 'bg-gray-200 text-gray-800 rounded-bl-none'}`}
+                            className={`max-w-[75%] 
+                                rounded-2xl 
+                                px-3 py-2 text-sm 
+                                leading-snug 
+                                wrap-break-word
+                                whitespace-pre-wrap
+                                animate-[fadeInUp_0.18s_ease-out]
+                                ${m.sender === 'user' ? `bg-[${bgColor}] text-white rounded-br-none` : 'bg-gray-200 text-gray-800 rounded-bl-none'}`}
                         >
                             {m.text}
                         </div>
                     </div>
                 ))}
+                {isBotTyping && (
+                    <div className="flex items-end gap-2">
+                        <div className="bg-gray-200 text-gray-800 rounded-2xl rounded-bl-none px-3 py-2 flex items-center gap-1">
+                            <span className="w-1.5 h-1.5 rounded-full bg-gray-500 animate-bounce [animation-delay:-0.3s]" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-gray-500 animate-bounce [animation-delay:-0.15s]" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-gray-500 animate-bounce" />
+                        </div>
+                    </div>
+                )}
+
+                <div ref={messagesEndRef}></div>
             </div>
 
             {/* Input area */}
             <div className="p-3">
                 <form onSubmit={handleSubmit} className="flex bg-gray-200 rounded-lg items-center gap-2">
                     <textarea
+                        ref={textAreaRef}
                         value={inputText}
                         onChange={handleInputChange}
                         placeholder="Ask a question..."
                         className="flex-1
+                            min-h-10
                             max-h-18
                             bg-transparent
                             resize-none
