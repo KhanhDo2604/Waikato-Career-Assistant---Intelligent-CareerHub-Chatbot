@@ -1,15 +1,18 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import HomePage from './page/homepage';
-import Dashboard from './page/dashboard';
+import { Route, BrowserRouter as Router, Routes } from 'react-router';
+import routes from './routes';
 
 function App() {
+    // return <HomePage />;
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-            </Routes>
-        </BrowserRouter>
+        <Router>
+            <>
+                <Routes>
+                    {routes.map((route, index) => (
+                        <Route key={index} path={route.path} element={<route.component />} />
+                    ))}
+                </Routes>
+            </>
+        </Router>
     );
 }
 
