@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icons from '../../../constants/icons';
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from 'react';
 import colors from '../../../constants/colors';
+import { api } from '../../../services/api';
 
 type Sender = 'user' | 'bot';
 
@@ -22,6 +23,16 @@ function ChatModal() {
         },
     ]);
     const [inputText, setInputText] = useState('');
+    const [userType, setUserType] = useState<'user' | 'alumni'>('user');
+    const [userId] = useState(() => {
+        // Get or create userId from localStorage
+        let id = localStorage.getItem('chatbot_userId');
+        if (!id) {
+            id = `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+            localStorage.setItem('chatbot_userId', id);
+        }
+        return id;
+    });
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
     const bgColor = colors.colors.primary;
@@ -44,12 +55,13 @@ function ChatModal() {
         };
 
         setMessages((prevMessages) => [...prevMessages, userMessage]);
+        const question = trimmedText;
         setInputText('');
 
         try {
             // Simulate bot response
             const botReply = await new Promise<string>((resolve) =>
-                setTimeout(() => resolve("I'm here to help!"), 1000),
+                setTimeout(() => resolve("I'm here to help! This is a sample response."), 1000),
             );
 
             const botMessage: ChatMessage = {
@@ -60,6 +72,14 @@ function ChatModal() {
             };
 
             setMessages((prev) => [...prev, botMessage]);
+
+            // Save interaction to backend
+            try {
+                await api.saveInteraction(userId, userType, question, botReply);
+            } catch (saveError) {
+                console.error('Failed to save interaction:', saveError);
+                // Don't show error to user, just log it
+            }
         } catch (error) {
             setMessages((prev) => [
                 ...prev,
@@ -84,16 +104,28 @@ function ChatModal() {
     return (
         <div className="fixed bottom-24 right-6 w-86 h-120 bg-white border border-gray-300 rounded-xl shadow-lg flex flex-col overflow-hidden">
             {/* Header */}
-            <div className="p-3 flex items-center border border-b-gray-200 border-b-2">
-                <div className="avatar">
-                    <div className={`w-10 rounded-full bg-[${bgColor}] items-center justify-center flex mr-3`}>
-                        <FontAwesomeIcon icon={icons.icon.bot} />
+            <div className="p-3 flex items-center justify-between border border-b-gray-200 border-b-2">
+                <div className="flex items-center">
+                    <div className="avatar">
+                        <div className={`w-10 rounded-full bg-[${bgColor}] items-center justify-center flex mr-3`}>
+                            <FontAwesomeIcon icon={icons.icon.bot} />
+                        </div>
+                    </div>
+
+                    <div className="flex flex-col">
+                        <span className="font-bold text-lg text-black">CareerHub</span>
+                        <span className="text-sm text-gray-500">How can I assist you today?</span>
                     </div>
                 </div>
-
-                <div className="flex flex-col">
-                    <span className="font-bold text-lg text-black">CareerHub</span>
-                    <span className="text-sm text-gray-500">How can I assist you today?</span>
+                <div className="flex items-center gap-2">
+                    <select
+                        className="select select-sm select-bordered text-xs"
+                        value={userType}
+                        onChange={(e) => setUserType(e.target.value as 'user' | 'alumni')}
+                    >
+                        <option value="user">User</option>
+                        <option value="alumni">Alumni</option>
+                    </select>
                 </div>
             </div>
 
