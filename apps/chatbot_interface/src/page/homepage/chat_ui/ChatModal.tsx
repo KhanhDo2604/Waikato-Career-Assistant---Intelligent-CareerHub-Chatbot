@@ -40,6 +40,7 @@ function ChatModal() {
         };
 
         setMessages((prevMessages) => [...prevMessages, userMessage]);
+        const question = trimmedText;
         setInputText('');
 
         if (textAreaRef.current) {
@@ -65,6 +66,14 @@ function ChatModal() {
             // AI bot response end
             setIsBotTyping(false);
             setMessages((prev) => [...prev, botMessage]);
+
+            // Save interaction to backend
+            try {
+                await api.saveInteraction(userId, userType, question, botReply);
+            } catch (saveError) {
+                console.error('Failed to save interaction:', saveError);
+                // Don't show error to user, just log it
+            }
         } catch (error) {
             setIsBotTyping(false);
             setMessages((prev) => [
