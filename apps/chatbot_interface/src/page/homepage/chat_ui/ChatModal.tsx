@@ -119,10 +119,10 @@ function ChatModal() {
     return (
         <div className="fixed bottom-24 right-6 w-90 h-120 bg-white border border-gray-300 rounded-xl shadow-lg flex flex-col overflow-hidden">
             {/* Header */}
-            <div className="p-3 flex items-center border border-b-gray-200 border-b-2">
+            <div className="p-3 flex items-center border border-b-gray-200 border-x-0 border-t-0 border-b-2">
                 <div className="avatar">
                     <div className={`w-10 bg-[#f11d1d] rounded-full items-center justify-center flex mr-3`}>
-                        <FontAwesomeIcon icon={icons.icon.bot} />
+                        <FontAwesomeIcon icon={icons.icon.bot} color="white" />
                     </div>
                 </div>
 

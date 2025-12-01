@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import FloatingButton from './ui/FloatingButton';
-import ChatModal from './ui/ChatModal';
+import FloatingButton from './chat_ui/FloatingButton';
+import ChatModal from './chat_ui/ChatModal';
 
 function ChatWidget() {
     const [modalIsOpen, setModalIsOpen] = useState(false);

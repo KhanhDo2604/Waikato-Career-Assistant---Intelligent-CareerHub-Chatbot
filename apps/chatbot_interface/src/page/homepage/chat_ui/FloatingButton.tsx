@@ -9,7 +9,7 @@ function FloatingButton({ modalIsOpen = false, onClick }: FloatingButtonProps) {
 
     return (
         <button
-            className={`btn btn-circle border-none fixed bottom-8 right-8 btn-lg bg-[${bgColor}]`}
+            className={`btn btn-circle border-none fixed bottom-8 right-8 btn-lg bg-[${bgColor}] z-50`}
             onClick={onClick}
         >
             <AnimatePresence mode="wait">
