@@ -4,17 +4,19 @@ from services.chain import user_session, ChatChain
 from services.model import Model
 from services.vector_store import VectorStore
 from models.request import ChatRequest
+import json
 Routers = APIRouter(prefix="/chat", tags=["chat"])
 
 chat_model = Model(model_name='llama3').chat_model(company='ollama')
 embedding_model = Model(model_name='nomic-embed-text').embedding_model(company='ollama')
 vector_store = VectorStore(embedding_model=embedding_model, name='milvus', index_name='job_collection')
 template = """
-You are a helpful assistant.Your main job is to act as a customer service representative, 
+You are a helpful assistant.Your main job is to act as a customer service, 
 helping users resolve issues they encounter on career platforms.
-I will provide a list of common questions on the platform for reference. 
-Use the conversation history and common questions to answer the user's latest question.
-If you find the provided common questions are unrelated to user's question and you don't know how to answer, just say "I don't know".
+I will provide some common questions and answers for reference. 
+Don't take them as user's chat history. They just reference.
+Use the conversation history and common questions and answers to answer the user's latest question.
+If you find the provided common questions and answers are unrelated to user's question and you don't know how to answer, just say "I don't know".
 --Conversation history:{chat_history}
 --Common questions: {context}
 --User's question: {question}
@@ -75,9 +77,18 @@ async def delete_vector_store():
     return {"message": "Vector store deleted successfully."}
 
 @Routers.put('/update_store')
-async def update_vector_store():
+async def update_vector_store(req:Request):
+    content = await req.json()
+    with open('./background_docs/QA_list.json','w',encoding='utf-8') as f:
+        json.dump(content,f,ensure_ascii=False,indent=4)
     vector_store.update_vector_store()
     return {"message": "Vector store updated successfully."}
+
+@Routers.get('/get_qa')
+async def get_qa_file():
+    with open('./background_docs/QA_list.json','r',encoding='utf-8') as f:
+        content = json.load(f)
+    return content
 
 @Routers.get("/most_relevant")
 async def get_relevant(req: ChatRequest):
