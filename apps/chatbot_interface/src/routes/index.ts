@@ -1,11 +1,11 @@
-import AdminDashboard from '../page/AdminDashboard';
+import Dashboard from '../page/dashboard';
 import HomePage from '../page/homepage';
 
 const routes = [
     { path: '/', component: HomePage },
     {
         path: '/admin',
-        component: AdminDashboard,
+        component: Dashboard,
     },
 ];
 
