@@ -15,6 +15,9 @@ function ChatModal() {
     ]);
     const [inputText, setInputText] = useState('');
     const [isBotTyping, setIsBotTyping] = useState(false);
+    const [userType, setUserType] = useState<'user' | 'alumni'>('user');
+    const userId = 'current-user-id';
+    const api = { saveInteraction: async () => {} };
 
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
@@ -68,7 +71,7 @@ function ChatModal() {
 
             // Save interaction to backend
             try {
-                await api.saveInteraction(userId, userType, question, botReply);
+                await api.saveInteraction();
             } catch (saveError) {
                 console.error('Failed to save interaction:', saveError);
                 // Don't show error to user, just log it
@@ -110,18 +113,19 @@ function ChatModal() {
                         <span className="font-bold text-lg text-black">CareerHub</span>
                         <span className="text-sm text-gray-500">How can I assist you today?</span>
                     </div>
+                    <div className="flex items-center gap-2">
+                        <select
+                            className="select select-sm select-bordered text-xs"
+                            value={userType}
+                            onChange={(e) => setUserType(e.target.value as 'user' | 'alumni')}
+                            aria-label="Select user type"
+                        >
+                            <option value="user">User</option>
+                            <option value="alumni">Alumni</option>
+                        </select>
+                    </div>
                 </div>
-                <div className="flex items-center gap-2">
-                    <select
-                        className="select select-sm select-bordered text-xs"
-                        value={userType}
-                        onChange={(e) => setUserType(e.target.value as 'user' | 'alumni')}
-                    >
-                        <option value="user">User</option>
-                        <option value="alumni">Alumni</option>
-                    </select>
-                </div>
-            </div>
+            
 
             {/* Chat content */}
             <div
@@ -186,6 +190,7 @@ function ChatModal() {
                     />
                     <button
                         type="submit"
+                        title="Send message"
                         className={`btn btn-sm ml-1 border-0 shadow-none btn-circle m-2 ${inputText.length === 0 ? 'btn-disabled bg-gray-300' : `bg-[${bgColor}]`}`}
                     >
                         <FontAwesomeIcon icon={icons.icon.send} />

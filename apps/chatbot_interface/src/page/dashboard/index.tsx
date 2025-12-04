@@ -35,7 +35,7 @@ function Dashboard() {
             setCommonQuestions(questions);
             setUserCounts(counts);
             setInteractions(allInteractions);
-        } catch (error) {
+        } catch (error) { 
             console.error('Error loading dashboard data:', error);
         } finally {
             setLoading(false);
@@ -72,6 +72,7 @@ function Dashboard() {
                         <button
                             onClick={() => navigate('/')}
                             className="btn btn-ghost btn-circle"
+                            title="Go back to home"
                         >
                             <FontAwesomeIcon icon={faArrowLeft} />
                         </button>
@@ -85,6 +86,7 @@ function Dashboard() {
                             className="select select-bordered"
                             value={selectedMonth ?? ''}
                             onChange={(e) => setSelectedMonth(e.target.value ? parseInt(e.target.value) : undefined)}
+                            title="Select a month"
                         >
                             <option value="">All Months</option>
                             {months.map((month, index) => (
@@ -95,6 +97,7 @@ function Dashboard() {
                             className="select select-bordered"
                             value={selectedYear}
                             onChange={(e) => setSelectedYear(parseInt(e.target.value))}
+                            title="Select a year"
                         >
                             {Array.from({ length: 5 }, (_, i) => new Date().getFullYear() - i).map(year => (
                                 <option key={year} value={year}>{year}</option>
