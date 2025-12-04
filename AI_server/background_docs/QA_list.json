@@ -1,0 +1,152 @@
+[
+    {
+        "id": 1,
+        "category": "Resume & CV",
+        "question": "How long should my resume be?",
+        "answer": "For most professionals with less than 10 years of experience, a one-page resume is ideal. If you have 10+ years of experience or are in academia/research, a two-page resume is acceptable. Focus on relevance over length—include only experiences and skills that directly relate to the position you're applying for."
+    },
+    {
+        "id": 2,
+        "category": "Resume & CV",
+        "question": "Should I include a photo on my resume?",
+        "answer": "In most English-speaking countries (US, UK, Canada, Australia), it's not recommended to include a photo on your resume due to anti-discrimination laws. However, in some European, Asian, and Latin American countries, photos are expected. Research the norms for your target country and industry."
+    },
+    {
+        "id": 3,
+        "category": "Job Search",
+        "question": "How many jobs should I apply to per week?",
+        "answer": "Quality matters more than quantity. Aim for 10-15 well-targeted applications per week rather than mass-applying to hundreds of positions. Customize your resume and cover letter for each role, and focus on positions that closely match your skills and career goals."
+    },
+    {
+        "id": 4,
+        "category": "Job Search",
+        "question": "How long does it typically take to find a job?",
+        "answer": "On average, a job search takes 3-6 months, though this varies widely based on your industry, experience level, and market conditions. Entry-level positions may take 3-4 months, while senior roles can take 6-9 months or longer. Stay persistent and continue networking throughout your search."
+    },
+    {
+        "id": 5,
+        "category": "Interview Preparation",
+        "question": "How should I answer 'Tell me about yourself'?",
+        "answer": "Structure your response in 2-3 minutes: Start with your current role and key achievements, mention relevant past experiences that led you here, and conclude with why you're interested in this opportunity. Focus on professional highlights that align with the job requirements, and practice delivering this smoothly."
+    },
+    {
+        "id": 6,
+        "category": "Interview Preparation",
+        "question": "What questions should I ask at the end of an interview?",
+        "answer": "Ask about the team structure and dynamics, day-to-day responsibilities, success metrics for the role, professional development opportunities, company culture, and next steps in the hiring process. Avoid asking about salary, benefits, or time off in the first interview unless the interviewer brings it up."
+    },
+    {
+        "id": 7,
+        "category": "Salary & Negotiation",
+        "question": "How do I negotiate my salary?",
+        "answer": "Research market rates for your role and location first. When asked about salary expectations, provide a range based on your research. If you receive an offer, express enthusiasm first, then professionally negotiate if needed. Highlight your unique value, consider the full compensation package, and be prepared to justify your request with specific achievements."
+    },
+    {
+        "id": 8,
+        "category": "Salary & Negotiation",
+        "question": "Should I disclose my current salary?",
+        "answer": "In many places, it's illegal for employers to ask about current salary. If asked, you can politely redirect: 'I'd prefer to focus on the value I can bring to this role and what the position is worth in the current market.' Then provide your target salary range based on market research."
+    },
+    {
+        "id": 9,
+        "category": "Cover Letters",
+        "question": "Are cover letters still necessary?",
+        "answer": "Yes, when requested or when applying to competitive positions. A strong cover letter can differentiate you from other candidates. Use it to explain why you're interested in the specific company and role, highlight 2-3 key achievements that match the job requirements, and show your personality and communication skills."
+    },
+    {
+        "id": 10,
+        "category": "Cover Letters",
+        "question": "How do I write a cover letter with no experience?",
+        "answer": "Focus on transferable skills from coursework, volunteer work, internships, or extracurricular activities. Show enthusiasm for the industry and company, demonstrate that you've researched the organization, highlight relevant coursework or projects, and emphasize your willingness to learn and grow."
+    },
+    {
+        "id": 11,
+        "category": "Career Change",
+        "question": "How do I change careers with no experience in the new field?",
+        "answer": "Identify transferable skills from your current career, take online courses or certifications in your target field, build a portfolio of projects, network with professionals in the industry, consider entry-level or transitional roles, and craft your narrative to show how your unique background adds value."
+    },
+    {
+        "id": 12,
+        "category": "Career Change",
+        "question": "Should I get another degree to change careers?",
+        "answer": "Not always necessary. First explore alternatives like online courses, bootcamps, certifications, or self-study. A degree may be required for regulated fields (healthcare, law, engineering), but many industries value skills and experience over formal education. Consider the time and financial investment carefully."
+    },
+    {
+        "id": 13,
+        "category": "LinkedIn & Networking",
+        "question": "How do I optimize my LinkedIn profile?",
+        "answer": "Use a professional headshot, write a compelling headline beyond your job title, craft a story-driven summary, include quantified achievements in your experience section, add relevant skills and get endorsements, request recommendations, engage with content regularly, and customize your LinkedIn URL."
+    },
+    {
+        "id": 14,
+        "category": "LinkedIn & Networking",
+        "question": "How do I network effectively if I'm an introvert?",
+        "answer": "Focus on one-on-one coffee chats or video calls instead of large events, use LinkedIn to build relationships gradually, prepare conversation topics in advance, attend smaller industry meetups, leverage alumni networks, follow up with thoughtful messages, and remember that quality connections matter more than quantity."
+    },
+    {
+        "id": 15,
+        "category": "Remote Work",
+        "question": "How do I find legitimate remote jobs?",
+        "answer": "Use reputable remote job boards (FlexJobs, Remote.co, We Work Remotely), filter for remote options on traditional job sites, check company career pages directly, join remote work communities, be wary of jobs requiring upfront payment, verify company legitimacy, and watch for red flags like vague job descriptions."
+    },
+    {
+        "id": 16,
+        "category": "Remote Work",
+        "question": "How should I prepare for a video interview?",
+        "answer": "Test your technology in advance, ensure good lighting and a clean background, dress professionally from head to toe, eliminate distractions and noise, position your camera at eye level, look at the camera when speaking, have notes nearby but maintain eye contact, and prepare for potential technical difficulties."
+    },
+    {
+        "id": 17,
+        "category": "Skills Development",
+        "question": "What skills are most in-demand right now?",
+        "answer": "Technical skills like data analysis, cloud computing, AI/machine learning, and cybersecurity remain highly valued. Soft skills including critical thinking, communication, adaptability, emotional intelligence, and digital literacy are increasingly important across all industries. Industry-specific certifications also boost employability."
+    },
+    {
+        "id": 18,
+        "category": "Skills Development",
+        "question": "How do I learn new skills while working full-time?",
+        "answer": "Set aside 30 minutes daily for learning, use commute time for podcasts or audiobooks, take advantage of lunch breaks, dedicate weekend mornings to skill-building, use microlearning platforms, apply new skills to current projects when possible, and inform your manager about your development goals."
+    },
+    {
+        "id": 19,
+        "category": "Job Offers",
+        "question": "How long do I have to accept a job offer?",
+        "answer": "Typically, employers give 2-5 business days to respond to an offer. If you need more time, it's acceptable to ask for an extension, explaining that you want to make an informed decision. However, don't delay unnecessarily—prolonged hesitation may signal disinterest."
+    },
+    {
+        "id": 20,
+        "category": "Job Offers",
+        "question": "Can I negotiate benefits beyond salary?",
+        "answer": "Absolutely. Consider negotiating signing bonuses, stock options, additional vacation days, flexible work arrangements, professional development budgets, relocation assistance, earlier performance reviews, or a better job title. Some benefits may be easier for employers to adjust than base salary."
+    },
+    {
+        "id": 21,
+        "category": "Career Growth",
+        "question": "How often should I update my resume?",
+        "answer": "Update your resume every 3-6 months or immediately after accomplishing something significant. This ensures you don't forget achievements and makes job searching less stressful. Keep a running document of accomplishments, projects, and metrics to pull from when updating."
+    },
+    {
+        "id": 22,
+        "category": "Career Growth",
+        "question": "When is the right time to ask for a promotion?",
+        "answer": "Typically after 12-18 months in your current role, when you've consistently exceeded expectations, taken on additional responsibilities, and demonstrated readiness for the next level. Schedule a meeting with your manager, present your case with specific achievements, and ask what's needed to advance."
+    },
+    {
+        "id": 23,
+        "category": "Application Process",
+        "question": "Should I follow up after applying for a job?",
+        "answer": "Wait 1-2 weeks after applying, then send a brief, professional follow-up email reiterating your interest and asking about the timeline. If you have a connection at the company, reach out to them. After interviews, always send a thank-you email within 24 hours."
+    },
+    {
+        "id": 24,
+        "category": "Application Process",
+        "question": "What should I do if I'm overqualified for a position?",
+        "answer": "Address it proactively in your cover letter, explaining why you're genuinely interested in the role. Focus on long-term fit and growth potential, emphasize skills that match the position rather than highlighting all qualifications, and be prepared to discuss in interviews why this role aligns with your career goals."
+    },
+    {
+        "id": 25,
+        "category": "References",
+        "question": "Who should I use as a reference?",
+        "answer": "Choose former managers, supervisors, or colleagues who can speak to your work quality and professional character. Ask permission before listing someone, brief them on the role you're applying for, and provide them with your updated resume. Avoid using family members or friends as professional references."
+    }
+]
