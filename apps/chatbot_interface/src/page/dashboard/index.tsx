@@ -42,6 +42,12 @@ const mockUserCounts: MonthlyUserCount[] = [
     { month: 'Apr', uniqueUsers: 42, users: 58, alumni: 16, total: 116 },
     { month: 'May', uniqueUsers: 66, users: 84, alumni: 19, total: 169 },
     { month: 'Jun', uniqueUsers: 51, users: 70, alumni: 15, total: 136 },
+    { month: 'Jul', uniqueUsers: 55, users: 72, alumni: 17, total: 144 },
+    { month: 'Aug', uniqueUsers: 68, users: 88, alumni: 22, total: 178 },
+    { month: 'Sep', uniqueUsers: 62, users: 81, alumni: 19, total: 162 },
+    { month: 'Oct', uniqueUsers: 70, users: 92, alumni: 24, total: 186 },
+    { month: 'Nov', uniqueUsers: 64, users: 83, alumni: 20, total: 167 },
+    { month: 'Dec', uniqueUsers: 48, users: 65, alumni: 14, total: 127 },
 ];
 
 const mockInteractions: Interaction[] = [
@@ -175,7 +181,7 @@ function Dashboard() {
                 {/* Header */}
                 <div className="mb-6 flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                        <button onClick={() => navigate('/')} className="btn btn-ghost btn-circle">
+                        <button onClick={() => navigate('/')} className="btn btn-ghost btn-circle" title="Go back">
                             <FontAwesomeIcon icon={faArrowLeft} />
                         </button>
                         <div>
@@ -183,36 +189,47 @@ function Dashboard() {
                             <p className="text-gray-600">CareerHub Chatbot Analytics</p>
                         </div>
                     </div>
+                    {/* Drop downs */}
                     <div className="flex gap-4">
+                        {/* For Selecting the months */}
                         <select
-                            className="select select-bordered"
-                            value={selectedMonth ?? ''}
-                            onChange={(e) => setSelectedMonth(e.target.value ? parseInt(e.target.value) : undefined)}
+                            className="select select-bordered text-gray-800"
+                            value={selectedMonth === undefined ? 'all' 
+                                : String(selectedMonth)}
+                            onChange={(e) => {
+                                const value = e.target.value;
+                                setSelectedMonth(
+                                    value === 'all'
+                                        ? undefined
+                                        : parseInt(value, 10)
+                                );
+                            }}
                             title="Select a month"
                         >
-                            <option value="">All Months</option>
+                            <option value="all">All Months</option>
                             {months.map((month, index) => (
-                                <option key={index} value={index}>
+                                <option key={index} value={String(index)}>
                                     {month}
                                 </option>
                             ))}
                         </select>
+                        {/* Year Selector */}
                         <select
-                            className="select select-bordered"
-                            value={selectedYear}
-                            onChange={(e) => setSelectedYear(parseInt(e.target.value))}
+                            className="select select-bordered text-gray-800"
+                            value={String(selectedYear)}
+                            onChange={(e) => setSelectedYear(parseInt(e.target.value, 10))}
                             title="Select a year"
                         >
-                            {Array.from({ length: 5 }, (_, i) => new Date().getFullYear() - i).map((year) => (
-                                <option key={year} value={year}>
+                            {Array.from({ length: 10 }, (_, i) => new Date().getFullYear() + i).map((year) => (
+                                <option key={year} value={String(year)}>
                                     {year}
                                 </option>
                             ))}
                         </select>
                     </div>
                 </div>
-
-                {/* Stats Cards */}
+            
+                {/* Stats Cards
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                     <div className="card bg-white shadow-md">
                         <div className="card-body">
@@ -257,15 +274,15 @@ function Dashboard() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
                 {/* Charts Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6 text-black">
+                <div className="grid grid-cols-1 gap-6 mb-6 text-black">
                     {/* Question Types Chart */}
                     <div className="card bg-white shadow-md">
                         <div className="card-body">
                             <h2 className="card-title text-xl mb-4">Question Types (Monthly)</h2>
-                            {questionTypesData.length > 0 ? (
+                            <div className="w-full flex justify-center">
                                 <ResponsiveContainer width="100%" height={300}>
                                     <PieChart>
                                         <Pie
@@ -274,7 +291,7 @@ function Dashboard() {
                                             cy="50%"
                                             labelLine={false}
                                             label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-                                            outerRadius={80}
+                                            outerRadius={100}
                                             fill="#8884d8"
                                             dataKey="value"
                                         >
@@ -282,14 +299,26 @@ function Dashboard() {
                                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                             ))}
                                         </Pie>
-                                        <Tooltip />
-                                    </PieChart>
+                                            <Tooltip />
+                                            <Legend
+                layout="vertical"
+                verticalAlign="middle"
+                align="right"
+                wrapperStyle={{
+                    width: '180px',
+                    padding: '18px 20px',
+                    border: '1px solid #ddd',
+                    borderRadius: '12px',
+                    backgroundColor: '#ffffff',
+                    boxShadow: '0 3px 10px rgba(0,0,0,0.12)',
+                    fontSize: '15px',
+                    lineHeight: '28px',
+                    marginRight: '30px',
+                }}
+            />
+                                </PieChart>
                                 </ResponsiveContainer>
-                            ) : (
-                                <div className="h-300 flex items-center justify-center text-gray-500">
-                                    No data available for selected period
-                                </div>
-                            )}
+                            </div>
                         </div>
                     </div>
 
