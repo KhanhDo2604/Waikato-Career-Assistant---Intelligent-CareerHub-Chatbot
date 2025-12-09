@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 
-class ChatRequest(BaseModel):
-    question: str
-    user_id: str = None
+class RequestModel(BaseModel):
+    user_id: str | None = None
+    question: str | None = None
+    
