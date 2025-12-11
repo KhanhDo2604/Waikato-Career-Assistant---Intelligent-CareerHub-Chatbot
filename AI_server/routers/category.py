@@ -13,7 +13,7 @@ with open('routers/questions.json','r',encoding='utf-8') as f:
 THRESHOLD = 0.53 
 
 @routers.get("/group")
-async def group():
+async def group(question):
     """
     return the question list's all categories.
     
@@ -120,12 +120,12 @@ async def cat_count(category: str):
 
     return count
 
-@routers.post("/update")
+@routers.post("/add")
 async def update(req: CategoryRequestModel):
     """
-    update the categories list with a new categories list.
+    add a new category in categories list.
     
-    :param categories: new categories list
+    :param categories: new category
     :return str: success message
     """
     new_category = req.category
@@ -136,6 +136,23 @@ async def update(req: CategoryRequestModel):
         return {"message": "Categories updated successfully."}
     else:
         return {"message": "Category already exists or invalid."}
+
+@routers.post("/remove")
+async def remove(req: CategoryRequestModel):
+    """
+    remove a category from categories list.
+    
+    :param categories: category to remove
+    :return str: success message
+    """
+    category_to_remove = req.category
+    if category_to_remove and category_to_remove in categories:
+        categories.remove(category_to_remove)
+        with open('routers/categories.json','w',encoding='utf-8') as f:
+            json.dump(categories,f,ensure_ascii=False,indent=4)
+        return {"message": "Category removed successfully."}
+    else:
+        return {"message": "Category not found or invalid."}
 
 @routers.get("/list")
 async def list_categories():
