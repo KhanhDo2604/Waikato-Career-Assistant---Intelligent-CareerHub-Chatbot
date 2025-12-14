@@ -1,18 +1,19 @@
 from fastapi import FastAPI
 from routers import chat
+from routers import category
 app = FastAPI()
 
-app.include_router(chat.Routers)
+app.include_router(chat.routers)
+app.include_router(category.routers)
 
 @app.get("/")
 async def root():
     return {
-        "/chat/stream": "returns a streaming response for the chat question. POST request with JSON body containing 'user_id' and 'question'.",
-        "/chat/": "returns a response for the chat question. POST request with JSON body containing 'user_id' and 'question'.",
-        "/chat/reset": "resets the chat history for a given user_id. POST request with JSON body containing 'user_id'.",
-        "/chat/history": "returns the chat history for a given user_id. GET request with query parameter containing 'user_id'.",
-        "/chat/delete_store": "deletes the vector store. DELETE request.", 
-        "/chat/update_store": "updates the vector store with new data. PUT request with JSON body containing updated data in array format.",
-        "/chat/get_qa": "gets the current Q&A data from the JSON file. GET request.",
-        "/chat/most_relevant": "gets the most relevant document for a given question. GET request with query parameters containing 'user_id' and 'question'."
+        "/chat/ask": "return the answer response for user question. POST request with JSON body containing 'user_id' and 'question'",
+        "/chat/most_relevant": "return the most relevant question from the qa_list along with similarity score. GET request with 'question' query parameter",
+        "/chat/history": "retrieve chat history for a given user_id.GET request with 'user_id' query parameter",
+        "/chat/reset": "reset chat history for a given user_id. GET request with 'user_id' query parameter",
+        "/chat/get_qa": "retrieve the entire QA list from the qa_list. GET request",
+        "/chat/update_qa": "update the QA list with a new QA list. PUT request with JSON body containing the new QA list",
+        "/chat/delete_qa": "delete the existing QA list. DELETE request"
         }
