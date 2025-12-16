@@ -1,18 +1,20 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import routes from './routes';
+import { ChatProvider } from './context/ChatContext';
 
 function App() {
-    // return <HomePage />;
     return (
-        <Router>
-            <>
-                <Routes>
-                    {routes.map((route, index) => (
-                        <Route key={index} path={route.path} element={<route.component />} />
-                    ))}
-                </Routes>
-            </>
-        </Router>
+        <ChatProvider>
+            <Router>
+                <>
+                    <Routes>
+                        {routes.map((route, index) => (
+                            <Route key={index} path={route.path} element={<route.component />} />
+                        ))}
+                    </Routes>
+                </>
+            </Router>
+        </ChatProvider>
     );
 }
 
