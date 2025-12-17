@@ -1,8 +1,8 @@
 import icons from '../../constants/icons';
 import { useEffect, useRef } from 'react';
-import colors from '../../constants/colors';
 import InputBar from './chat_ui/InputBar';
 import { useChat } from '../../hooks/useChat';
+import MessageTag from './chat_ui/MessageTag';
 
 function ChatPage() {
     const { state, actions } = useChat();
@@ -10,7 +10,6 @@ function ChatPage() {
 
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
-    const bgColor = colors.colors.primary;
     const myCareerUrl = import.meta.env.VITE_MY_CAREER_URL;
     const waikatoUniversityUrl = import.meta.env.VITE_WAIKATO_UNIVERSITY_URL;
 
@@ -19,7 +18,7 @@ function ChatPage() {
     }, [messages]);
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col">
+        <div className="h-screen overflow-hidden bg-gray-50 flex flex-col">
             {/* Header */}
             <header className="border-b border-gray-200 bg-white">
                 <div className="max-w px-4 py-3 flex justify-between">
@@ -43,7 +42,7 @@ function ChatPage() {
             </header>
 
             {/* MAIN */}
-            <main className="flex-1 flex flex-col">
+            <main className="flex-1 min-h-0 flex flex-col">
                 {!hasStarted ? (
                     // Initial state
                     <div className="flex-1 flex flex-col items-center justify-center px-4">
@@ -70,7 +69,7 @@ function ChatPage() {
                                             onClick={() => actions.sendMessage(q.question)}
                                             className="w-full text-left px-3 py-2 rounded-xl bg-white border border-gray-200
                                                 hover:bg-gray-50 hover:border-gray-300 transition
-                                                text-sm text-gray-700"
+                                                text-sm text-gray-700 cursor-pointer"
                                         >
                                             {q.question}
                                         </button>
@@ -92,21 +91,10 @@ function ChatPage() {
                 ) : (
                     // Second state
                     <>
-                        <div className="flex-1 overflow-y-auto">
-                            <div className="max-w-4xl mx-auto px-4 py-6 space-y-4">
+                        <div className="flex-1 min-h-0 overflow-y-auto">
+                            <div className="max-w-4xl mx-auto w-full min-w-0 px-4 py-6 space-y-4">
                                 {messages.map((m) => (
-                                    <div
-                                        key={m.id}
-                                        className={`flex ${m.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-                                    >
-                                        <div
-                                            className={`max-w-[75%] rounded-2xl px-3 py-2 text-sm leading-snug whitespace-pre-wrap
-                                                ${m.sender === 'user' ? 'text-white rounded-br-none' : 'bg-gray-200 text-gray-800 rounded-bl-none'}`}
-                                            style={m.sender === 'user' ? { backgroundColor: bgColor } : undefined}
-                                        >
-                                            {m.text}
-                                        </div>
-                                    </div>
+                                    <MessageTag key={m.id} message={m} />
                                 ))}
 
                                 {isBotTyping && (
@@ -124,7 +112,7 @@ function ChatPage() {
                         </div>
 
                         {/* Input area */}
-                        <div className="border-t border-gray-200 bg-linear-to-t from-gray-50 to-gray-50/60">
+                        <div className="shrink-0 border-t border-gray-200 bg-linear-to-t from-gray-50 to-gray-50/60">
                             <div className="max-w-4xl mx-auto px-4 py-3">
                                 <InputBar
                                     value={inputText}

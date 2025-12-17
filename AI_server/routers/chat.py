@@ -2,11 +2,11 @@ from fastapi import APIRouter,Request
 from models.request import RequestModel
 from services.vector_store import Vector_store
 from services.model import Model
-from services.chain import Chat
+from services.chat import Chat
 import json
-
+# aaaS
 routers = APIRouter(prefix="/chat", tags=["chat"])
-embedding_model = Model(model_name="nomic-embed-text").embedding_model
+embedding_model = Model(model_name="mxbai-embed-large").embedding_model
 vectore_store = Vector_store(embedding_model=embedding_model, index_name="qa_list")
 session_chats = {}
 with open('./background_docs/QA_list.json','r',encoding='utf-8') as f:
@@ -36,7 +36,7 @@ async def ask_question(request: RequestModel):
     if result[0][1] < 0.4:
         answer = next((item['answer'] for item in content if item['question'] == result[0][0].page_content), None)
     else:
-        answer = "I am sorry, I don't have the answer to that question. Please try another one or turn to human support."
+        answer = ""
     
     chat_instance.append_message(question, answer)
     return answer

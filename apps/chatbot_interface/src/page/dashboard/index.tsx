@@ -14,7 +14,7 @@ import {
 } from 'recharts';
 import { type CommonQuestion, type MonthlyUserCount, type Interaction } from '../../services/api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChartLine, faQuestionCircle, faUsers, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d'];
@@ -123,26 +123,6 @@ function Dashboard() {
             setLoading(false);
         }
     };
-    // const loadDashboardData = async () => {
-    //     setLoading(true);
-    //     try {
-    //         const [types, questions, counts, allInteractions] = await Promise.all([
-    //             api.getQuestionTypes(selectedMonth, selectedYear),
-    //             api.getCommonQuestions(selectedMonth, selectedYear),
-    //             api.getUserCounts(selectedMonth, selectedYear),
-    //             api.getInteractions(undefined, 100),
-    //         ]);
-
-    //         setQuestionTypes(types);
-    //         setCommonQuestions(questions);
-    //         setUserCounts(counts);
-    //         setInteractions(allInteractions);
-    //     } catch (error) {
-    //         console.error('Error loading dashboard data:', error);
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // };
 
     const questionTypesData = Object.entries(questionTypes).map(([name, value]) => ({
         name,
@@ -194,15 +174,10 @@ function Dashboard() {
                         {/* For Selecting the months */}
                         <select
                             className="select select-bordered text-gray-800"
-                            value={selectedMonth === undefined ? 'all' 
-                                : String(selectedMonth)}
+                            value={selectedMonth === undefined ? 'all' : String(selectedMonth)}
                             onChange={(e) => {
                                 const value = e.target.value;
-                                setSelectedMonth(
-                                    value === 'all'
-                                        ? undefined
-                                        : parseInt(value, 10)
-                                );
+                                setSelectedMonth(value === 'all' ? undefined : parseInt(value, 10));
                             }}
                             title="Select a month"
                         >
@@ -228,7 +203,7 @@ function Dashboard() {
                         </select>
                     </div>
                 </div>
-            
+
                 {/* Stats Cards
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                     <div className="card bg-white shadow-md">
@@ -299,24 +274,24 @@ function Dashboard() {
                                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                             ))}
                                         </Pie>
-                                            <Tooltip />
-                                            <Legend
-                layout="vertical"
-                verticalAlign="middle"
-                align="right"
-                wrapperStyle={{
-                    width: '180px',
-                    padding: '18px 20px',
-                    border: '1px solid #ddd',
-                    borderRadius: '12px',
-                    backgroundColor: '#ffffff',
-                    boxShadow: '0 3px 10px rgba(0,0,0,0.12)',
-                    fontSize: '15px',
-                    lineHeight: '28px',
-                    marginRight: '30px',
-                }}
-            />
-                                </PieChart>
+                                        <Tooltip />
+                                        <Legend
+                                            layout="vertical"
+                                            verticalAlign="middle"
+                                            align="right"
+                                            wrapperStyle={{
+                                                width: '180px',
+                                                padding: '18px 20px',
+                                                border: '1px solid #ddd',
+                                                borderRadius: '12px',
+                                                backgroundColor: '#ffffff',
+                                                boxShadow: '0 3px 10px rgba(0,0,0,0.12)',
+                                                fontSize: '15px',
+                                                lineHeight: '28px',
+                                                marginRight: '30px',
+                                            }}
+                                        />
+                                    </PieChart>
                                 </ResponsiveContainer>
                             </div>
                         </div>

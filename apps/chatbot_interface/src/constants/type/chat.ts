@@ -5,6 +5,15 @@ export interface ChatMessage {
     sender: Sender;
     text: string;
     createAt: Date;
+    link?: string;
+}
+
+export interface InputBarProps {
+    value: string;
+    onChange: (value: string) => void;
+    onSubmit: (value: string) => void;
+    placeholder?: string;
+    disabled?: boolean;
 }
 
 export interface Question {

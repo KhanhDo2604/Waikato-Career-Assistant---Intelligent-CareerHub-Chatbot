@@ -57,6 +57,11 @@ export const ChatContext = createContext<ChatContextValue | null>(null);
 export const ChatProvider = ({ children }: { children: ReactNode }) => {
     const [state, dispatch] = useReducer(chatReducer, initialState);
 
+    const fallbackMessage = {
+        text: `Sorry, this question is currently outside the scope of what I can assist with.\nPlease visit the link below to submit your question directly to an administrator for further support.`,
+        link: 'https://mycareer.waikato.ac.nz/students/questions/',
+    };
+
     useEffect(() => {
         if (state.questions.length > 0 || state.questionsLoading) return;
 
@@ -103,12 +108,21 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
                 try {
                     const botReply = await getAnswer(trimmedText);
 
-                    const botMessage: ChatMessage = {
-                        id: (Date.now() + 1).toString(),
-                        sender: 'bot',
-                        text: botReply,
-                        createAt: new Date(),
-                    };
+                    const botMessage: ChatMessage =
+                        botReply.length > 0
+                            ? {
+                                  id: (Date.now() + 1).toString(),
+                                  sender: 'bot',
+                                  text: botReply,
+                                  createAt: new Date(),
+                              }
+                            : {
+                                  id: (Date.now() + 1).toString(),
+                                  sender: 'bot',
+                                  text: fallbackMessage.text,
+                                  createAt: new Date(),
+                                  link: fallbackMessage.link,
+                              };
 
                     dispatch({ type: 'ADD_MESSAGE', payload: botMessage });
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any

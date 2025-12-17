@@ -1,28 +1,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icons from '../../../constants/icons';
 import { useEffect, useRef, useState, type ChangeEvent, type KeyboardEvent } from 'react';
+import type { InputBarProps } from '../../../constants/type/chat';
 import colors from '../../../constants/colors';
-
-interface InputBarProps {
-    value: string;
-    onChange: (value: string) => void;
-    onSubmit: (value: string) => void;
-    placeholder?: string;
-    disabled?: boolean;
-}
 
 const MAX_HEIGHT = 200;
 
-const InputBar: React.FC<InputBarProps> = ({
-    value,
-    onChange,
-    onSubmit,
-    placeholder = 'Ask anything',
-    disabled = false,
-}) => {
+function InputBar({ value, onChange, onSubmit, placeholder = 'Ask anything', disabled = false }: InputBarProps) {
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
     const [focused, setFocused] = useState(false);
-
     const bgColor = colors.colors.primary;
 
     const adjustHeight = () => {
@@ -96,7 +82,7 @@ const InputBar: React.FC<InputBarProps> = ({
                             shrink-0 w-10 h-10 rounded-full 
                             flex items-center justify-center
                             transition-all duration-200
-                            ${value.trim() && !disabled ? `bg-[${bgColor}]` : `bg-gray-300 cursor-not-allowed`}
+                            ${value.trim() && !disabled ? `bg-[${bgColor}] cursor-pointer` : `bg-gray-300 cursor-not-allowed`}
                         `}
                 >
                     <FontAwesomeIcon icon={icons.icon.send} />
@@ -104,6 +90,6 @@ const InputBar: React.FC<InputBarProps> = ({
             </div>
         </div>
     );
-};
+}
 
 export default InputBar;

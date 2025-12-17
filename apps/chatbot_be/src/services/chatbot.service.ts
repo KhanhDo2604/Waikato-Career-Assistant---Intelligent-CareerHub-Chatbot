@@ -4,32 +4,16 @@ import { AskError } from '../models/type.js';
 
 // Place to handle chatbot logics
 
-export const handleQuestion = async (question: string) => {
+export const handleQuestion = async (userSession: string, question: string) => {
     try {
-        const data = await askChatbot(question, '', 'POST');
+        const payload = { user_id: userSession, question };
 
-        return {
-            status: 200,
-            answer: data.answer,
-        };
+        const data = await askChatbot(payload, '/chat/ask', 'POST');
+
+        return data;
     } catch (error: any) {
         const err = error as AskError;
-        return { status: err.status || 500, message: err.message };
-    }
-};
-
-export const getCommonAnswer = async (questionId: string) => {
-    try {
-        // Query databbase to get common answer
-        const answer = commonQuestions.find((q) => q.id.toString() === questionId);
-
-        return {
-            status: 200,
-            answer: answer?.answer,
-        };
-    } catch (error: Error | any) {
-        const err = error as AskError;
-        return { status: err.status || 500, message: err.message };
+        return { status: err.status || 500, message: `handleQuestion BE: ${err.message}` };
     }
 };
 
@@ -40,6 +24,6 @@ export const getCommonQuestions = async () => {
         return questions;
     } catch (error: Error | any) {
         const err = error as AskError;
-        return { status: err.status || 500, message: err.message };
+        return { status: err.status || 500, message: `getCommonQuestions BE: ${err.message}` };
     }
 };

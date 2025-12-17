@@ -1,30 +1,22 @@
-import { AskError, AskResponse } from '../src/models/type.js';
-
-const BACKEND_URL = process.env.MODEL_URL || 'http://localhost:8080';
-
-export const askChatbot = async (question: string, tail: string, method: string): Promise<AskResponse> => {
+export const askChatbot = async (body: Record<string, any>, tail: string, method: string): Promise<string> => {
     try {
-        const url = tail ? `${BACKEND_URL}/${tail}` : BACKEND_URL;
-        const response = await fetch(url, {
-            method: method,
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'include',
-            body: JSON.stringify({ question }),
+        const BACKEND_URL = process.env.MODEL_URL;
+        if (!BACKEND_URL) {
+            throw new Error('MODEL_URL is not defined');
+        }
+
+        const res = await fetch(`${BACKEND_URL}${tail}`, {
+            method,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
         });
 
-        if (!response.ok) {
-            const errorBody = await response.json().catch(() => null);
-            const errorMessage = errorBody?.message || 'Failed to get response from chatbot service';
-            throw {
-                status: response.status,
-                message: errorMessage,
-            } as AskError;
-        }
-        const data: AskResponse = await response.json();
-        return data;
-    } catch (error) {
-        throw error;
+        const ans = await res.json();
+
+        if (!res.ok) throw new Error('Model call failed');
+        return ans;
+    } catch (error: any) {
+        console.log('model failed');
+        throw new Error(error.message);
     }
 };
