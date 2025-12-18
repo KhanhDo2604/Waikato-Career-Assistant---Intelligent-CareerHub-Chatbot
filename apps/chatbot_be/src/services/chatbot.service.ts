@@ -10,6 +10,9 @@ export const handleQuestion = async (userSession: string, question: string) => {
 
         const data = await askChatbot(payload, '/chat/ask', 'POST');
 
+        //gọi model để xác định category của question
+        //Lưu data vào database
+
         return data;
     } catch (error: any) {
         const err = error as AskError;

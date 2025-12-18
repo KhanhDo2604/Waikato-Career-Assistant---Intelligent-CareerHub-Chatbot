@@ -6,14 +6,16 @@ import { getFirestore } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
 const firebaseConfig = {
-    apiKey: 'AIzaSyAhP_2tl1MvwlgXeShB3MYV-xlYCIkYg9M',
-    authDomain: 'chatbot-c28d8.firebaseapp.com',
-    projectId: 'chatbot-c28d8',
-    storageBucket: 'chatbot-c28d8.firebasestorage.app',
-    messagingSenderId: '685219036338',
-    appId: '1:685219036338:web:8d8a6633146223811b5dab',
-    measurementId: 'G-S0MTL3ZQK3',
+    apiKey: process.env.VITE_FIREBASE_API_KEY,
+    authDomain: process.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.VITE_FIREBASE_APP_ID,
+    measurementId: process.env.VITE_FIREBASE_MEASUREMENT_ID,
+    ignoreUndefinedProperties: true,
 };
 
 // Initialize Firebase

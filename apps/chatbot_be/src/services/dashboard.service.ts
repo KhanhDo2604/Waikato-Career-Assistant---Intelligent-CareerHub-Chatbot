@@ -1,12 +1,11 @@
 //Data structure
 // common_questions (
-// {
 //   question: string,
 //   answer: string,
 //   category: string,      // 'CV', 'Internship', 'Appointment', ...
 //   createdAt: Timestamp,
 //   updatedAt: Timestamp
-// }
+
 // );
 
 // CREATE TABLE interactions (
@@ -48,7 +47,7 @@ export const questionTypesMonthlyReport = async () => {
         // TODO:
         // 1) Read year/month from request query
         // 2) Build Firestore query:
-        //    query(collection(db, 'interactions'), where('year','==',year))
+        //    query(collection(database, 'interactions'), where('year','==',year))
         // 3) If month exists → add where('month','==',month)
         // 4) Execute query
         // 5) Reduce docs into:

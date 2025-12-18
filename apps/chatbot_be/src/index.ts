@@ -60,11 +60,6 @@ app.get('/ping', (req, res) => {
     res.status(200).send('pong');
 });
 
-app.get('/debug', (req, res) => {
-    console.log('HIT /debug/me', (req as any).anonSid);
-    res.json({ anonSid: (req as any).anonSid });
-});
-
 app.use('/api/chatbot', chatbotRoute);
 app.use('/api/dashboard', dashboardRoute);
 
