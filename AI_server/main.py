@@ -1,9 +1,9 @@
 from fastapi import FastAPI
-from routers import chat
+# from routers import chat
 from routers import category
 app = FastAPI()
 
-app.include_router(chat.routers)
+# app.include_router(chat.routers)
 app.include_router(category.routers)
 
 @app.get("/")

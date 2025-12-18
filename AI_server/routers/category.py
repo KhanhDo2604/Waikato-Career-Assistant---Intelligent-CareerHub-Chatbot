@@ -13,7 +13,7 @@ with open('routers/questions.json','r',encoding='utf-8') as f:
 THRESHOLD = 0.53 
 
 @routers.get("/group")
-async def group(question):
+async def group():
     """
     return the question list's all categories.
     
@@ -53,7 +53,12 @@ async def group_one(question: str):
     # If the value more than theshold return the corresponding category
     # else return "unknown"
 
-    return None # replace this command with your logic
+    scores = sim[0]
+    max_index = scores.argmax()
+    max_value = scores[max_index]
+    if max_value >= THRESHOLD:
+        return categories[max_index]
+    return "unknown"
 
 @routers.post("/questions_belong_to")
 async def questions_belong_to(req: CategoryRequestModel):
@@ -118,6 +123,9 @@ async def cat_count(category: str):
     #TODO loop the similarity array and compare the similarity value with theshold. 
     # If the value more than theshold increase the count by 1
 
+    for score in sim:
+        if score[0] >= THRESHOLD:
+            count += 1
     return count
 
 @routers.post("/add")
