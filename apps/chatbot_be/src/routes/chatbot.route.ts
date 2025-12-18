@@ -1,9 +1,11 @@
-import { Router } from "express";
-import { handleQuestionController } from "../controllers/chatbot.controller.js";
+import { Router } from 'express';
+import { getCommonQuestionsController, handleQuestionController } from '../controllers/chatbot.controller.js';
 
 const chatbotRoute = Router();
 
 //Place to call controller functions
-chatbotRoute.post("/", handleQuestionController);
+chatbotRoute.post('/get-chat', handleQuestionController);
+
+chatbotRoute.get('/get-common-questions', getCommonQuestionsController);
 
 export default chatbotRoute;

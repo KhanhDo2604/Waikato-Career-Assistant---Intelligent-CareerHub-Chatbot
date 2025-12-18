@@ -52,6 +52,13 @@ async def group_one(question: str):
     #TODO compare the similarity value with theshold. 
     # If the value more than theshold return the corresponding category
     # else return "unknown"
+    # add your logic here 
+    if len(question_embedding) == 0 or len(categories_embedding) == 0:
+        return {"error": "No embeddings found."}
+    sim = cosine_similarity(question_embedding, categories_embedding)
+    #TODO compare the similarity value with theshold. 
+    # If the value more than theshold return the corresponding category
+    # else return "unknown"
 
     scores = sim[0]
     max_index = scores.argmax()
@@ -59,6 +66,7 @@ async def group_one(question: str):
     if max_value >= THRESHOLD:
         return categories[max_index]
     return "unknown"
+    return None # replace this command with your logic
 
 @routers.post("/questions_belong_to")
 async def questions_belong_to(req: CategoryRequestModel):
@@ -122,10 +130,7 @@ async def cat_count(category: str):
     count = 0
     #TODO loop the similarity array and compare the similarity value with theshold. 
     # If the value more than theshold increase the count by 1
-
-    for score in sim:
-        if score[0] >= THRESHOLD:
-            count += 1
+    # add your logic here
     return count
 
 @routers.post("/add")

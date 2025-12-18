@@ -2,7 +2,7 @@ from fastapi import APIRouter,Request
 from models.request import RequestModel
 from services.vector_store import Vector_store
 from services.model import Model
-from services.chain import Chat
+from services.chat import Chat
 import json
 
 # routers = APIRouter(prefix="/chat", tags=["chat"])

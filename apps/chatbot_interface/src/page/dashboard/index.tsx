@@ -14,8 +14,16 @@ import {
 } from 'recharts';
 import { type CommonQuestion, type MonthlyUserCount, type Interaction } from '../../services/api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChartLine, faQuestionCircle, faUsers, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+
+interface DailyUserCount {
+    day: number;
+    uniqueUsers: number;
+    users: number;
+    alumni: number;
+    total: number;
+}
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d'];
 
@@ -27,12 +35,12 @@ const mockQuestionTypes: Record<string, number> = {
     General: 14,
 };
 
-const mockCommonQuestions: CommonQuestion[] = [
-    { question: 'How to write a CV for internship?', count: 12 },
-    { question: 'What internships are available for IT students?', count: 9 },
-    { question: 'How can I improve my cover letter?', count: 7 },
-    { question: 'Where can I find part-time jobs?', count: 6 },
-    { question: 'When are the next workshops?', count: 5 },
+const mockCommonQuestions = [
+    { questionType: 'CV', count: 12 },
+    { questionType: 'Internship', count: 9 },
+    { questionType: 'Cover Letter', count: 7 },
+    { questionType: 'Job Search', count: 6 },
+    { questionType: 'Workshop', count: 5 },
 ];
 
 const mockUserCounts: MonthlyUserCount[] = [
@@ -74,7 +82,7 @@ const mockInteractions: Interaction[] = [
         userId: 'u991',
         userType: 'user',
         question: 'How long should my cover letter be?',
-        answer: 'Keep it to one page, with 3–4 strong paragraphs.',
+        answer: 'Keep it to one page, with 3-4 strong paragraphs.',
         timestamp: '2025-01-03T09:10:00Z',
         questionType: 'Cover Letter',
     },
@@ -98,6 +106,101 @@ const mockInteractions: Interaction[] = [
     },
 ];
 
+//  For how many days in a month
+function getDaysInMonth(monthIndex: number, year: number): number {
+    return new Date(year, monthIndex + 1, 0).getDate();
+}
+
+// To split the monthly total into different daily values
+function buildDailyUserCounts(
+    monthlyData: MonthlyUserCount[],
+    selectedMonth: number | undefined,
+    selectedYear: number,
+): DailyUserCount[] {
+    let baseTotals = { uniqueUsers: 0, users: 0, alumni: 0, total: 0 };
+    let days = 31;
+
+    if (selectedMonth === undefined) {
+        // All months selected
+        monthlyData.forEach((m) => {
+            baseTotals.uniqueUsers += m.uniqueUsers;
+            baseTotals.users += m.users;
+            baseTotals.alumni += m.alumni;
+            baseTotals.total += m.total;
+        });
+        days = 31;
+    } else {
+        const monthRow = monthlyData[selectedMonth];
+        if (!monthRow) return [];
+        baseTotals = {
+            uniqueUsers: monthRow.uniqueUsers,
+            users: monthRow.users,
+            alumni: monthRow.alumni,
+            total: monthRow.total,
+        };
+        days = getDaysInMonth(selectedMonth, selectedYear);
+    }
+
+    // random weights per day
+    const weights = Array.from({ length: days }, () => Math.random() + 0.3); // To avoid the zeros
+    const sumWeights = weights.reduce((sum, w) => sum + w, 0);
+
+    const daily: DailyUserCount[] = [];
+
+    // For splitting the initial totals
+    for (let i = 0; i < days; i++) {
+        const share = weights[i] / sumWeights;
+
+        daily.push({
+            day: i + 1,
+            uniqueUsers: Math.max(0, Math.round(baseTotals.uniqueUsers * share)),
+            users: Math.max(0, Math.round(baseTotals.users * share)),
+            alumni: Math.max(0, Math.round(baseTotals.alumni * share)),
+            total: 0,
+        });
+    }
+
+    // To make sure it is not going negative
+    const fixField = (field: keyof DailyUserCount, target: number) => {
+        let currentSum = daily.reduce((sum, d) => sum + (d[field] as number), 0);
+        let diff = target - currentSum;
+        const n = daily.length;
+
+        if (diff === 0) return;
+
+        // If we need to add values
+        if (diff > 0) {
+            let i = 0;
+            while (diff > 0 && i < n * 5) {
+                daily[i % n][field] = (daily[i % n][field] as number) + 1;
+                diff--;
+                i++;
+            }
+        } else {
+            //  if diff < 0, we need to subtract
+            let i = 0;
+            while (diff < 0 && i < n * 5) {
+                const idx = i % n;
+                if ((daily[idx][field] as number) > 0) {
+                    daily[idx][field] = (daily[idx][field] as number) - 1;
+                    diff++;
+                }
+                i++;
+            }
+        }
+    };
+
+    fixField('uniqueUsers', baseTotals.uniqueUsers);
+    fixField('users', baseTotals.users);
+    fixField('alumni', baseTotals.alumni);
+
+    daily.forEach((d) => {
+        d.total = d.uniqueUsers + d.users + d.alumni;
+    });
+
+    return daily;
+}
+
 function Dashboard() {
     const navigate = useNavigate();
     const [questionTypes, setQuestionTypes] = useState<Record<string, number>>(mockQuestionTypes);
@@ -106,6 +209,7 @@ function Dashboard() {
     const [interactions, setInteractions] = useState<Interaction[]>(mockInteractions);
     const [selectedMonth, setSelectedMonth] = useState<number | undefined>(new Date().getMonth());
     const [selectedYear, setSelectedYear] = useState<number>(new Date().getFullYear());
+    const [dailyUserCounts, setDailyUserCounts] = useState<DailyUserCount[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -119,30 +223,12 @@ function Dashboard() {
             setCommonQuestions(mockCommonQuestions);
             setUserCounts(mockUserCounts);
             setInteractions(mockInteractions);
+            const daily = buildDailyUserCounts(mockUserCounts, selectedMonth, selectedYear);
+            setDailyUserCounts(daily);
         } finally {
             setLoading(false);
         }
     };
-    // const loadDashboardData = async () => {
-    //     setLoading(true);
-    //     try {
-    //         const [types, questions, counts, allInteractions] = await Promise.all([
-    //             api.getQuestionTypes(selectedMonth, selectedYear),
-    //             api.getCommonQuestions(selectedMonth, selectedYear),
-    //             api.getUserCounts(selectedMonth, selectedYear),
-    //             api.getInteractions(undefined, 100),
-    //         ]);
-
-    //         setQuestionTypes(types);
-    //         setCommonQuestions(questions);
-    //         setUserCounts(counts);
-    //         setInteractions(allInteractions);
-    //     } catch (error) {
-    //         console.error('Error loading dashboard data:', error);
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // };
 
     const questionTypesData = Object.entries(questionTypes).map(([name, value]) => ({
         name,
@@ -194,15 +280,10 @@ function Dashboard() {
                         {/* For Selecting the months */}
                         <select
                             className="select select-bordered text-gray-800"
-                            value={selectedMonth === undefined ? 'all' 
-                                : String(selectedMonth)}
+                            value={selectedMonth === undefined ? 'all' : String(selectedMonth)}
                             onChange={(e) => {
                                 const value = e.target.value;
-                                setSelectedMonth(
-                                    value === 'all'
-                                        ? undefined
-                                        : parseInt(value, 10)
-                                );
+                                setSelectedMonth(value === 'all' ? undefined : parseInt(value, 10));
                             }}
                             title="Select a month"
                         >
@@ -228,7 +309,7 @@ function Dashboard() {
                         </select>
                     </div>
                 </div>
-            
+
                 {/* Stats Cards
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                     <div className="card bg-white shadow-md">
@@ -299,38 +380,47 @@ function Dashboard() {
                                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                             ))}
                                         </Pie>
-                                            <Tooltip />
-                                            <Legend
-                layout="vertical"
-                verticalAlign="middle"
-                align="right"
-                wrapperStyle={{
-                    width: '180px',
-                    padding: '18px 20px',
-                    border: '1px solid #ddd',
-                    borderRadius: '12px',
-                    backgroundColor: '#ffffff',
-                    boxShadow: '0 3px 10px rgba(0,0,0,0.12)',
-                    fontSize: '15px',
-                    lineHeight: '28px',
-                    marginRight: '30px',
-                }}
-            />
-                                </PieChart>
+                                        <Tooltip />
+                                        <Legend
+                                            layout="vertical"
+                                            verticalAlign="middle"
+                                            align="right"
+                                            wrapperStyle={{
+                                                width: '180px',
+                                                padding: '18px 20px',
+                                                border: '1px solid #ddd',
+                                                borderRadius: '12px',
+                                                backgroundColor: '#ffffff',
+                                                boxShadow: '0 3px 10px rgba(0,0,0,0.12)',
+                                                fontSize: '15px',
+                                                lineHeight: '28px',
+                                                marginRight: '30px',
+                                            }}
+                                        />
+                                    </PieChart>
                                 </ResponsiveContainer>
                             </div>
                         </div>
                     </div>
 
-                    {/* User Counts Chart */}
+                    {/* Daily Users Chart */}
                     <div className="card bg-white shadow-md">
                         <div className="card-body">
-                            <h2 className="card-title text-xl mb-4">Users Using Chatbot (Monthly)</h2>
-                            {userCounts.length > 0 ? (
+                            <h2 className="card-title text-xl mb-4">
+                                Users Using Chatbot (Per Day
+                                {selectedMonth !== undefined
+                                    ? ` in ${months[selectedMonth]} ${selectedYear}`
+                                    : ' - All Months'}
+                                )
+                            </h2>
+                            {dailyUserCounts.length > 0 ? (
                                 <ResponsiveContainer width="100%" height={300}>
-                                    <BarChart data={userCounts}>
+                                    <BarChart data={dailyUserCounts}>
                                         <CartesianGrid strokeDasharray="3 3" />
-                                        <XAxis dataKey="month" />
+                                        <XAxis
+                                            dataKey="day"
+                                            label={{ value: 'Day of Month', position: 'insideBottom', offset: -5 }}
+                                        />
                                         <YAxis />
                                         <Tooltip />
                                         <Legend />
@@ -351,14 +441,14 @@ function Dashboard() {
                 {/* Most Common Questions */}
                 <div className="card bg-white shadow-md mb-6 text-gray-500">
                     <div className="card-body">
-                        <h2 className="card-title text-xl mb-4">Most Common Questions (Monthly)</h2>
+                        <h2 className="card-title text-xl mb-4">Most Common Questions</h2>
                         {commonQuestions.length > 0 ? (
                             <div className="overflow-x-auto">
                                 <table className="table table-zebra w-full">
                                     <thead>
                                         <tr className="text-black">
                                             <th>Rank</th>
-                                            <th>Question</th>
+                                            <th>Question Type</th>
                                             <th>Count</th>
                                         </tr>
                                     </thead>
@@ -366,7 +456,9 @@ function Dashboard() {
                                         {commonQuestions.map((item, index) => (
                                             <tr key={index}>
                                                 <td className="font-bold">{index + 1}</td>
-                                                <td className="max-w-md">{item.question}</td>
+                                                <td>
+                                                    <span className="badge badge-outline">{item.questionType}</span>
+                                                </td>
                                                 <td>
                                                     <span className="badge badge-primary badge-lg">{item.count}</span>
                                                 </td>

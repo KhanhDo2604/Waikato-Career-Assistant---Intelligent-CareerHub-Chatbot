@@ -1,13 +1,13 @@
-import HomePage from '../page/homepage';
+import ChatPage from '../page/chatpage';
 import Dashboard from '../page/dashboard';
 
 const routes = [
-    { path: '/', component: HomePage },
+    { path: '/', component: ChatPage },
     {
         path: '/admin',
         component: Dashboard,
     },
-     { path: '/dashboard', component: Dashboard },
+    { path: '/dashboard', component: Dashboard },
 ];
 
 export default routes;
