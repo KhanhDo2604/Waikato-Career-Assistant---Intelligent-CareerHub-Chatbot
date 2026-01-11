@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import {
     BarChart,
@@ -12,10 +13,10 @@ import {
     Pie,
     Cell,
 } from 'recharts';
-import { type CommonQuestion, type MonthlyUserCount, type Interaction } from '../../services/api';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom';
+import { TrendingUp } from 'lucide-react';
+import { type CommonQuestionType, type MonthlyUserCount, type Interaction } from '../../services/api';
+import DatasetManagementTabs from './DatasetManagementTabs ';
+import colors from '../../constants/colors';
 
 interface DailyUserCount {
     day: number;
@@ -162,7 +163,7 @@ function buildDailyUserCounts(
 
     // To make sure it is not going negative
     const fixField = (field: keyof DailyUserCount, target: number) => {
-        let currentSum = daily.reduce((sum, d) => sum + (d[field] as number), 0);
+        const currentSum = daily.reduce((sum, d) => sum + (d[field] as number), 0);
         let diff = target - currentSum;
         const n = daily.length;
 
@@ -202,10 +203,8 @@ function buildDailyUserCounts(
 }
 
 function Dashboard() {
-    const navigate = useNavigate();
     const [questionTypes, setQuestionTypes] = useState<Record<string, number>>(mockQuestionTypes);
-    const [commonQuestions, setCommonQuestions] = useState<CommonQuestion[]>(mockCommonQuestions);
-    const [userCounts, setUserCounts] = useState<MonthlyUserCount[]>(mockUserCounts);
+    const [commonQuestions, setCommonQuestions] = useState<CommonQuestionType[]>(mockCommonQuestions);
     const [interactions, setInteractions] = useState<Interaction[]>(mockInteractions);
     const [selectedMonth, setSelectedMonth] = useState<number | undefined>(new Date().getMonth());
     const [selectedYear, setSelectedYear] = useState<number>(new Date().getFullYear());
@@ -221,7 +220,6 @@ function Dashboard() {
         try {
             setQuestionTypes(mockQuestionTypes);
             setCommonQuestions(mockCommonQuestions);
-            setUserCounts(mockUserCounts);
             setInteractions(mockInteractions);
             const daily = buildDailyUserCounts(mockUserCounts, selectedMonth, selectedYear);
             setDailyUserCounts(daily);
@@ -263,23 +261,23 @@ function Dashboard() {
 
     return (
         <div className="min-h-screen bg-gray-50 p-6">
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-8xl mx-auto">
                 {/* Header */}
                 <div className="mb-6 flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                        <button onClick={() => navigate('/')} className="btn btn-ghost btn-circle" title="Go back">
-                            <FontAwesomeIcon icon={faArrowLeft} />
-                        </button>
+                    <div className="flex items-center gap-3">
+                        <div className={`p-2 bg-[${colors.colors.primary}] rounded-lg`}>
+                            <TrendingUp className={`text-white`} size={28} />
+                        </div>
                         <div>
-                            <h1 className="text-3xl font-bold text-gray-800">Analytics Dashboard</h1>
-                            <p className="text-gray-600">CareerHub Chatbot Analytics</p>
+                            <h1 className="text-2xl lg:text-3xl font-bold text-gray-800">Analytics Dashboard</h1>
+                            <p className="text-sm lg:text-base text-gray-600">CareerHub Chatbot Analytics</p>
                         </div>
                     </div>
                     {/* Drop downs */}
                     <div className="flex gap-4">
                         {/* For Selecting the months */}
                         <select
-                            className="select select-bordered text-gray-800"
+                            className="select select-bordered w-auto bg-gray-200 text-gray-800 cursor-pointer"
                             value={selectedMonth === undefined ? 'all' : String(selectedMonth)}
                             onChange={(e) => {
                                 const value = e.target.value;
@@ -296,7 +294,7 @@ function Dashboard() {
                         </select>
                         {/* Year Selector */}
                         <select
-                            className="select select-bordered text-gray-800"
+                            className="select select-bordered w-auto bg-gray-200 text-gray-800 cursor-pointer"
                             value={String(selectedYear)}
                             onChange={(e) => setSelectedYear(parseInt(e.target.value, 10))}
                             title="Select a year"
@@ -310,58 +308,11 @@ function Dashboard() {
                     </div>
                 </div>
 
-                {/* Stats Cards
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                    <div className="card bg-white shadow-md">
-                        <div className="card-body">
-                            <div className="flex items-center justify-between">
-                                <div>
-                                    <p className="text-gray-600 text-sm">Total Interactions</p>
-                                    <p className="text-3xl font-bold text-gray-800">{interactions.length}</p>
-                                </div>
-                                <div className="text-4xl text-blue-500">
-                                    <FontAwesomeIcon icon={faChartLine} />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="card bg-white shadow-md">
-                        <div className="card-body">
-                            <div className="flex items-center justify-between">
-                                <div>
-                                    <p className="text-gray-600 text-sm">Question Types</p>
-                                    <p className="text-3xl font-bold text-gray-800">
-                                        {Object.keys(questionTypes).length}
-                                    </p>
-                                </div>
-                                <div className="text-4xl text-green-500">
-                                    <FontAwesomeIcon icon={faQuestionCircle} />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="card bg-white shadow-md">
-                        <div className="card-body">
-                            <div className="flex items-center justify-between">
-                                <div>
-                                    <p className="text-gray-600 text-sm">Unique Users</p>
-                                    <p className="text-3xl font-bold text-gray-800">
-                                        {userCounts.reduce((sum, item) => sum + item.uniqueUsers, 0)}
-                                    </p>
-                                </div>
-                                <div className="text-4xl text-purple-500">
-                                    <FontAwesomeIcon icon={faUsers} />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
-
                 {/* Charts Grid */}
-                <div className="grid grid-cols-1 gap-6 mb-6 text-black">
+                <div className="grid grid-cols-2 gap-6 mb-6 text-black">
                     {/* Question Types Chart */}
-                    <div className="card bg-white shadow-md">
-                        <div className="card-body">
+                    <div className="card bg-white shadow-sm">
+                        <div className="card-body p-4 justify-center">
                             <h2 className="card-title text-xl mb-4">Question Types (Monthly)</h2>
                             <div className="w-full flex justify-center">
                                 <ResponsiveContainer width="100%" height={300}>
@@ -376,7 +327,7 @@ function Dashboard() {
                                             fill="#8884d8"
                                             dataKey="value"
                                         >
-                                            {questionTypesData.map((entry, index) => (
+                                            {questionTypesData.map((_, index) => (
                                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                             ))}
                                         </Pie>
@@ -387,14 +338,13 @@ function Dashboard() {
                                             align="right"
                                             wrapperStyle={{
                                                 width: '180px',
-                                                padding: '18px 20px',
+                                                padding: '16px',
                                                 border: '1px solid #ddd',
                                                 borderRadius: '12px',
                                                 backgroundColor: '#ffffff',
                                                 boxShadow: '0 3px 10px rgba(0,0,0,0.12)',
                                                 fontSize: '15px',
                                                 lineHeight: '28px',
-                                                marginRight: '30px',
                                             }}
                                         />
                                     </PieChart>
@@ -402,65 +352,186 @@ function Dashboard() {
                             </div>
                         </div>
                     </div>
+                    {/* Change dataset/common questions */}
+                    <DatasetManagementTabs />
+                </div>
 
-                    {/* Daily Users Chart */}
-                    <div className="card bg-white shadow-md">
-                        <div className="card-body">
-                            <h2 className="card-title text-xl mb-4">
-                                Users Using Chatbot (Per Day
-                                {selectedMonth !== undefined
-                                    ? ` in ${months[selectedMonth]} ${selectedYear}`
-                                    : ' - All Months'}
-                                )
-                            </h2>
-                            {dailyUserCounts.length > 0 ? (
-                                <ResponsiveContainer width="100%" height={300}>
-                                    <BarChart data={dailyUserCounts}>
-                                        <CartesianGrid strokeDasharray="3 3" />
-                                        <XAxis
-                                            dataKey="day"
-                                            label={{ value: 'Day of Month', position: 'insideBottom', offset: -5 }}
-                                        />
-                                        <YAxis />
-                                        <Tooltip />
-                                        <Legend />
-                                        <Bar dataKey="uniqueUsers" fill="#0088FE" name="Unique Users" />
-                                        <Bar dataKey="users" fill="#00C49F" name="Regular Users" />
-                                        <Bar dataKey="alumni" fill="#FFBB28" name="Alumni" />
-                                    </BarChart>
-                                </ResponsiveContainer>
-                            ) : (
-                                <div className="h-300 flex items-center justify-center text-gray-500">
-                                    No data available for selected period
+                {/* Daily Users Chart */}
+                <div className="card bg-white shadow-sm hover:shadow-md transition-shadow mb-4 lg:mb-6">
+                    <div className="card-body p-4 lg:p-6">
+                        <div className="flex items-center gap-2 mb-4">
+                            <div className="p-2 bg-green-100 rounded-lg">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-5 w-5 text-green-600"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                                    />
+                                </svg>
+                            </div>
+                            <div className="flex-1">
+                                <h2 className="text-lg lg:text-xl font-bold text-gray-800">Daily Active Users</h2>
+                                <p className="text-xs lg:text-sm text-gray-500">
+                                    {selectedMonth !== undefined
+                                        ? `${months[selectedMonth]} ${selectedYear}`
+                                        : 'All Months'}
+                                </p>
+                            </div>
+                            {dailyUserCounts.length > 0 && (
+                                <div className="text-right">
+                                    <p className="text-xs text-gray-500">Total Users</p>
+                                    <p className="text-xl lg:text-2xl font-bold text-green-600">
+                                        {dailyUserCounts.reduce((sum, d) => sum + d.users, 0)}
+                                    </p>
                                 </div>
                             )}
                         </div>
+
+                        {dailyUserCounts.length > 0 ? (
+                            <div className="mt-4">
+                                <ResponsiveContainer width="100%" height={300}>
+                                    <BarChart data={dailyUserCounts}>
+                                        <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                                        <XAxis
+                                            dataKey="day"
+                                            tick={{ fontSize: 12 }}
+                                            label={{
+                                                value: 'Day of Month',
+                                                position: 'insideBottom',
+                                                offset: -5,
+                                                fontSize: 12,
+                                            }}
+                                        />
+                                        <YAxis
+                                            tick={{ fontSize: 12 }}
+                                            label={{ value: 'Users', angle: -90, position: 'insideLeft', fontSize: 12 }}
+                                        />
+                                        <Tooltip
+                                            contentStyle={{
+                                                backgroundColor: '#fff',
+                                                border: '1px solid #e5e7eb',
+                                                borderRadius: '8px',
+                                                fontSize: '14px',
+                                            }}
+                                            cursor={{ fill: 'rgba(0, 196, 159, 0.1)' }}
+                                        />
+                                        <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '14px' }} />
+                                        <Bar
+                                            dataKey="users"
+                                            fill="#00C49F"
+                                            name="Regular Users"
+                                            radius={[8, 8, 0, 0]}
+                                        />
+                                    </BarChart>
+                                </ResponsiveContainer>
+                            </div>
+                        ) : (
+                            <div className="h-[300px] flex flex-col items-center justify-center text-gray-400">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-16 w-16 mb-3 opacity-50"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={1.5}
+                                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                                    />
+                                </svg>
+                                <p className="text-sm font-medium">No data available</p>
+                                <p className="text-xs mt-1">Select a different period</p>
+                            </div>
+                        )}
                     </div>
                 </div>
 
                 {/* Most Common Questions */}
-                <div className="card bg-white shadow-md mb-6 text-gray-500">
-                    <div className="card-body">
-                        <h2 className="card-title text-xl mb-4">Most Common Questions</h2>
+                <div className="card bg-white shadow-sm hover:shadow-md transition-shadow mb-4 lg:mb-6">
+                    <div className="card-body p-4 lg:p-6">
+                        <div className="flex items-center gap-2 mb-4">
+                            <div className="p-2 bg-purple-100 rounded-lg">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-5 w-5 text-purple-600"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
+                                    />
+                                </svg>
+                            </div>
+                            <div>
+                                <h2 className="text-lg lg:text-xl font-bold text-gray-800">Top Question Types</h2>
+                                <p className="text-xs lg:text-sm text-gray-500">Most frequently asked categories</p>
+                            </div>
+                        </div>
+
                         {commonQuestions.length > 0 ? (
-                            <div className="overflow-x-auto">
-                                <table className="table table-zebra w-full">
+                            <div className="overflow-x-auto -mx-4 lg:mx-0">
+                                <table className="table w-full">
                                     <thead>
-                                        <tr className="text-black">
-                                            <th>Rank</th>
-                                            <th>Question Type</th>
-                                            <th>Count</th>
+                                        <tr className="border-b-2 border-gray-200">
+                                            <th className="bg-gray-50 text-xs lg:text-sm font-semibold text-gray-700">
+                                                Rank
+                                            </th>
+                                            <th className="bg-gray-50 text-xs lg:text-sm font-semibold text-gray-700">
+                                                Question Type
+                                            </th>
+                                            <th className="bg-gray-50 text-xs lg:text-sm font-semibold text-gray-700 text-right">
+                                                Count
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {commonQuestions.map((item, index) => (
-                                            <tr key={index}>
-                                                <td className="font-bold">{index + 1}</td>
-                                                <td>
-                                                    <span className="badge badge-outline">{item.questionType}</span>
+                                            <tr
+                                                key={index}
+                                                className="hover:bg-gray-50 transition-colors border-b border-gray-100 text-black"
+                                            >
+                                                <td className="py-3">
+                                                    <div className="flex items-center gap-2">
+                                                        <span
+                                                            className={`
+                                            w-7 h-7 lg:w-8 lg:h-8 rounded-full flex items-center justify-center text-xs lg:text-sm font-bold
+                                            ${
+                                                index === 0
+                                                    ? 'bg-yellow-100 text-yellow-700'
+                                                    : index === 1
+                                                      ? 'bg-gray-200 text-gray-700'
+                                                      : index === 2
+                                                        ? 'bg-orange-100 text-orange-700'
+                                                        : 'bg-blue-50 text-blue-700'
+                                            }
+                                        `}
+                                                        >
+                                                            {index + 1}
+                                                        </span>
+                                                    </div>
                                                 </td>
-                                                <td>
-                                                    <span className="badge badge-primary badge-lg">{item.count}</span>
+                                                <td className="py-3">
+                                                    <span className="badge badge-outline badge-lg text-xs lg:text-sm">
+                                                        {item.questionType}
+                                                    </span>
+                                                </td>
+                                                <td className="py-3 text-right">
+                                                    <span className="inline-flex items-center justify-center min-w-[60px] px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm lg:text-base font-semibold">
+                                                        {item.count}
+                                                    </span>
                                                 </td>
                                             </tr>
                                         ))}
@@ -468,52 +539,182 @@ function Dashboard() {
                                 </table>
                             </div>
                         ) : (
-                            <div className="text-center py-8 text-gray-500">
-                                No questions available for selected period
+                            <div className="flex flex-col items-center justify-center py-12 text-gray-400">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-16 w-16 mb-3 opacity-50"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={1.5}
+                                        d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    />
+                                </svg>
+                                <p className="text-sm font-medium">No questions available</p>
+                                <p className="text-xs mt-1">Data will appear here once users start asking questions</p>
                             </div>
                         )}
                     </div>
                 </div>
 
                 {/* Recent Interactions */}
-                <div className="card bg-white shadow-md text-gray-500">
-                    <div className="card-body">
-                        <h2 className="card-title text-xl mb-4">Recent User Interactions</h2>
+                <div className="card bg-white shadow-sm hover:shadow-md transition-shadow">
+                    <div className="card-body p-4 lg:p-6">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+                            <div className="flex items-center gap-2">
+                                <div className="p-2 bg-blue-100 rounded-lg">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-5 w-5 text-blue-600"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                                        />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h2 className="text-lg lg:text-xl font-bold text-gray-800">Recent Interactions</h2>
+                                    <p className="text-xs lg:text-sm text-gray-500">Latest user conversations</p>
+                                </div>
+                            </div>
+                            {interactions.length > 0 && (
+                                <div className="flex items-center gap-2">
+                                    <span className="badge badge-primary text-xs lg:text-sm">
+                                        {interactions.length} total
+                                    </span>
+                                </div>
+                            )}
+                        </div>
+
                         {interactions.length > 0 ? (
-                            <div className="overflow-x-auto">
-                                <table className="table table-zebra w-full">
+                            <div className="overflow-x-auto -mx-4 lg:mx-0">
+                                <table className="table w-full">
                                     <thead>
-                                        <tr className="text-black">
-                                            <th>User Type</th>
-                                            <th>Question</th>
-                                            <th>Question Type</th>
-                                            <th>Date</th>
+                                        <tr className="border-b-2 border-gray-200">
+                                            <th className="bg-gray-50 text-xs lg:text-sm font-semibold text-gray-700">
+                                                Question
+                                            </th>
+                                            <th className="bg-gray-50 text-xs lg:text-sm font-semibold text-gray-700">
+                                                Type
+                                            </th>
+                                            <th className="bg-gray-50 text-xs lg:text-sm font-semibold text-gray-700">
+                                                Date
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {interactions.slice(0, 20).map((interaction) => (
-                                            <tr key={interaction.id}>
-                                                <td>
-                                                    <span
-                                                        className={`badge ${interaction.userType === 'user' ? 'badge-info' : 'badge-success'}`}
-                                                    >
-                                                        {interaction.userType}
-                                                    </span>
+                                        {interactions.slice(0, 20).map((interaction, index) => (
+                                            <tr
+                                                key={interaction.id}
+                                                className="hover:bg-gray-50 transition-colors border-b border-gray-100"
+                                            >
+                                                <td className="py-3">
+                                                    <div className="flex items-start gap-2">
+                                                        <span className="text-xs text-gray-400 font-mono mt-1">
+                                                            #{index + 1}
+                                                        </span>
+                                                        <div className="flex-1 min-w-0">
+                                                            <p className="text-sm lg:text-base text-gray-800 line-clamp-2">
+                                                                {interaction.question}
+                                                            </p>
+                                                        </div>
+                                                    </div>
                                                 </td>
-                                                <td className="max-w-md truncate">{interaction.question}</td>
-                                                <td>
-                                                    <span className="badge badge-outline">
+                                                <td className="py-3">
+                                                    <span
+                                                        className={`
+                                        badge badge-sm lg:badge-md text-xs lg:text-sm
+                                        ${
+                                            interaction.questionType === 'CV'
+                                                ? 'badge-primary'
+                                                : interaction.questionType === 'Internship'
+                                                  ? 'badge-success'
+                                                  : interaction.questionType === 'Job Search'
+                                                    ? 'badge-warning'
+                                                    : interaction.questionType === 'Cover Letter'
+                                                      ? 'badge-info'
+                                                      : 'badge-ghost'
+                                        }
+                                    `}
+                                                    >
                                                         {interaction.questionType || 'General'}
                                                     </span>
                                                 </td>
-                                                <td>{new Date(interaction.timestamp).toLocaleDateString()}</td>
+
+                                                <td className="py-3">
+                                                    <div className="text-xs lg:text-sm text-gray-600">
+                                                        {new Date(interaction.timestamp).toLocaleDateString('en-NZ', {
+                                                            day: '2-digit',
+                                                            month: 'short',
+                                                            year: 'numeric',
+                                                        })}
+                                                        <div className="text-xs text-gray-400 mt-0.5">
+                                                            {new Date(interaction.timestamp).toLocaleTimeString(
+                                                                'en-NZ',
+                                                                {
+                                                                    hour: '2-digit',
+                                                                    minute: '2-digit',
+                                                                },
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         ))}
                                     </tbody>
                                 </table>
                             </div>
                         ) : (
-                            <div className="text-center py-8 text-gray-500">No interactions recorded yet</div>
+                            <div className="flex flex-col items-center justify-center py-16 text-gray-400">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-20 w-20 mb-4 opacity-50"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={1.5}
+                                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                                    />
+                                </svg>
+                                <p className="text-base font-medium mb-1">No interactions yet</p>
+                                <p className="text-sm text-gray-400">User conversations will appear here</p>
+                            </div>
+                        )}
+
+                        {interactions.length > 20 && (
+                            <div className="mt-4 text-center">
+                                <button className="btn btn-sm btn-outline gap-2">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-4 w-4"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M19 9l-7 7-7-7"
+                                        />
+                                    </svg>
+                                    Load More
+                                </button>
+                            </div>
                         )}
                     </div>
                 </div>

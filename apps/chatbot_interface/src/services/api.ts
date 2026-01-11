@@ -10,8 +10,8 @@ export interface Interaction {
     questionType?: string;
 }
 
-export interface CommonQuestion {
-    question: string;
+export interface CommonQuestionType {
+    questionType: string;
     count: number;
 }
 
@@ -66,5 +66,3 @@ export const api = {
         return response.json();
     },
 };
-
-

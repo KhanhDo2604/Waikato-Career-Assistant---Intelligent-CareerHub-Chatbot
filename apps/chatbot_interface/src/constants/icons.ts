@@ -1,5 +1,5 @@
 import { faComment, faUser } from '@fortawesome/free-regular-svg-icons';
-import { faArrowUp, faRobot } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUp, faRobot, faList, faPlus, faX, faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import { faFacebook, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import logo from '../assets/icons/CELogo.png';
@@ -16,6 +16,11 @@ const icon = {
     linkedIn: faLinkedin,
     mycareer_logo: logo,
     university_logo: university_logo,
+    list: faList,
+    plus: faPlus,
+    cancle: faX,
+    edit: faPencil,
+    bin: faTrash,
 };
 
 export default { icon };
