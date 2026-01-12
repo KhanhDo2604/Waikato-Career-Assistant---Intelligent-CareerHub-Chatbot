@@ -1,698 +1,698 @@
 [
-  {
-    "id": 1,
-    "category": "job",
-    "question": "job offer negotiation chat",
-    "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 2,
-    "category": "Career Guidance",
-    "question": "how can I become a registered teacher in NZ ,what are my alternative options if I don't the meet the reqirements",
-    "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 3,
-    "category": "Research Request",
-    "question": "can you participate in a 45 minute reasearch interview for my master's thesis and share your insights ?",
-    "answer": "Sorry, I don't support this feature now."
-  },
-  {
-    "id": 4,
-    "category": "job search",
-    "question": "cam career employability connect me with aquaculture companies in London, Australia, or New zealand?",
-    "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 5,
-    "category": "EPA/Work place Skills",
-    "question": "can my 10 Parkun events count toward mu EPA ?if yes , what is the process?",
-    "answer": "Yes, you can count this toward your EPA Award!\nPlease add it under Community Involvement > Ongoing Roles.\nYou can claim points every 3 months, so if you continue volunteering beyond that, you can submit it again for extra points.\n\nIf you haven’t joined the EPA Award yet, you can sign up here: https://mycareer.waikato.ac.nz/s/epa"
-  },
-  {
-    "id": 6,
-    "category": "appointment Issue",
-    "question": "I booked and appointment with nima at 1:00 pm,but room M 2:09 is closed.where should I go or should I wait outside",
-    "answer": "If the room is locked at your appointment time,Call or text the Employability front desk immediately: tel:0800924528 (or the mobile number in your booking confirmation email).\nIf no one answers within 2 minutes, email mycareer@waikato.ac.nz with your name, student ID."
-  },
-  {
-    "id": 7,
-    "category": "appointment Issue",
-    "question": "I tried to drop -in my session for my cv but its not working .what can I do?",
-    "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 8,
-    "category": "Job oppurtunities",
-    "question": "where are the job oppurtunities for someone who has completed a master's a master's in chemist?",
-    "answer": "Common job areas for Master's in Chemistry graduates:\nR&D chemist / formulation scientist (pharmaceuticals, agrichemicals, specialty polymers)\nAnalytical/quality control labs (food & beverage, environmental testing, forensic science)\nProcess/chemical engineering support (dairy, pulp & paper, energy)\nRegulatory affairs or HSE roles that need deep technical knowledge\nSecondary-school science teaching (with additional teaching qualification)\nCrown Research Institutes & government agencies (e.g., EPA, NIWA, GNS)\nNext step: book a free 15-minute Career Consultant drop-in to discuss where recent Waikato chemistry alumni are now, how to target your CV and which NZ job boards/graduate programmes open soon. Times & sign-up: https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 9,
-    "category": "Appointment",
-    "question": "I booked an appointment at 10 am. Can I do it online",
-    "answer": "If you would like to speak with a career advisor, you can make an online appointment at https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 10,
-    "category": "Job search",
-    "question": "I'm struggling to find full time work in my degree field.can you help me figure out job options with my social science and psychology background?",
-    "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 11,
-    "category": "Job Search",
-    "question": "can I find a job in ECE or can I volunterr in ECE ,or can I volunteer in ECE ?",
-    "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 12,
-    "category": "Job search& networking",
-    "question": "I'm an online student studying screen and media. What's the best way to find jobs and make connections in the industry",
-    "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 13,
-    "category": "career Help",
-    "question": "Are you at the Waikato unversityTauranga campus tomorrow( Friday the 3rd)?",
-    "answer": "If you would like to speak with a career advisor, you can make an online appointment at https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 14,
-    "category": "CV help",
-    "question": "I already prepared my cv and I want some feedback.what should I do?",
-    "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 15,
-    "category": "CV help",
-    "question": "I would like to get my CV reviewed again after making the recommended changes.",
-    "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 16,
-    "category": "Appointment",
-    "question": "I got my teacher registration and I'm working as a reliever. I want to get my CV and cover letter checked so I can apply for permanent teaching positions.how can I book an appointment during the school",
-    "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 17,
-    "category": "Intership",
-    "question": "I am studying Finance with a minor in Economics and Business Analytics .I found Zespri \"summer intern-biosecurity \" role for my WSAFE396 internship.The description says economic/business is accepted,but I'm unsure because the role is called biosecurity.Is this is called biosecurity.Is this intership eligible for my WL programme?",
-    "answer": "Please connect with the WMS WIL Team msc@waikato.ac.nz. Or look athttps://www.waikato.ac.nz/about/faculties-schools/management/student-experience/work-integrated-learning/"
-  },
-  {
-    "id": 18,
-    "category": "Interview Preparation",
-    "question": "I got an email for a nursing interview.can you help me prepare,and can I book one-on-one session?",
-    "answer": "Yes, you can book a n appointment through MyCareer here https://mycareer.waikato.ac.nz/students/appointments/app/topic/1?siteId=1"
-  },
-  {
-    "id": 19,
-    "category": "CV help",
-    "question": "Does nima rinni have a waikato email? I want help making my CV and cover letter shine,but none of the booking times suit me.can I do the appointment online or receive written feedback?",
-    "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 20,
-    "category": "EPA/ Submission Issue",
-    "question": "I accidentally put my community Volunteering under the university involvement section.Do I need to redo my submission,or can it be moved to the correct section?",
-    "answer": "Yes, you'll need to resubmit this under the correct heading.\nDon’t worry about the incorrect submission - the team will delete it during the review process."
-  },
-  {
-    "id": 21,
-    "category": "Summer Intership/Vacancy",
-    "question": "I'm in my first year of an LLB and I'm looking for a summer intership or casual/temporary job,preferably online through the University of Waikato. ARE there any roles available from November to February/March?",
-    "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 22,
-    "category": "Intership / Cover Letter",
-    "question": "Do I need to submit a general cover letter Iin MyWIL  for the Intership prgramme, orshould I write a separate Cover letter for each of my referance?",
-    "answer": "Your cover letter does not need to be submitted for review in MyWIL. Your cover letter will be sent to your internship selections when you follow the instructions in the 'Step 3: Internships' tab. Any review of your cover letter can be done through your MyCareer portal.Information can be seen through this link https://www.waikato.ac.nz/about/faculties-schools/management/student-experience/work-integrated-learning/"
-  },
-  {
-    "id": 23,
-    "category": "CV help",
-    "question": "Can I get my CV reviewed ?",
-    "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 24,
-    "category": "Employability & careers",
-    "question": "How do I join a voluntary oppurtunity ?",
-    "answer": "Great to hear you'd like to volunteer!\nFirst, please join the Employability Plus Award. Once you've joined, you'll receive a welcome email with all the steps to begin your volunteering journey, including watching or attending an induction session.\nJoin here EPA: https://mycareer.waikato.ac.nz/s/epa"
-  },
-  {
-    "id": 25,
-    "category": "Internship(WIL396)",
-    "question": "I hve an internship what do I do now",
-    "answer": "Please connect with the WMS WIL Team msc@waikato.ac.nz. Or look athttps://www.waikato.ac.nz/about/faculties-schools/management/student-experience/work-integrated-learning/"
-  },
-  {
-    "id": 26,
-    "category": "Community Involvement",
-    "question": "How do I add points ?",
-    "answer": "To add points to your award, please make sure you've signed up for the EPA. https://mycareer.waikato.ac.nz/s/epa\nThen watch the induction session here https://mycareer.waikato.ac.nz/students/links/detail/3 — it walks you through the whole process (the section on adding roles starts at 14:30).\nIf you still need help, email employabilityplus@waikato.ac.nz"
-  },
-  {
-    "id": 27,
-    "category": "Job search",
-    "question": "How can I find a job or a part-time job?",
-    "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 28,
-    "category": "Job search",
-    "question": "I've been trying to secure a job for almost 6 months.Can I get help from the the university to find a job?",
-    "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 29,
-    "category": "CV & Cover Letter Review",
-    "question": "I'm applying for a role with a deadline of 19 August. Can I arrange an online appointment to get my CV and cover letter reviewed?",
-    "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 30,
-    "category": "Cover Letter Help",
-    "question": "I'm a third-year nursing student applying for ACE. I got feedback on my CV but didn't receive any feedback on my cover letter. Can I get advice on it?",
-    "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 31,
-    "category": "CV Review",
-    "question": "The WIL team told us to get our CV reviewed by Careers, but we can't get it reviewed. Where do we go to get a second opinion on our CV?",
-    "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 32,
-    "category": "CV Help",
-    "question": "I attended the CV writing workshops last year. Can I book a face-to-face consultation?",
-    "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 33,
-    "category": "CV Help",
-    "question": "I would like my CV reviewed so I can apply for an internship.",
-    "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 34,
-    "category": "CV Help",
-    "question": "Please help me update my CV.",
-    "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 35,
-    "category": "Appointment",
-    "question": "Can you confirm if I successfully booked my appointment at 10:00 AM at the Hamilton Campus Drop-ins?",
-    "answer": "I can't do this for you.You can instantly check your booking status by logging into MyCareer → “Appointments” tab.Still unsure or nothing shows? Email mycareer@waikato.ac.nz with your student ID and we'll verify for you."
-  },
-  {
-    "id": 36,
-    "category": "CV & Cover Letter Help",
-    "question": "I'm a third-year nursing student preparing for ACE. Can I get advice to improve my CV and cover letters?",
-    "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 37,
-    "category": "Adding My Community Commitment",
-    "question": "I joined an online Teams meeting and was inducted, but I still cannot upload my service made. What should I do?",
-    "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 38,
-    "category": "Job Search",
-    "question": "Can I find a part-time job?",
-    "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 39,
-    "category": "CV Help",
-    "question": "I'm a nursing student with two CV versions. Can you review them and help me prepare for ED job applications?",
-    "answer": "Sorry, I don't support this feature now."
-  },
-  {
-    "id": 40,
-    "category": "EPA",
-    "question": "How can I get the Employability Plus Award certificate after earning enough points for the Gold award?",
-    "answer": "The award automatically tracks your progress. When you complete each section (Community, University, and Employability), you'll receive a certificate for Bronze, Silver, and Gold.\nOnce you finish the entire award, you'll get a final named certificate. You can also download it anytime from the last section of the award called “Congratulations.”\nPlease note it may take a few seconds to appear"
-  },
-  {
-    "id": 41,
-    "category": "Job Search",
-    "question": "I'm studying Master of Digital Business and looking for a part-time role at the university. Can you help?",
-    "answer": "Have a look at the University of Waikato vacancy page. you can also come to a drop in session to talk about other part-time job options drop in times can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 42,
-    "category": "Drop-in Appointment",
-    "question": "I want CV and cover letter help. For the drop-in session on 31/7/25, can I come anytime between 10:00 and 12:00?",
-    "answer": "Yes you can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 43,
-    "category": "Cover Letter",
-    "question": "Should I add the papers I'm enjoying and what I've been learning in them to my cover letter?",
-    "answer": "Yes that is a great idea , also explain what skiills you have developed from them"
-  },
-  {
-    "id": 44,
-    "category": "CV Help",
-    "question": "I have uploaded my CV as requested. Can you confirm you received it?",
-    "answer": "CV's uploaded for review will be reviewed within 5 buisness days if you have uploaded it on the weekend or during public holidays please be awareof the 5 working days turn around"
-  },
-  {
-    "id": 45,
-    "category": "Appointment",
-    "question": "I booked a career appointment at 10 tomorrow with Nima. Is it online or face-to-face?",
-    "answer": "This will be in the confirmation email sent through via MyCareer. If you are unable to find this or have further questions please email mycareer@waikato.ac.nz"
-  },
-  {
-    "id": 46,
-    "category": "CV Review",
-    "question": "I'm a second-year civil engineering student applying for a summer internship. Can you review my CV and cover letter and give feedback?",
-    "answer": "Please upload your Documents into the 'Application Support portal\"  as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 47,
-    "category": "Volunteer Experience / Referee Help",
-    "question": "I worked in the Careers team in 2019 and lost contact with my supervisors Kelly and Gina. Can I get help finding a referee?",
-    "answer": "Sorry, I can't release personal contact details for staff."
-  },
-  {
-    "id": 48,
-    "category": "Cover Letter Help",
-    "question": "Could you please give me some feedback on this cover letter?",
-    "answer": "Please upload your cover letter into the workflow for feedback with a link to the role you are applying for. Note: we do not reveiw generic cover letters"
-  },
-  {
-    "id": 49,
-    "category": "Cover Letter",
-    "question": "For the cover letter information like my name, address, date, and the recipient's details , should this go in the header?",
-    "answer": "No, do not place this information in the header as an ATS system will not be able to read it - Please refer to the Cover Letter Tip Sheet in Resources for the correct formatting of a Cover Letter"
-  },
-  {
-    "id": 50,
-    "category": "Cover Letter",
-    "question": "If a company has multiple locations, which address should I use on my cover letter when the main office isn't clear?",
-    "answer": "You can use either the address of the office you want to apply for or the head office"
-  },
-  {
-    "id": 51,
-    "category": "EPA Points",
-    "question": "Do student learning workshops count for employability skills points?",
-    "answer": "Yes, you can add student learning workshops to the 'Employability Developement' section of the award. Each workshop is worth 2 points."
-  },
-  {
-    "id": 52,
-    "category": "Introduction Session",
-    "question": "Are there more online introduction classes available? I can't attend the one today at 12-1pm.",
-    "answer": "The Employability Inductions are scheduled for a few slots each trimester. If the current times do not suit you, you can watch the pre recorded induction here > https://mycareer.waikato.ac.nz/students/links/detail/3"
-  },
-  {
-    "id": 53,
-    "category": "CV Help",
-    "question": "I have an article written about me. Should I put the full URL on my CV or use the title linked to the URL?",
-    "answer": "Yes,  if it help build a positive  picture of your experince and skills"
-  },
-  {
-    "id": 54,
-    "category": "Appointment",
-    "question": "I booked an appointment with Heather for 18 July at 11am, but I can't attend in person. Can this appointment be done online?",
-    "answer": "This depends on Heather. Please contact Heather via email to confirm whether the meeting can be changed to online."
-  },
-  {
-    "id": 55,
-    "category": "Job & Qualification Options",
-    "question": "I'm considering taking a Diploma of Social Sciences or a Diploma of Arts after finishing my BSc(Hons). Which option is better for employment and signalling to employers?",
-    "answer": "nan"
-  },
-  {
-    "id": 56,
-    "category": "Cover Letter",
-    "question": "Do you have any example cover letters?",
-    "answer": "Yes you can. But please firsly attend a drop in session and work through the CV workflow that we have to support students in CV developement. You can find the workflow here > https://mycareer.waikato.ac.nz/students/Workflows/Detail/2"
-  },
-  {
-    "id": 57,
-    "category": "Academic Transcript",
-    "question": "When companies ask for my academic transcript, can I upload a screenshot of my grades or does it need to be a formal version?",
-    "answer": "nan"
-  },
-  {
-    "id": 58,
-    "category": "Volunteer Hours",
-    "question": "How do I log the hours I spend volunteering? Is that something I can record?",
-    "answer": "To add points to your award, please make sure you've signed up for the EPA. https://mycareer.waikato.ac.nz/s/epa\nThen watch the induction session here https://mycareer.waikato.ac.nz/students/links/detail/3 — it walks you through the whole process (the section on adding roles starts at 14:30).\nIf you still need help, email employabilityplus@waikato.ac.nz"
-  },
-  {
-    "id": 59,
-    "category": "EPA Points",
-    "question": "I've attended two drop-in sessions with the Careers and Employability team. Do these count for EPA points?",
-    "answer": "Sorry, drop-in sessions and one-on-one appointments don't count toward EPA points.\nYou can earn points by attending workshops. You can view the workshop schedule here: https://mycareer.waikato.ac.nz/students/events?eventTypeIds=9&page=1&studentSiteId=1"
-  },
-  {
-    "id": 60,
-    "category": "CV - ATS Check",
-    "question": "How can I check if my CV is ATS-friendly?",
-    "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 61,
-    "category": "CV Help",
-    "question": "How can I check if my CV follows New Zealand standards?",
-    "answer": "Check out our CV workflow for support. This follows the NZ CV format. > https://mycareer.waikato.ac.nz/students/Workflows/Detail/2"
-  },
-  {
-    "id": 62,
-    "category": "Careers Advice",
-    "question": "Can I speak to someone for careers advice?",
-    "answer": "You can book a one on one career support/advice appoitment here > https://mycareer.waikato.ac.nz/students/appointments/app/?siteId=1"
-  },
-  {
-    "id": 63,
-    "category": "CV Review",
-    "question": "Please review my CV. I can't find the page to upload it for review.",
-    "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 64,
-    "category": "CV360",
-    "question": "The WIL page says to upload my CV to CV360 and get over 60% before uploading it to Sonia, but I can't find where to upload it. Where is the CV360 tool, or is it no longer available?",
-    "answer": "We no longer offer the CV360 tool, as it was part of a previous system we no longer use.\nWe now support CVs through our CV Workflow. You can view and follow all the steps here https://mycareer.waikato.ac.nz/students/Workflows/Detail/2"
-  },
-  {
-    "id": 65,
-    "category": "Workshop / CV",
-    "question": "I need to upload my draft CV and cover letter for the LinkedIn Workshop, but I can't find the upload option on mycareer.waikato.ac.nz. Can you help?",
-    "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 66,
-    "category": "CV / CV360",
-    "question": "I can't find the CV360 tool on the page. Where do I access it?",
-    "answer": "We no longer offer the CV360 tool, as it was part of a previous system we no longer use.\nWe now support CVs through our CV Workflow. You can view and follow all the steps here https://mycareer.waikato.ac.nz/students/Workflows/Detail/2"
-  },
-  {
-    "id": 67,
-    "category": "EPA Points",
-    "question": "Do the EPA induction and Language Buddy training count for EPA points? Do I need to fill out the EPA involvement form?",
-    "answer": "Yes, you can collect points for both of these. They are each worth 2 points. Please watch the induction video (from 14.30sec)"
-  },
-  {
-    "id": 68,
-    "category": "University Participation",
-    "question": "I've updated the university participation form.",
-    "answer": "NA - this is just a reply. Remove from Chatbot"
-  },
-  {
-    "id": 69,
-    "category": "Internships",
-    "question": "How do I start looking for summer internships, and when is the right time to apply?",
-    "answer": "nan"
-  },
-  {
-    "id": 70,
-    "category": "CV Help / General Enquiry",
-    "question": "Can I book a one-on-one CV review at the Hamilton campus?",
-    "answer": "Yes you can. But please firsly attend a drop in session and work through the CV workflow that we have to support students in CV developement. You can find the workflow here > https://mycareer.waikato.ac.nz/students/Workflows/Detail/2"
-  },
-  {
-    "id": 71,
-    "category": "Applications & Interviews / Workshop",
-    "question": "I attended the Online Interview workshop but my participation wasn't recorded. I added my name and student ID in the chat. Can this be fixed?",
-    "answer": "Please email the team mycareer@waikato.ac.nz and we can get this fixed for you."
-  },
-  {
-    "id": 72,
-    "category": "CV360 / Internship",
-    "question": "I can't find the CV360 link. Where can I access it?",
-    "answer": "nan"
-  },
-  {
-    "id": 73,
-    "category": "Career Support / Planning",
-    "question": "When is the next available face-to-face appointment with Heather Lawry?",
-    "answer": "To find appoitments with our Career Consulants please look here > https://mycareer.waikato.ac.nz/students/appointments/app/?siteId=1 You can then filter to the consultant you wish to book with"
-  },
-  {
-    "id": 74,
-    "category": "Scholarship",
-    "question": "I'm applying for the Dame Jocelyn Fish Award and it asks for a referee. Who would be a good referee for an academic scholarship?",
-    "answer": "nan"
-  },
-  {
-    "id": 75,
-    "category": "Volunteering",
-    "question": "How do I register as a volunteer for the Volunteer Expo on 27th May?",
-    "answer": "Volunteer roles are sent out to the Employability Plus group via email. If you would like to join the award you can sign up here > https://mycareer.waikato.ac.nz/s/epa"
-  },
-  {
-    "id": 76,
-    "category": "EPA",
-    "question": "How do I record my volunteering or workshop participation for EPA points?",
-    "answer": "nan"
-  },
-  {
-    "id": 77,
-    "category": "EPA",
-    "question": "I signed up for the EPA and my status says submitted. Will I be able to create my profile once approved?",
-    "answer": "No profile is needed. You can now watch the induction video or attend an in person induction session which will advise on how to get started."
-  },
-  {
-    "id": 78,
-    "category": "Internships",
-    "question": "I can't find Psychology in the employer industry section when looking for internships. What should I select?",
-    "answer": "nan"
-  },
-  {
-    "id": 79,
-    "category": "Career Planning",
-    "question": "I’m not sure what roles suit me after finishing my masters.",
-    "answer": "nan"
-  },
-  {
-    "id": 80,
-    "category": "CV360",
-    "question": "I can't find the CV360 tool even though I followed the instructions.",
-    "answer": "nan"
-  },
-  {
-    "id": 81,
-    "category": "IT Support",
-    "question": "My two-step verification isn't sending a code and I can't sign in to university resources.",
-    "answer": "Please contact the team at mycareer@waikato.ac.nz for assistance"
-  },
-  {
-    "id": 82,
-    "category": "Job Search",
-    "question": "I'm looking for any part-time work.",
-    "answer": "nan"
-  },
-  {
-    "id": 83,
-    "category": "Cover Letter",
-    "question": "I need help with my cover letter.",
-    "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 84,
-    "category": "Program Information / ENGEN272",
-    "question": "I'm interested in the Diploma in Engineering Management. How does it work if I start with ENGEN272? Do I need to pay for those papers, and how much would they cost? Do I graduate with BE(Hons) first or together with the Diploma? How long does it take to finish?",
-    "answer": "nan"
-  },
-  {
-    "id": 85,
-    "category": "CV Help / Cover Letter",
-    "question": "Can you help me check my CV for an accounting job?",
-    "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 86,
-    "category": "CV Templates",
-    "question": "Are resume templates available to use?",
-    "answer": "We provide full support in CV preperation. Please view our CV workflow and this will take you through a step by step guide. https://mycareer.waikato.ac.nz/students/Workflows/Detail/2"
-  },
-  {
-    "id": 87,
-    "category": "EPA Points",
-    "question": "I was told I can add my class rep and community involvement to gain points. How do I add these items?",
-    "answer": "nan"
-  },
-  {
-    "id": 88,
-    "category": "Drop-In Session",
-    "question": "Where can I find the working link to the online career chat/drop-in session happening right now?",
-    "answer": "nan"
-  },
-  {
-    "id": 89,
-    "category": "Online Career Chat",
-    "question": "Can I book an online Career Chat from Hamilton if the Career Advisor is in Tauranga?",
-    "answer": "nan"
-  },
-  {
-    "id": 90,
-    "category": "CV Help / Job Application",
-    "question": "I'm applying for the Security Officer role at the Port of Tauranga. How should I submit my CV and what should I highlight?",
-    "answer": "nan"
-  },
-  {
-    "id": 91,
-    "category": "Paper Advice",
-    "question": "Can I have an online appointment for paper advice for Semester B year 2 and 3?",
-    "answer": "nan"
-  },
-  {
-    "id": 92,
-    "category": "CV Help / Appointment Booking",
-    "question": "I tried booking an appointment for 4th March but there's no book button. How do I complete the booking?",
-    "answer": "nan"
-  },
-  {
-    "id": 93,
-    "category": "CV Help",
-    "question": "I’m applying for business/legal internships and need feedback on my CV. What should I include or remove?",
-    "answer": "nan"
-  },
-  {
-    "id": 94,
-    "category": "Employability Plus Award",
-    "question": "I signed up for the EPA but couldn't update it. I've done volunteering, class rep work, and workshops—can I still add them, and how do I access my account?",
-    "answer": "nan"
-  },
-  {
-    "id": 95,
-    "category": "CV Help",
-    "question": "Can I book a meeting to go through my CV?",
-    "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 96,
-    "category": "Career Advisor",
-    "question": "Can I see a Career Advisor while still studying? How do I book it?",
-    "answer": "nan"
-  },
-  {
-    "id": 97,
-    "category": "Job Opportunities",
-    "question": "What career options are available after a Master of Education in Counselling Studies, and what are the next steps?",
-    "answer": "nan"
-  },
-  {
-    "id": 98,
-    "category": "CV Template",
-    "question": "Is there a CV template available? I can't find it.",
-    "answer": "We now support CVs through our Appliation  Workflow. You can view and follow all the steps here https://mycareer.waikato.ac.nz/students/Workflows/Detail/2"
-  },
-  {
-    "id": 99,
-    "category": "Career Plus",
-    "question": "I can't find the videos and Career Plus page anymore.",
-    "answer": "N/A Delete"
-  },
-  {
-    "id": 100,
-    "category": "Workplace Skills Programme",
-    "question": "I can't find the Workplace Skills Programme tab with the videos.",
-    "answer": "nan"
-  },
-  {
-    "id": 101,
-    "category": "Workplace Skills Programme",
-    "question": "Where is the Workplace Skills Programme?",
-    "answer": "nan"
-  },
-  {
-    "id": 102,
-    "category": "CV Help / CV360",
-    "question": "I can't find CV360 for internship applications.",
-    "answer": "We no longer offer the CV360 tool, as it was part of a previous system we no longer use.\nWe now support CVs through our CV Workflow. You can view and follow all the steps here https://mycareer.waikato.ac.nz/students/Workflows/Detail/2"
-  },
-  {
-    "id": 103,
-    "category": "Using AI for CV",
-    "question": "Would you recommend pasting a CV template into ChatGPT so it can help me fill it out?",
-    "answer": "No, we do not advise doing this.Book and  attend the workshop \"AI Assit - Upgrade your Application Game \" through the events link https://mycareer.waikato.ac.nz/students/events or/and Downlaod the Tip sheet \"Using AI\" https://mycareer.waikato.ac.nz/students/docs/detail/39?filename=Using-AI.pdf"
-  },
-  {
-    "id": 104,
-    "category": "CV Review Update",
-    "question": "I submitted my CV on 27th May but haven't heard back. When will I get an update?",
-    "answer": "nan"
-  },
-  {
-    "id": 105,
-    "category": "CV Workshops",
-    "question": "Are there any CV workshops available on the Hamilton campus?",
-    "answer": "Yes, we update our workshop schedule often. Please check out all the current workshops here > https://mycareer.waikato.ac.nz/students/events?eventTypeIds=9&page=1&studentSiteId=1 and keep checking back as these are updated often"
-  },
-  {
-    "id": 106,
-    "category": "Teaching CV & Cover Letter",
-    "question": "Can you review my old CV and cover letter for teaching applications?",
-    "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 107,
-    "category": "CV Review",
-    "question": "I have a first draft of my CV and want suggestions to improve it.",
-    "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
-  },
-  {
-    "id": 108,
-    "category": "Teacher Salary / Job Search",
-    "question": "What is the secondary teacher salary in private schools in Auckland? And what other job websites can I use?",
-    "answer": "nan"
-  },
-  {
-    "id": 109,
-    "category": "MyWIL / CV Upload",
-    "question": "How do I upload my CV on MyWIL?",
-    "answer": "Once you have your CV, log into your MyWILa ccount, go to the 'Forms' tab, click 'Edit', and submit the 'CV Review Form'."
-  },
-  {
-    "id": 110,
-    "category": "EPA",
-    "question": "To get any information about Employability Plus Award",
-    "answer": "Please click on the link as given below and add all the information required and then click the submit button\nhttps://mycareer.waikato.ac.nz/Form.aspx?id=101"
-  },
-  {
-    "id": 111,
-    "category": "CV Help",
-    "question": "For any CV related help such as CV Workshop, Tips, Feedback and other additional resources",
-    "answer": "Please click the link below and you will find all the related information about CV. You will find different  collapsible panel related to these topics just click on the arrow and you will find further information about the topics.\nhttps://mycareer.waikato.ac.nz/students/Workflows/Detail/2"
-  },
-  {
-    "id": 112,
-    "category": "Cover Letter",
-    "question": "How to prepare Cover Letter?",
-    "answer": "Please click the link given below and click on view document option and a power point presentation about how to make cover letter will open please read that and you will get all information about the cover letter.\nhttps://mycareer.waikato.ac.nz/students/docs/detail/8?filename=Cover-Letter-and-Verbs.pdf"
-  },
-  {
-    "id": 113,
-    "category": "Events",
-    "question": "How to get Event related information?",
-    "answer": "Please click the link below and you will find the events or you can also search the events by writing the keywords and you can also choose the type of events, date start, endorsements, locations and date added.\nhttps://mycareer.waikato.ac.nz/students/events?eventTypeIds=9&page=1&studentSiteId=1"
-  },
-  {
-    "id": 114,
-    "category": "Appointments",
-    "question": "Book an appointment with the counsellor",
-    "answer": "Please click the link given below and select the counsellor you want to meet and select the campus location and you will find the available time slots for appointments.\nhttps://mycareer.waikato.ac.nz/students/appointments/app/topic/5/day/2026/1/19?siteId=1"
-  },
-  {
-    "id": 115,
-    "category": "Job Opportunities",
-    "question": "To search about jobs",
-    "answer": "Please click the given link and  then please enter the details as required such as keywords, job type, contract type, and location and then click on search button.\nhttps://mycareer.waikato.ac.nz/students/jobs"
-  },
-  {
-    "id": 116,
-    "category": "Resources",
-    "question": "For getting  information about the resources",
-    "answer": "Please click on the link give below and then write the keywords and click on search button.\nhttps://mycareer.waikato.ac.nz/students/resources/search/?order=Relevance&topicsUseAnd=true&search="
-  }
+    {
+        "id": 1,
+        "category": "job",
+        "question": "job offer negotiation chat",
+        "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 2,
+        "category": "Career Guidance",
+        "question": "how can I become a registered teacher in NZ ,what are my alternative options if I don't the meet the reqirements",
+        "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 3,
+        "category": "Research Request",
+        "question": "can you participate in a 45 minute reasearch interview for my master's thesis and share your insights ?",
+        "answer": "Sorry, I don't support this feature now."
+    },
+    {
+        "id": 4,
+        "category": "job search",
+        "question": "cam career employability connect me with aquaculture companies in London, Australia, or New zealand?",
+        "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 5,
+        "category": "EPA/Work place Skills",
+        "question": "can my 10 Parkun events count toward mu EPA ?if yes , what is the process?",
+        "answer": "Yes, you can count this toward your EPA Award!\nPlease add it under Community Involvement > Ongoing Roles.\nYou can claim points every 3 months, so if you continue volunteering beyond that, you can submit it again for extra points.\n\nIf you haven’t joined the EPA Award yet, you can sign up here: https://mycareer.waikato.ac.nz/s/epa"
+    },
+    {
+        "id": 6,
+        "category": "appointment Issue",
+        "question": "I booked and appointment with nima at 1:00 pm,but room M 2:09 is closed.where should I go or should I wait outside",
+        "answer": "If the room is locked at your appointment time,Call or text the Employability front desk immediately: tel:0800924528 (or the mobile number in your booking confirmation email).\nIf no one answers within 2 minutes, email mycareer@waikato.ac.nz with your name, student ID."
+    },
+    {
+        "id": 7,
+        "category": "appointment Issue",
+        "question": "I tried to drop -in my session for my cv but its not working .what can I do?",
+        "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 8,
+        "category": "Job oppurtunities",
+        "question": "where are the job oppurtunities for someone who has completed a master's a master's in chemist?",
+        "answer": "Common job areas for Master's in Chemistry graduates:\nR&D chemist / formulation scientist (pharmaceuticals, agrichemicals, specialty polymers)\nAnalytical/quality control labs (food & beverage, environmental testing, forensic science)\nProcess/chemical engineering support (dairy, pulp & paper, energy)\nRegulatory affairs or HSE roles that need deep technical knowledge\nSecondary-school science teaching (with additional teaching qualification)\nCrown Research Institutes & government agencies (e.g., EPA, NIWA, GNS)\nNext step: book a free 15-minute Career Consultant drop-in to discuss where recent Waikato chemistry alumni are now, how to target your CV and which NZ job boards/graduate programmes open soon. Times & sign-up: https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 9,
+        "category": "Appointment",
+        "question": "I booked an appointment at 10 am. Can I do it online",
+        "answer": "If you would like to speak with a career advisor, you can make an online appointment at https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 10,
+        "category": "Job search",
+        "question": "I'm struggling to find full time work in my degree field.can you help me figure out job options with my social science and psychology background?",
+        "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 11,
+        "category": "Job Search",
+        "question": "can I find a job in ECE or can I volunterr in ECE ,or can I volunteer in ECE ?",
+        "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 12,
+        "category": "Job search& networking",
+        "question": "I'm an online student studying screen and media. What's the best way to find jobs and make connections in the industry",
+        "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 13,
+        "category": "career Help",
+        "question": "Are you at the Waikato unversityTauranga campus tomorrow( Friday the 3rd)?",
+        "answer": "If you would like to speak with a career advisor, you can make an online appointment at https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 14,
+        "category": "CV help",
+        "question": "I already prepared my cv and I want some feedback.what should I do?",
+        "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 15,
+        "category": "CV help",
+        "question": "I would like to get my CV reviewed again after making the recommended changes.",
+        "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 16,
+        "category": "Appointment",
+        "question": "I got my teacher registration and I'm working as a reliever. I want to get my CV and cover letter checked so I can apply for permanent teaching positions.how can I book an appointment during the school",
+        "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 17,
+        "category": "Intership",
+        "question": "I am studying Finance with a minor in Economics and Business Analytics .I found Zespri \"summer intern-biosecurity \" role for my WSAFE396 internship.The description says economic/business is accepted,but I'm unsure because the role is called biosecurity.Is this is called biosecurity.Is this intership eligible for my WL programme?",
+        "answer": "Please connect with the WMS WIL Team msc@waikato.ac.nz. Or look athttps://www.waikato.ac.nz/about/faculties-schools/management/student-experience/work-integrated-learning/"
+    },
+    {
+        "id": 18,
+        "category": "Interview Preparation",
+        "question": "I got an email for a nursing interview.can you help me prepare,and can I book one-on-one session?",
+        "answer": "Yes, you can book a n appointment through MyCareer here https://mycareer.waikato.ac.nz/students/appointments/app/topic/1?siteId=1"
+    },
+    {
+        "id": 19,
+        "category": "CV help",
+        "question": "Does nima rinni have a waikato email? I want help making my CV and cover letter shine,but none of the booking times suit me.can I do the appointment online or receive written feedback?",
+        "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 20,
+        "category": "EPA/ Submission Issue",
+        "question": "I accidentally put my community Volunteering under the university involvement section.Do I need to redo my submission,or can it be moved to the correct section?",
+        "answer": "Yes, you'll need to resubmit this under the correct heading.\nDon’t worry about the incorrect submission - the team will delete it during the review process."
+    },
+    {
+        "id": 21,
+        "category": "Summer Intership/Vacancy",
+        "question": "I'm in my first year of an LLB and I'm looking for a summer intership or casual/temporary job,preferably online through the University of Waikato. ARE there any roles available from November to February/March?",
+        "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 22,
+        "category": "Intership / Cover Letter",
+        "question": "Do I need to submit a general cover letter Iin MyWIL  for the Intership prgramme, orshould I write a separate Cover letter for each of my referance?",
+        "answer": "Your cover letter does not need to be submitted for review in MyWIL. Your cover letter will be sent to your internship selections when you follow the instructions in the 'Step 3: Internships' tab. Any review of your cover letter can be done through your MyCareer portal.Information can be seen through this link https://www.waikato.ac.nz/about/faculties-schools/management/student-experience/work-integrated-learning/"
+    },
+    {
+        "id": 23,
+        "category": "CV help",
+        "question": "Can I get my CV reviewed ?",
+        "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 24,
+        "category": "Employability & careers",
+        "question": "How do I join a voluntary oppurtunity ?",
+        "answer": "Great to hear you'd like to volunteer!\nFirst, please join the Employability Plus Award. Once you've joined, you'll receive a welcome email with all the steps to begin your volunteering journey, including watching or attending an induction session.\nJoin here EPA: https://mycareer.waikato.ac.nz/s/epa"
+    },
+    {
+        "id": 25,
+        "category": "Internship(WIL396)",
+        "question": "I hve an internship what do I do now",
+        "answer": "Please connect with the WMS WIL Team msc@waikato.ac.nz. Or look athttps://www.waikato.ac.nz/about/faculties-schools/management/student-experience/work-integrated-learning/"
+    },
+    {
+        "id": 26,
+        "category": "Community Involvement",
+        "question": "How do I add points ?",
+        "answer": "To add points to your award, please make sure you've signed up for the EPA. https://mycareer.waikato.ac.nz/s/epa\nThen watch the induction session here https://mycareer.waikato.ac.nz/students/links/detail/3 — it walks you through the whole process (the section on adding roles starts at 14:30).\nIf you still need help, email employabilityplus@waikato.ac.nz"
+    },
+    {
+        "id": 27,
+        "category": "Job search",
+        "question": "How can I find a job or a part-time job?",
+        "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 28,
+        "category": "Job search",
+        "question": "I've been trying to secure a job for almost 6 months.Can I get help from the the university to find a job?",
+        "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 29,
+        "category": "CV & Cover Letter Review",
+        "question": "I'm applying for a role with a deadline of 19 August. Can I arrange an online appointment to get my CV and cover letter reviewed?",
+        "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 30,
+        "category": "Cover Letter Help",
+        "question": "I'm a third-year nursing student applying for ACE. I got feedback on my CV but didn't receive any feedback on my cover letter. Can I get advice on it?",
+        "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 31,
+        "category": "CV Review",
+        "question": "The WIL team told us to get our CV reviewed by Careers, but we can't get it reviewed. Where do we go to get a second opinion on our CV?",
+        "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 32,
+        "category": "CV Help",
+        "question": "I attended the CV writing workshops last year. Can I book a face-to-face consultation?",
+        "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 33,
+        "category": "CV Help",
+        "question": "I would like my CV reviewed so I can apply for an internship.",
+        "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 34,
+        "category": "CV Help",
+        "question": "Please help me update my CV.",
+        "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 35,
+        "category": "Appointment",
+        "question": "Can you confirm if I successfully booked my appointment at 10:00 AM at the Hamilton Campus Drop-ins?",
+        "answer": "I can't do this for you.You can instantly check your booking status by logging into MyCareer → “Appointments” tab.Still unsure or nothing shows? Email mycareer@waikato.ac.nz with your student ID and we'll verify for you."
+    },
+    {
+        "id": 36,
+        "category": "CV & Cover Letter Help",
+        "question": "I'm a third-year nursing student preparing for ACE. Can I get advice to improve my CV and cover letters?",
+        "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 37,
+        "category": "Adding My Community Commitment",
+        "question": "I joined an online Teams meeting and was inducted, but I still cannot upload my service made. What should I do?",
+        "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 38,
+        "category": "Job Search",
+        "question": "Can I find a part-time job?",
+        "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 39,
+        "category": "CV Help",
+        "question": "I'm a nursing student with two CV versions. Can you review them and help me prepare for ED job applications?",
+        "answer": "Sorry, I don't support this feature now."
+    },
+    {
+        "id": 40,
+        "category": "EPA",
+        "question": "How can I get the Employability Plus Award certificate after earning enough points for the Gold award?",
+        "answer": "The award automatically tracks your progress. When you complete each section (Community, University, and Employability), you'll receive a certificate for Bronze, Silver, and Gold.\nOnce you finish the entire award, you'll get a final named certificate. You can also download it anytime from the last section of the award called “Congratulations.”\nPlease note it may take a few seconds to appear"
+    },
+    {
+        "id": 41,
+        "category": "Job Search",
+        "question": "I'm studying Master of Digital Business and looking for a part-time role at the university. Can you help?",
+        "answer": "Have a look at the University of Waikato vacancy page. you can also come to a drop in session to talk about other part-time job options drop in times can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 42,
+        "category": "Drop-in Appointment",
+        "question": "I want CV and cover letter help. For the drop-in session on 31/7/25, can I come anytime between 10:00 and 12:00?",
+        "answer": "Yes you can speak to a Career Consultant (for 15 minutes) and ask any career-related questions). Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 43,
+        "category": "Cover Letter",
+        "question": "Should I add the papers I'm enjoying and what I've been learning in them to my cover letter?",
+        "answer": "Yes that is a great idea , also explain what skiills you have developed from them"
+    },
+    {
+        "id": 44,
+        "category": "CV Help",
+        "question": "I have uploaded my CV as requested. Can you confirm you received it?",
+        "answer": "CV's uploaded for review will be reviewed within 5 buisness days if you have uploaded it on the weekend or during public holidays please be awareof the 5 working days turn around"
+    },
+    {
+        "id": 45,
+        "category": "Appointment",
+        "question": "I booked a career appointment at 10 tomorrow with Nima. Is it online or face-to-face?",
+        "answer": "This will be in the confirmation email sent through via MyCareer. If you are unable to find this or have further questions please email mycareer@waikato.ac.nz"
+    },
+    {
+        "id": 46,
+        "category": "CV Review",
+        "question": "I'm a second-year civil engineering student applying for a summer internship. Can you review my CV and cover letter and give feedback?",
+        "answer": "Please upload your Documents into the 'Application Support portal\"  as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 47,
+        "category": "Volunteer Experience / Referee Help",
+        "question": "I worked in the Careers team in 2019 and lost contact with my supervisors Kelly and Gina. Can I get help finding a referee?",
+        "answer": "Sorry, I can't release personal contact details for staff."
+    },
+    {
+        "id": 48,
+        "category": "Cover Letter Help",
+        "question": "Could you please give me some feedback on this cover letter?",
+        "answer": "Please upload your cover letter into the workflow for feedback with a link to the role you are applying for. Note: we do not reveiw generic cover letters"
+    },
+    {
+        "id": 49,
+        "category": "Cover Letter",
+        "question": "For the cover letter information like my name, address, date, and the recipient's details , should this go in the header?",
+        "answer": "No, do not place this information in the header as an ATS system will not be able to read it - Please refer to the Cover Letter Tip Sheet in Resources for the correct formatting of a Cover Letter"
+    },
+    {
+        "id": 50,
+        "category": "Cover Letter",
+        "question": "If a company has multiple locations, which address should I use on my cover letter when the main office isn't clear?",
+        "answer": "You can use either the address of the office you want to apply for or the head office"
+    },
+    {
+        "id": 51,
+        "category": "EPA Points",
+        "question": "Do student learning workshops count for employability skills points?",
+        "answer": "Yes, you can add student learning workshops to the 'Employability Developement' section of the award. Each workshop is worth 2 points."
+    },
+    {
+        "id": 52,
+        "category": "Introduction Session",
+        "question": "Are there more online introduction classes available? I can't attend the one today at 12-1pm.",
+        "answer": "The Employability Inductions are scheduled for a few slots each trimester. If the current times do not suit you, you can watch the pre recorded induction here > https://mycareer.waikato.ac.nz/students/links/detail/3"
+    },
+    {
+        "id": 53,
+        "category": "CV Help",
+        "question": "I have an article written about me. Should I put the full URL on my CV or use the title linked to the URL?",
+        "answer": "Yes,  if it help build a positive  picture of your experince and skills"
+    },
+    {
+        "id": 54,
+        "category": "Appointment",
+        "question": "I booked an appointment with Heather for 18 July at 11am, but I can't attend in person. Can this appointment be done online?",
+        "answer": "This depends on Heather. Please contact Heather via email to confirm whether the meeting can be changed to online."
+    },
+    {
+        "id": 55,
+        "category": "Job & Qualification Options",
+        "question": "I'm considering taking a Diploma of Social Sciences or a Diploma of Arts after finishing my BSc(Hons). Which option is better for employment and signalling to employers?",
+        "answer": "nan"
+    },
+    {
+        "id": 56,
+        "category": "Cover Letter",
+        "question": "Do you have any example cover letters?",
+        "answer": "Yes you can. But please firsly attend a drop in session and work through the CV workflow that we have to support students in CV developement. You can find the workflow here > https://mycareer.waikato.ac.nz/students/Workflows/Detail/2"
+    },
+    {
+        "id": 57,
+        "category": "Academic Transcript",
+        "question": "When companies ask for my academic transcript, can I upload a screenshot of my grades or does it need to be a formal version?",
+        "answer": "nan"
+    },
+    {
+        "id": 58,
+        "category": "Volunteer Hours",
+        "question": "How do I log the hours I spend volunteering? Is that something I can record?",
+        "answer": "To add points to your award, please make sure you've signed up for the EPA. https://mycareer.waikato.ac.nz/s/epa\nThen watch the induction session here https://mycareer.waikato.ac.nz/students/links/detail/3 — it walks you through the whole process (the section on adding roles starts at 14:30).\nIf you still need help, email employabilityplus@waikato.ac.nz"
+    },
+    {
+        "id": 59,
+        "category": "EPA Points",
+        "question": "I've attended two drop-in sessions with the Careers and Employability team. Do these count for EPA points?",
+        "answer": "Sorry, drop-in sessions and one-on-one appointments don't count toward EPA points.\nYou can earn points by attending workshops. You can view the workshop schedule here: https://mycareer.waikato.ac.nz/students/events?eventTypeIds=9&page=1&studentSiteId=1"
+    },
+    {
+        "id": 60,
+        "category": "CV - ATS Check",
+        "question": "How can I check if my CV is ATS-friendly?",
+        "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 61,
+        "category": "CV Help",
+        "question": "How can I check if my CV follows New Zealand standards?",
+        "answer": "Check out our CV workflow for support. This follows the NZ CV format. > https://mycareer.waikato.ac.nz/students/Workflows/Detail/2"
+    },
+    {
+        "id": 62,
+        "category": "Careers Advice",
+        "question": "Can I speak to someone for careers advice?",
+        "answer": "You can book a one on one career support/advice appoitment here > https://mycareer.waikato.ac.nz/students/appointments/app/?siteId=1"
+    },
+    {
+        "id": 63,
+        "category": "CV Review",
+        "question": "Please review my CV. I can't find the page to upload it for review.",
+        "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 64,
+        "category": "CV360",
+        "question": "The WIL page says to upload my CV to CV360 and get over 60% before uploading it to Sonia, but I can't find where to upload it. Where is the CV360 tool, or is it no longer available?",
+        "answer": "We no longer offer the CV360 tool, as it was part of a previous system we no longer use.\nWe now support CVs through our CV Workflow. You can view and follow all the steps here https://mycareer.waikato.ac.nz/students/Workflows/Detail/2"
+    },
+    {
+        "id": 65,
+        "category": "Workshop / CV",
+        "question": "I need to upload my draft CV and cover letter for the LinkedIn Workshop, but I can't find the upload option on mycareer.waikato.ac.nz. Can you help?",
+        "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 66,
+        "category": "CV / CV360",
+        "question": "I can't find the CV360 tool on the page. Where do I access it?",
+        "answer": "We no longer offer the CV360 tool, as it was part of a previous system we no longer use.\nWe now support CVs through our CV Workflow. You can view and follow all the steps here https://mycareer.waikato.ac.nz/students/Workflows/Detail/2"
+    },
+    {
+        "id": 67,
+        "category": "EPA Points",
+        "question": "Do the EPA induction and Language Buddy training count for EPA points? Do I need to fill out the EPA involvement form?",
+        "answer": "Yes, you can collect points for both of these. They are each worth 2 points. Please watch the induction video (from 14.30sec)"
+    },
+    {
+        "id": 68,
+        "category": "University Participation",
+        "question": "I've updated the university participation form.",
+        "answer": "NA - this is just a reply. Remove from Chatbot"
+    },
+    {
+        "id": 69,
+        "category": "Internships",
+        "question": "How do I start looking for summer internships, and when is the right time to apply?",
+        "answer": "nan"
+    },
+    {
+        "id": 70,
+        "category": "CV Help / General Enquiry",
+        "question": "Can I book a one-on-one CV review at the Hamilton campus?",
+        "answer": "Yes you can. But please firsly attend a drop in session and work through the CV workflow that we have to support students in CV developement. You can find the workflow here > https://mycareer.waikato.ac.nz/students/Workflows/Detail/2"
+    },
+    {
+        "id": 71,
+        "category": "Applications & Interviews / Workshop",
+        "question": "I attended the Online Interview workshop but my participation wasn't recorded. I added my name and student ID in the chat. Can this be fixed?",
+        "answer": "Please email the team mycareer@waikato.ac.nz and we can get this fixed for you."
+    },
+    {
+        "id": 72,
+        "category": "CV360 / Internship",
+        "question": "I can't find the CV360 link. Where can I access it?",
+        "answer": "nan"
+    },
+    {
+        "id": 73,
+        "category": "Career Support / Planning",
+        "question": "When is the next available face-to-face appointment with Heather Lawry?",
+        "answer": "To find appoitments with our Career Consulants please look here > https://mycareer.waikato.ac.nz/students/appointments/app/?siteId=1 You can then filter to the consultant you wish to book with"
+    },
+    {
+        "id": 74,
+        "category": "Scholarship",
+        "question": "I'm applying for the Dame Jocelyn Fish Award and it asks for a referee. Who would be a good referee for an academic scholarship?",
+        "answer": "nan"
+    },
+    {
+        "id": 75,
+        "category": "Volunteering",
+        "question": "How do I register as a volunteer for the Volunteer Expo on 27th May?",
+        "answer": "Volunteer roles are sent out to the Employability Plus group via email. If you would like to join the award you can sign up here > https://mycareer.waikato.ac.nz/s/epa"
+    },
+    {
+        "id": 76,
+        "category": "EPA",
+        "question": "How do I record my volunteering or workshop participation for EPA points?",
+        "answer": "nan"
+    },
+    {
+        "id": 77,
+        "category": "EPA",
+        "question": "I signed up for the EPA and my status says submitted. Will I be able to create my profile once approved?",
+        "answer": "No profile is needed. You can now watch the induction video or attend an in person induction session which will advise on how to get started."
+    },
+    {
+        "id": 78,
+        "category": "Internships",
+        "question": "I can't find Psychology in the employer industry section when looking for internships. What should I select?",
+        "answer": "nan"
+    },
+    {
+        "id": 79,
+        "category": "Career Planning",
+        "question": "I’m not sure what roles suit me after finishing my masters.",
+        "answer": "nan"
+    },
+    {
+        "id": 80,
+        "category": "CV360",
+        "question": "I can't find the CV360 tool even though I followed the instructions.",
+        "answer": "nan"
+    },
+    {
+        "id": 81,
+        "category": "IT Support",
+        "question": "My two-step verification isn't sending a code and I can't sign in to university resources.",
+        "answer": "Please contact the team at mycareer@waikato.ac.nz for assistance"
+    },
+    {
+        "id": 82,
+        "category": "Job Search",
+        "question": "I'm looking for any part-time work.",
+        "answer": "nan"
+    },
+    {
+        "id": 83,
+        "category": "Cover Letter",
+        "question": "I need help with my cover letter.",
+        "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 84,
+        "category": "Program Information / ENGEN272",
+        "question": "I'm interested in the Diploma in Engineering Management. How does it work if I start with ENGEN272? Do I need to pay for those papers, and how much would they cost? Do I graduate with BE(Hons) first or together with the Diploma? How long does it take to finish?",
+        "answer": "nan"
+    },
+    {
+        "id": 85,
+        "category": "CV Help / Cover Letter",
+        "question": "Can you help me check my CV for an accounting job?",
+        "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 86,
+        "category": "CV Templates",
+        "question": "Are resume templates available to use?",
+        "answer": "We provide full support in CV preperation. Please view our CV workflow and this will take you through a step by step guide. https://mycareer.waikato.ac.nz/students/Workflows/Detail/2"
+    },
+    {
+        "id": 87,
+        "category": "EPA Points",
+        "question": "I was told I can add my class rep and community involvement to gain points. How do I add these items?",
+        "answer": "nan"
+    },
+    {
+        "id": 88,
+        "category": "Drop-In Session",
+        "question": "Where can I find the working link to the online career chat/drop-in session happening right now?",
+        "answer": "nan"
+    },
+    {
+        "id": 89,
+        "category": "Online Career Chat",
+        "question": "Can I book an online Career Chat from Hamilton if the Career Advisor is in Tauranga?",
+        "answer": "nan"
+    },
+    {
+        "id": 90,
+        "category": "CV Help / Job Application",
+        "question": "I'm applying for the Security Officer role at the Port of Tauranga. How should I submit my CV and what should I highlight?",
+        "answer": "nan"
+    },
+    {
+        "id": 91,
+        "category": "Paper Advice",
+        "question": "Can I have an online appointment for paper advice for Semester B year 2 and 3?",
+        "answer": "nan"
+    },
+    {
+        "id": 92,
+        "category": "CV Help / Appointment Booking",
+        "question": "I tried booking an appointment for 4th March but there's no book button. How do I complete the booking?",
+        "answer": "nan"
+    },
+    {
+        "id": 93,
+        "category": "CV Help",
+        "question": "I’m applying for business/legal internships and need feedback on my CV. What should I include or remove?",
+        "answer": "nan"
+    },
+    {
+        "id": 94,
+        "category": "Employability Plus Award",
+        "question": "I signed up for the EPA but couldn't update it. I've done volunteering, class rep work, and workshops—can I still add them, and how do I access my account?",
+        "answer": "nan"
+    },
+    {
+        "id": 95,
+        "category": "CV Help",
+        "question": "Can I book a meeting to go through my CV?",
+        "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 96,
+        "category": "Career Advisor",
+        "question": "Can I see a Career Advisor while still studying? How do I book it?",
+        "answer": "nan"
+    },
+    {
+        "id": 97,
+        "category": "Job Opportunities",
+        "question": "What career options are available after a Master of Education in Counselling Studies, and what are the next steps?",
+        "answer": "nan"
+    },
+    {
+        "id": 98,
+        "category": "CV Template",
+        "question": "Is there a CV template available? I can't find it.",
+        "answer": "We now support CVs through our Appliation  Workflow. You can view and follow all the steps here https://mycareer.waikato.ac.nz/students/Workflows/Detail/2"
+    },
+    {
+        "id": 99,
+        "category": "Career Plus",
+        "question": "I can't find the videos and Career Plus page anymore.",
+        "answer": "N/A Delete"
+    },
+    {
+        "id": 100,
+        "category": "Workplace Skills Programme",
+        "question": "I can't find the Workplace Skills Programme tab with the videos.",
+        "answer": "nan"
+    },
+    {
+        "id": 101,
+        "category": "Workplace Skills Programme",
+        "question": "Where is the Workplace Skills Programme?",
+        "answer": "nan"
+    },
+    {
+        "id": 102,
+        "category": "CV Help / CV360",
+        "question": "I can't find CV360 for internship applications.",
+        "answer": "We no longer offer the CV360 tool, as it was part of a previous system we no longer use.\nWe now support CVs through our CV Workflow. You can view and follow all the steps here https://mycareer.waikato.ac.nz/students/Workflows/Detail/2"
+    },
+    {
+        "id": 103,
+        "category": "Using AI for CV",
+        "question": "Would you recommend pasting a CV template into ChatGPT so it can help me fill it out?",
+        "answer": "No, we do not advise doing this.Book and  attend the workshop \"AI Assit - Upgrade your Application Game \" through the events link https://mycareer.waikato.ac.nz/students/events or/and Downlaod the Tip sheet \"Using AI\" https://mycareer.waikato.ac.nz/students/docs/detail/39?filename=Using-AI.pdf"
+    },
+    {
+        "id": 104,
+        "category": "CV Review Update",
+        "question": "I submitted my CV on 27th May but haven't heard back. When will I get an update?",
+        "answer": "nan"
+    },
+    {
+        "id": 105,
+        "category": "CV Workshops",
+        "question": "Are there any CV workshops available on the Hamilton campus?",
+        "answer": "Yes, we update our workshop schedule often. Please check out all the current workshops here > https://mycareer.waikato.ac.nz/students/events?eventTypeIds=9&page=1&studentSiteId=1 and keep checking back as these are updated often"
+    },
+    {
+        "id": 106,
+        "category": "Teaching CV & Cover Letter",
+        "question": "Can you review my old CV and cover letter for teaching applications?",
+        "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 107,
+        "category": "CV Review",
+        "question": "I have a first draft of my CV and want suggestions to improve it.",
+        "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1"
+    },
+    {
+        "id": 108,
+        "category": "Teacher Salary / Job Search",
+        "question": "What is the secondary teacher salary in private schools in Auckland? And what other job websites can I use?",
+        "answer": "nan"
+    },
+    {
+        "id": 109,
+        "category": "MyWIL / CV Upload",
+        "question": "How do I upload my CV on MyWIL?",
+        "answer": "Once you have your CV, log into your MyWILa ccount, go to the 'Forms' tab, click 'Edit', and submit the 'CV Review Form'."
+    },
+    {
+        "id": 110,
+        "category": "EPA",
+        "question": "To get any information about Employability Plus Award",
+        "answer": "Please click on the link as given below and add all the information required and then click the submit button\nhttps://mycareer.waikato.ac.nz/Form.aspx?id=101"
+    },
+    {
+        "id": 111,
+        "category": "CV Help",
+        "question": "For any CV related help such as CV Workshop, Tips, Feedback and other additional resources",
+        "answer": "Please click the link below and you will find all the related information about CV. You will find different  collapsible panel related to these topics just click on the arrow and you will find further information about the topics.\nhttps://mycareer.waikato.ac.nz/students/Workflows/Detail/2"
+    },
+    {
+        "id": 112,
+        "category": "Cover Letter",
+        "question": "How to prepare Cover Letter?",
+        "answer": "Please click the link given below and click on view document option and a power point presentation about how to make cover letter will open please read that and you will get all information about the cover letter.\nhttps://mycareer.waikato.ac.nz/students/docs/detail/8?filename=Cover-Letter-and-Verbs.pdf"
+    },
+    {
+        "id": 113,
+        "category": "Events",
+        "question": "How to get Event related information?",
+        "answer": "Please click the link below and you will find the events or you can also search the events by writing the keywords and you can also choose the type of events, date start, endorsements, locations and date added.\nhttps://mycareer.waikato.ac.nz/students/events?eventTypeIds=9&page=1&studentSiteId=1"
+    },
+    {
+        "id": 114,
+        "category": "Appointments",
+        "question": "Book an appointment with the counsellor",
+        "answer": "Please click the link given below and select the counsellor you want to meet and select the campus location and you will find the available time slots for appointments.\nhttps://mycareer.waikato.ac.nz/students/appointments/app/topic/5/day/2026/1/19?siteId=1"
+    },
+    {
+        "id": 115,
+        "category": "Job Opportunities",
+        "question": "To search about jobs",
+        "answer": "Please click the given link and  then please enter the details as required such as keywords, job type, contract type, and location and then click on search button.\nhttps://mycareer.waikato.ac.nz/students/jobs"
+    },
+    {
+        "id": 116,
+        "category": "Resources",
+        "question": "For getting  information about the resources",
+        "answer": "Please click on the link give below and then write the keywords and click on search button.\nhttps://mycareer.waikato.ac.nz/students/resources/search/?order=Relevance&topicsUseAnd=true&search="
+    }
 ]

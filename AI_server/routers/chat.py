@@ -9,8 +9,6 @@ routers = APIRouter(prefix="/chat", tags=["chat"])
 embedding_model = Model(model_name="nomic-embed-text").embedding_model
 vectore_store = Vector_store(embedding_model=embedding_model, index_name="qa_list")
 session_chats = {}
-with open('./background_docs/QA_list.json','r',encoding='utf-8') as f:
-    content = json.load(f)
 
 @routers.post("/ask")
 async def ask_question(request: RequestModel):
@@ -20,6 +18,9 @@ async def ask_question(request: RequestModel):
     :param requestModel: user_id and question
     :return str: standard answer based on the qa_list
     """
+    with open('./background_docs/QA_list.json','r',encoding='utf-8') as f:
+        content = json.load(f)
+
     user_id = request.user_id
     question = request.question
     if user_id not in session_chats:
@@ -49,6 +50,9 @@ async def get_most_relevant(question: str):
     :param str: question string from user
     :return dict: most relevant question and similarity score
     """
+    with open('./background_docs/QA_list.json','r',encoding='utf-8') as f:
+        content = json.load(f)
+
     if vectore_store.vector_store_exists():
         vectore_store_instance = vectore_store.get_vector_store()
     else:
@@ -88,7 +92,7 @@ async def reset_chat_history(user_id: str):
     else:
         return {"message": "No chat history found for this user."}
     
-@routers.get('/get_qa')
+@routers.get('/get_all_qa')
 async def get_qa_list():
     """
     retrieve the entire QA list from the qa_list
@@ -99,19 +103,79 @@ async def get_qa_list():
             content = json.load(f)
     return content
 
+@routers.get('/get_one_qa')
+async def get_one_qa(req:Request):
+    """
+    retrieve the specfic qa item from the qa_list via item's id
+
+    :return dict: the specific qa item. else return fail message 
+    """
+    query = await req.json()
+    qa_id = query["id"]
+    with open('./background_docs/QA_list.json','r',encoding='utf-8') as f:
+        for item in json.load(f):
+            if item["id"] == qa_id:
+                return item
+    return {"message":"Not find the qa item"}
+
 @routers.put('/update_qa')
 async def update_qa_list(req:Request):
     """
-    update the entire QA list with a new one.
+    update the single with a new one.
     
-    :param Request: the new QA list in JSON format
+    :param Request: the new QA item in JSON format
     :return dict: success message
     """
     new_qa = await req.json()
+    with open('./background_docs/QA_list.json','r',encoding='utf-8') as f:
+        content = json.load(f)
+    for qa in content:
+        if qa["id"] == new_qa["id"]:
+            qa["category"] = new_qa["category"]
+            qa["question"] = new_qa["question"]
+            qa["answer"] = new_qa["answer"]
+
     with open('./background_docs/QA_list.json','w',encoding='utf-8') as f:
-            json.dump(new_qa, f, ensure_ascii=False, indent=4)
-    vectore_store.update_vector_store([item.get("question") for item in new_qa])
+        json.dump(content, f, ensure_ascii=False, indent=4)
+    vectore_store.update_vector_store([item.get("question") for item in content])
     return {"message": "QA list updated successfully."}
+
+@routers.post('/add')
+async def add_new_qa(req:Request):
+    """
+    add a new qa item to dataset
+    
+    :param req: a new qa item in JSON format
+    :return dic: success message 
+    """
+    new_qa = await req.json()
+    with open('./background_docs/QA_list.json','r',encoding='utf-8') as f:
+        content = json.load(f)
+    content.append(new_qa)
+    with open('./background_docs/QA_list.json','w',encoding='utf-8') as f:
+        json.dump(content, f, ensure_ascii=False, indent=4)
+    vectore_store.update_vector_store([item.get("question") for item in content])
+    return {"message": "add new qa item successfully."}
+
+@routers.delete('/del')
+async def del_qa(req:Request):
+    """
+    delete a qa item from dataset
+    
+    :param req: the qa item want to be deleted
+    :return dic: success message
+    """
+    del_qa = await req.json()
+    with open('./background_docs/QA_list.json','r',encoding='utf-8') as f:
+        content = json.load(f)
+    drop_id = del_qa["id"]
+    content = [item for item in content if item["id"] != drop_id]
+    for new_id, item in enumerate(content, start=1):
+        item['id'] = new_id
+    with open('./background_docs/QA_list.json','w',encoding='utf-8') as f:
+        json.dump(content, f, ensure_ascii=False, indent=4)
+    vectore_store.update_vector_store([item.get("question") for item in content])
+    return {"message": "delete qa item successfully."}
 
 @routers.delete('/delete_vector_store')
 async def delete_vector_store():
