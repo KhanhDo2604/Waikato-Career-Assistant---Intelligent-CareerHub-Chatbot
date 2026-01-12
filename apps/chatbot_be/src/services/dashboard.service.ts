@@ -5,54 +5,89 @@
 //   category: string,      // 'CV', 'Internship', 'Appointment', ...
 //   createdAt: Timestamp,
 //   updatedAt: Timestamp
-
 // );
 
 // CREATE TABLE interactions (
-//     anonSid: string,        // lưu UUID từ HttpOnly cookie (backend đọc được)
+//   anonSid: string,        // store UUID from HttpOnly cookie
 //   question: string,
 //   answer: string,
 //   category?: string,      // snapshot: 'CV', 'Job Search', ...
 //   createdAt: Timestamp
 // );
 
+import database from '../../firebase.js';
+import {
+    addDoc,
+    collection,
+    doc,
+    getDocs,
+    limit as limitQuery,
+    orderBy,
+    query,
+    updateDoc,
+    where,
+    Timestamp,
+    QueryConstraint,
+} from 'firebase/firestore';
+
+type InteractionDoc = {
+    anonSid?: string;
+    anon_sid?: string;
+    userType?: 'user' | 'alumni';
+    user_type?: 'user' | 'alumni';
+    question?: string;
+    answer?: string;
+    category?: string;
+    createdAt?: Timestamp | string | Date;
+};
+
+type FaqItem = {
+    id?: string;
+    question: string;
+    answer: string;
+    category?: string;
+    isActive?: boolean;
+};
+
+const normalizeMonthIndex = (month?: number) => {
+    if (month === undefined || month === null) return undefined;
+
+    // Accept both 1-12 (human friendly) and 0-11 (Date.getMonth()) inputs
+    if (month >= 1 && month <= 12) return month - 1;
+    if (month >= 0 && month <= 11) return month;
+
+    throw new Error('month must be between 1-12 (or 0-11 if zero-based)');
+};
+
+const buildDateConstraints = (year?: number, month?: number): QueryConstraint[] => {
+    if (!year) return [];
+
+    const monthIndex = normalizeMonthIndex(month);
+    const start = new Date(year, monthIndex ?? 0, 1);
+    const end = monthIndex === undefined ? new Date(year + 1, 0, 1) : new Date(year, monthIndex + 1, 1);
+
+    return [where('createdAt', '>=', Timestamp.fromDate(start)), where('createdAt', '<', Timestamp.fromDate(end))];
+};
+
 /**
  * Count how many question types in a particular month (Firestore version)
- *
- * Goal:
- * Build data for Pie Chart
- * { "CV": 34, "Internship": 21, "Job Search": 18, "General": 14 }
- *
- * Input:
- * - year: number        // e.g. 2025
- * - month?: number      // optional (1..12)
- *
- * Output:
- * {
- *   status: 200,
- *   data: { "CV": 34, "Internship": 21, ... }
- * }
- *
- * Firestore Steps:
- * 1) Query collection "interactions".
- * 2) Filter by year and (optionally) month using where().
- * 3) Loop through documents:
- *    - Read category field.
- *    - If category is missing/null → treat as "General".
- * 4) Use a JS object to count occurrences.
- * 5) Return the object map.
  */
-export const questionTypesMonthlyReport = async () => {
+export const questionTypesMonthlyReport = async (year?: number, month?: number) => {
     try {
-        // TODO:
-        // 1) Read year/month from request query
-        // 2) Build Firestore query:
-        //    query(collection(database, 'interactions'), where('year','==',year))
-        // 3) If month exists → add where('month','==',month)
-        // 4) Execute query
-        // 5) Reduce docs into:
-        //    const result: Record<string, number> = {}
-        // 6) return { status: 200, data: result }
+        if (!year) return { status: 400, message: 'year is required' };
+
+        const constraints = buildDateConstraints(year, month);
+        const snapshot = await getDocs(query(collection(database, 'interactions'), ...constraints));
+
+        const result: Record<string, number> = {};
+
+        snapshot.forEach((docSnap) => {
+            const data = docSnap.data() as InteractionDoc;
+            const category = data?.category || 'General';
+            result[category] = (result[category] || 0) + 1;
+        });
+
+        return { status: 200, data: result };
     } catch (error: any) {
         return { status: 500, message: `questionTypesMonthlyReport: ${error.message}` };
     }
@@ -60,46 +95,41 @@ export const questionTypesMonthlyReport = async () => {
 
 /**
  * Count how many users use chatbot in a particular period
- *
- * Goal:
- * Build Bar Chart data
- *
- * Input:
- * - year: number
- * - month?: number (optional)
- *
- * Output:
- * {
- *   status: 200,
- *   data: {
- *     uniqueUsers: number,
- *     users: number,
- *     alumni: number,
- *     total: number
- *   }
- * }
- *
- * Firestore Steps:
- * 1) Query interactions filtered by year/month.
- * 2) Loop through all documents.
- * 3) Use:
- *    - Set() to count unique anonSid
- *    - Simple counters for userType
- * 4) Return aggregated numbers.
  */
-export const usageChatBot = async () => {
+export const usageChatBot = async (year?: number, month?: number) => {
     try {
-        // TODO:
-        // 1) Query interactions by year/month
-        // 2) Create:
-        //    const uniqueUsers = new Set<string>()
-        //    let users = 0, alumni = 0
-        // 3) For each doc:
-        //    - uniqueUsers.add(anonSid)
-        //    - if userType === 'user' → users++
-        //    - if userType === 'alumni' → alumni++
-        // 4) total = users + alumni
-        // 5) return { status: 200, data: {...} }
+        if (!year) return { status: 400, message: 'year is required' };
+
+        const constraints = buildDateConstraints(year, month);
+        const snapshot = await getDocs(query(collection(database, 'interactions'), ...constraints));
+
+        const uniqueUsers = new Set<string>();
+        let users = 0;
+        let alumni = 0;
+
+        snapshot.forEach((docSnap) => {
+            const data = docSnap.data() as InteractionDoc;
+
+            const anonSid = (data.anonSid || data.anon_sid || '').trim();
+            if (anonSid) uniqueUsers.add(anonSid);
+
+            const userType = data.userType || data.user_type || 'user';
+            if (userType === 'alumni') {
+                alumni += 1;
+            } else {
+                users += 1;
+            }
+        });
+
+        return {
+            status: 200,
+            data: {
+                uniqueUsers: uniqueUsers.size,
+                users,
+                alumni,
+                total: users + alumni,
+            },
+        };
     } catch (error: any) {
         return { status: 500, message: `usageChatBot: ${error.message}` };
     }
@@ -107,34 +137,28 @@ export const usageChatBot = async () => {
 
 /**
  * Get MOST COMMON QUESTIONS in a particular month
- *
- * (Your function name says "type questions", but in UI you show
- * "Most Common Questions", so this function should probably return questions)
- *
- * Goal: Top 5 most question types in the period by counting.
- *
- * Input:
- * - month?: number
- * - year: number
- *
- * Output (example):
- * {
- *   status: 200,
- *   data: [
- *     { type: "CV", count: 12 },
- *     ...
- *   ]
- * }
- *
- * Firestore Steps:
- * 1) Query interactions filtered by year/month.
- * 2) Loop through docs and count by question text.
- * 3) Convert map to array.
- * 4) Sort by count DESC.
- * 5) Slice top N (e.g. 5).
  */
-export const mostCommonTypeQuestions = async () => {
+export const mostCommonTypeQuestions = async (year?: number, month?: number, top = 5) => {
     try {
+        if (!year) return { status: 400, message: 'year is required' };
+
+        const constraints = buildDateConstraints(year, month);
+        const snapshot = await getDocs(query(collection(database, 'interactions'), ...constraints));
+
+        const counter: Record<string, number> = {};
+
+        snapshot.forEach((docSnap) => {
+            const data = docSnap.data() as InteractionDoc;
+            const questionKey = (data.question || '').trim() || 'Unknown';
+            counter[questionKey] = (counter[questionKey] || 0) + 1;
+        });
+
+        const data = Object.entries(counter)
+            .map(([question, count]) => ({ question, count }))
+            .sort((a, b) => b.count - a.count)
+            .slice(0, top);
+
+        return { status: 200, data };
     } catch (error: any) {
         return { status: 500, message: `mostCommonTypeQuestions: ${error.message}` };
     }
@@ -142,36 +166,32 @@ export const mostCommonTypeQuestions = async () => {
 
 /**
  * Get Recent User Interactions (question and Date)
- *
- * Goal: Show a table of the newest interactions (like activity log).
- *
- * Input:
- * - limit?: number (default 100)
- *
- * Output:
- * {
- *   status: 200,
- *   data: [
- *     {
- *       id: "uuid",
- *       question: "...",
- *       date: "2025-01-05T10:15:00Z"
- *     },
- *     ...
- *   ]
- * }
- *  * Firestore Steps:
- * 1) Query interactions ordered by createdAt DESC.
- * 2) Apply limit().
- * 3) Map docs to frontend-friendly format.
  */
-export const userInteractions = () => {
+export const userInteractions = async (limit = 100) => {
     try {
-        // TODO:
-        // - Get limit from params (optional)
-        // - Query DB for latest rows
-        // - Map to Interaction[] for frontend
-        // - Return { status: 200, data: interactions }
+        const snapshot = await getDocs(
+            query(collection(database, 'interactions'), orderBy('createdAt', 'desc'), limitQuery(limit)),
+        );
+
+        const interactions = snapshot.docs.map((docSnap) => {
+            const data = docSnap.data() as InteractionDoc;
+            const createdAt =
+                data.createdAt instanceof Timestamp
+                    ? data.createdAt.toDate()
+                    : data.createdAt
+                    ? new Date(data.createdAt)
+                    : undefined;
+
+            return {
+                id: docSnap.id,
+                question: data.question || '',
+                date: createdAt ? createdAt.toISOString() : '',
+                userType: data.userType || data.user_type || 'user',
+                questionType: data.category || 'General',
+            };
+        });
+
+        return { status: 200, data: interactions };
     } catch (error: any | Error) {
         return { status: 500, message: `userInteractions: ${error.message}` };
     }
@@ -179,34 +199,39 @@ export const userInteractions = () => {
 
 /**
  * Update FAQ dataset (Firestore version)
- *
- * Goal:
- * Allow admin to add/update FAQ questions
- *
- * Input:
- * [
- *   { id?, question, answer, category, isActive }
- * ]
- *
- * Output:
- * { status: 200, updated: number }
- *
- * Firestore Steps:
- * 1) Loop through input array.
- * 2) Validate question & answer.
- * 3) If id exists:
- *    - update doc(common_questions/{id})
- * 4) Else:
- *    - add new document
- * 5) Count how many were written.
  */
-export const updateDataset = async () => {
+export const updateDataset = async (dataset: FaqItem[]) => {
     try {
-        // TODO:
-        // 1) Read dataset from request body
-        // 2) Validate each item
-        // 3) Use add() or update()
-        // 4) return count
+        if (!Array.isArray(dataset) || dataset.length === 0) {
+            return { status: 400, message: 'dataset is required' };
+        }
+
+        const faqCollection = collection(database, 'common_questions');
+        let updated = 0;
+
+        for (const item of dataset) {
+            if (!item?.question?.trim() || !item?.answer?.trim()) {
+                return { status: 400, message: 'question and answer are required for each FAQ item' };
+            }
+
+            const payload = {
+                question: item.question.trim(),
+                answer: item.answer.trim(),
+                category: item.category || 'General',
+                isActive: item.isActive ?? true,
+                updatedAt: Timestamp.now(),
+            };
+
+            if (item.id) {
+                await updateDoc(doc(faqCollection, item.id), payload);
+            } else {
+                await addDoc(faqCollection, { ...payload, createdAt: Timestamp.now() });
+            }
+
+            updated += 1;
+        }
+
+        return { status: 200, updated };
     } catch (error: any) {
         return { status: 500, message: `updateDataset: ${error.message}` };
     }
