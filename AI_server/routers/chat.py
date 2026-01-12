@@ -129,6 +129,8 @@ async def update_qa_list(req:Request):
     new_qa = await req.json()
     with open('./background_docs/QA_list.json','r',encoding='utf-8') as f:
         content = json.load(f)
+    if new_qa["id"] not in {qa["id"] for qa in content}:
+        return {"message":"the update index not in dataset"}
     for qa in content:
         if qa["id"] == new_qa["id"]:
             qa["category"] = new_qa["category"]
@@ -139,6 +141,17 @@ async def update_qa_list(req:Request):
         json.dump(content, f, ensure_ascii=False, indent=4)
     vectore_store.update_vector_store([item.get("question") for item in content])
     return {"message": "QA list updated successfully."}
+
+@routers.get('/index')
+async def check_index():
+    """
+    return the latest index of dataset and plus one.
+    because this index will be used for add feature. So the index of new qa item
+    is latest index of dataset plus one.
+    """
+    with open('./background_docs/QA_list.json','r',encoding='utf-8') as f:
+        content = json.load(f)
+    return len(content)+1
 
 @routers.post('/add')
 async def add_new_qa(req:Request):
@@ -151,6 +164,8 @@ async def add_new_qa(req:Request):
     new_qa = await req.json()
     with open('./background_docs/QA_list.json','r',encoding='utf-8') as f:
         content = json.load(f)
+    if new_qa["id"] != len(content) + 1:
+        return {"message": "index error"}
     content.append(new_qa)
     with open('./background_docs/QA_list.json','w',encoding='utf-8') as f:
         json.dump(content, f, ensure_ascii=False, indent=4)
@@ -168,6 +183,8 @@ async def del_qa(req:Request):
     del_qa = await req.json()
     with open('./background_docs/QA_list.json','r',encoding='utf-8') as f:
         content = json.load(f)
+    if del_qa["id"] not in {qa["id"] for qa in content}:
+        return {"message":"the update index not in dataset"}
     drop_id = del_qa["id"]
     content = [item for item in content if item["id"] != drop_id]
     for new_id, item in enumerate(content, start=1):
