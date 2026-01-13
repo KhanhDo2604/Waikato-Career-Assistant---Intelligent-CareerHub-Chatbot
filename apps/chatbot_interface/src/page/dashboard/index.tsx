@@ -14,9 +14,9 @@ import {
     Cell,
 } from 'recharts';
 import { TrendingUp } from 'lucide-react';
-import { type CommonQuestionType, type MonthlyUserCount, type Interaction } from '../../services/api';
 import DatasetManagementTabs from './DatasetManagementTabs ';
 import colors from '../../constants/colors';
+import type { CommonQuestionType, Interaction, MonthlyUserCount } from '../../constants/type/type';
 
 interface DailyUserCount {
     day: number;
@@ -266,7 +266,7 @@ function Dashboard() {
                 <div className="mb-6 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <div className={`p-2 bg-[${colors.colors.primary}] rounded-lg`}>
-                            <TrendingUp className={`text-white`} size={28} />
+                            <TrendingUp className={`text-white`} size={32} />
                         </div>
                         <div>
                             <h1 className="text-2xl lg:text-3xl font-bold text-gray-800">Analytics Dashboard</h1>
@@ -363,7 +363,7 @@ function Dashboard() {
                             <div className="p-2 bg-green-100 rounded-lg">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    className="h-5 w-5 text-green-600"
+                                    className="h-7 w-7 text-green-600"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
@@ -569,7 +569,7 @@ function Dashboard() {
                                 <div className="p-2 bg-blue-100 rounded-lg">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
-                                        className="h-5 w-5 text-blue-600"
+                                        className="h-7 w-7 text-blue-600"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"
@@ -587,13 +587,6 @@ function Dashboard() {
                                     <p className="text-xs lg:text-sm text-gray-500">Latest user conversations</p>
                                 </div>
                             </div>
-                            {interactions.length > 0 && (
-                                <div className="flex items-center gap-2">
-                                    <span className="badge badge-primary text-xs lg:text-sm">
-                                        {interactions.length} total
-                                    </span>
-                                </div>
-                            )}
                         </div>
 
                         {interactions.length > 0 ? (

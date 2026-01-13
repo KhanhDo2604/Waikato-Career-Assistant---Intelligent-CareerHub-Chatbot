@@ -1,8 +1,16 @@
-import { Router } from "express";
-import { getDashboardStatusController } from "../controllers/dashboard.controller.js";
+import { Router } from 'express';
+import {
+    getCommonQuestionsController,
+    getQuestionsFromDBController,
+    toggleCommonQuestionController,
+} from '../controllers/dashboard.controller.js';
 
 const dashboardRoute = Router();
 
-dashboardRoute.get("/", getDashboardStatusController);
+dashboardRoute.get('/questions', getQuestionsFromDBController);
+
+dashboardRoute.get('/get-common-questions', getCommonQuestionsController);
+
+dashboardRoute.post('/toggle', toggleCommonQuestionController);
 
 export default dashboardRoute;

@@ -1,27 +1,6 @@
+import type { Interaction, MonthlyUserCount } from '../constants/type/type';
+
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-
-export interface Interaction {
-    id: string;
-    userId: string;
-    userType: 'user' | 'alumni';
-    question: string;
-    answer: string;
-    timestamp: string;
-    questionType?: string;
-}
-
-export interface CommonQuestionType {
-    questionType: string;
-    count: number;
-}
-
-export interface MonthlyUserCount {
-    month: string;
-    uniqueUsers: number;
-    users: number;
-    alumni: number;
-    total: number;
-}
 
 export const api = {
     async saveInteraction(userId: string, userType: 'user' | 'alumni', question: string, answer: string) {

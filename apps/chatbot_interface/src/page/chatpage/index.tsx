@@ -1,22 +1,46 @@
 import icons from '../../constants/icons';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import InputBar from './chat_ui/InputBar';
 import { useChat } from '../../hooks/useChat';
 import MessageTag from './chat_ui/MessageTag';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useDashboard } from '../../hooks/useDashboard';
+import colors from '../../constants/colors';
+import QuestionsModal from './chat_ui/QuestionsModal';
 
 function ChatPage() {
     const { state, actions } = useChat();
-    const { messages, inputText, isBotTyping, hasStarted, questions } = state;
+    const { dashboardState } = useDashboard();
+    const { messages, inputText, isBotTyping, hasStarted } = state;
+    const { commonQuestions } = dashboardState;
 
     const messagesEndRef = useRef<HTMLDivElement>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const myCareerUrl = import.meta.env.VITE_MY_CAREER_URL;
     const waikatoUniversityUrl = import.meta.env.VITE_WAIKATO_UNIVERSITY_URL;
+    const bgColor = colors.colors.primary;
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages]);
+
+    // Add ESC key to close modal
+    useEffect(() => {
+        const handleEscape = (e: KeyboardEvent) => {
+            if (e.key === 'Escape' && isModalOpen) {
+                setIsModalOpen(false);
+            }
+        };
+
+        window.addEventListener('keydown', handleEscape);
+        return () => window.removeEventListener('keydown', handleEscape);
+    }, [isModalOpen]);
+
+    const handleQuestionClick = (question: string) => {
+        actions.sendMessage(question);
+        setIsModalOpen(false);
+    };
 
     return (
         <div className="h-screen overflow-hidden bg-gray-50 flex flex-col">
@@ -62,9 +86,9 @@ function ChatPage() {
                             />
                             {/* list of questions */}
                             <div className="mt-4 w-full">
-                                {questions.length > 0 ? (
+                                {commonQuestions.length > 0 ? (
                                     <div className="space-y-3">
-                                        {questions.slice(0, 5).map((q, index) => (
+                                        {commonQuestions.slice(0, 5).map((q, index) => (
                                             <div key={q.id}>
                                                 <button
                                                     type="button"
@@ -75,7 +99,7 @@ function ChatPage() {
                                                 >
                                                     {q.question}
                                                 </button>
-                                                {index < Math.min(questions.length, 5) - 1 && (
+                                                {index < Math.min(commonQuestions.length, 5) - 1 && (
                                                     <hr className="block my-3 bg-black" />
                                                 )}
                                             </div>
@@ -97,7 +121,7 @@ function ChatPage() {
                 ) : (
                     // Second state
                     <>
-                        <div className="flex-1 min-h-0 overflow-y-auto bg-gradient-to-b from-gray-50 to-white">
+                        <div className="flex-1 min-h-0 overflow-y-auto from-gray-50 to-white">
                             <div className="max-w-3xl mx-auto w-full min-w-0 px-4 py-8 space-y-6">
                                 {messages.map((m) => (
                                     <div key={m.id} className="animate-fadeIn">
@@ -109,9 +133,15 @@ function ChatPage() {
                                     <div className="flex justify-start animate-fadeIn">
                                         <div className="bg-white border border-gray-200 shadow-sm rounded-2xl rounded-bl-md px-4 py-3 flex items-center gap-2">
                                             <div className="flex items-center gap-1">
-                                                <span className="w-2 h-2 rounded-full bg-blue-500 animate-bounce [animation-delay:-0.3s]" />
-                                                <span className="w-2 h-2 rounded-full bg-blue-500 animate-bounce [animation-delay:-0.15s]" />
-                                                <span className="w-2 h-2 rounded-full bg-blue-500 animate-bounce" />
+                                                <span
+                                                    className={`w-2 h-2 rounded-full bg-[${bgColor}] animate-bounce [animation-delay:-0.3s]`}
+                                                />
+                                                <span
+                                                    className={`w-2 h-2 rounded-full bg-[${bgColor}] animate-bounce [animation-delay:-0.15s]`}
+                                                />
+                                                <span
+                                                    className={`w-2 h-2 rounded-full bg-[${bgColor}] animate-bounce`}
+                                                />
                                             </div>
                                             <span className="text-xs text-gray-400 ml-1">I'm thinking...</span>
                                         </div>
@@ -128,8 +158,9 @@ function ChatPage() {
                                 <div className="relative w-full">
                                     <button
                                         className="absolute left-0 top-1/2 -translate-y-1/2 btn btn-circle border border-gray-300
-                                    hover:bg-gray-100 hover:border-gray-500 transition-all shadow-none z-10 bg-white"
-                                        onClick={() => {}}
+                                            hover:bg-gray-100 hover:border-gray-500 transition-all shadow-none z-10 bg-white"
+                                        onClick={() => setIsModalOpen(true)}
+                                        title="View common questions"
                                     >
                                         <FontAwesomeIcon icon={icons.icon.list} color="black" />
                                     </button>
@@ -148,6 +179,15 @@ function ChatPage() {
                     </>
                 )}
             </main>
+
+            {/* Floating Modal */}
+            {isModalOpen && (
+                <QuestionsModal
+                    commonQuestions={commonQuestions}
+                    handleQuestionClick={handleQuestionClick}
+                    setIsModalOpen={setIsModalOpen}
+                />
+            )}
         </div>
     );
 }

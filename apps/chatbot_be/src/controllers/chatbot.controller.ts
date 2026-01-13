@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getCommonQuestions, handleQuestion } from '../services/chatbot.service.js';
+import { handleQuestion } from '../services/chatbot.service.js';
 
 export const handleQuestionController = async (request: Request, response: Response) => {
     try {
@@ -18,14 +18,5 @@ export const handleQuestionController = async (request: Request, response: Respo
         return response.status(200).json({ answer: answer });
     } catch (error: Error | any) {
         return response.status(500).json({ message: error?.message || 'Internal server error' });
-    }
-};
-
-export const getCommonQuestionsController = async (request: Request, response: Response) => {
-    try {
-        const questions = await getCommonQuestions();
-        return response.status(200).json({ questions: questions });
-    } catch (error: Error | any) {
-        return { status: 500, message: error.message };
     }
 };

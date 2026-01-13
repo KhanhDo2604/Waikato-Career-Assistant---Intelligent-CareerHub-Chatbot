@@ -2,9 +2,12 @@
   // Visit https://aka.ms/tsconfig to read more about this file
   // "extends": "@repo/typescript-config/base.json",
   "compilerOptions": {
+    "target": "es2023",
     "outDir": "./dist",
-    "rootDir": "./"
+    "rootDir": "./",
+    "esModuleInterop": true,
+    "module": "esnext"
   },
   "include": ["**/*.ts"],
-  "exclude": ["dist"]
+  "exclude": ["dist"],
 }
