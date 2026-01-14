@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { Question } from '../../../constants/type/type';
 import icons from '../../../constants/icons';
-import colors from '../../../constants/colors';
 
 function QuestionsModal({
     commonQuestions,
@@ -12,8 +11,6 @@ function QuestionsModal({
     handleQuestionClick: (question: string) => void;
     setIsModalOpen: (isOpen: boolean) => void;
 }) {
-    const bgColor = colors.colors.primary;
-
     return (
         <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fadeIn"
@@ -27,7 +24,7 @@ function QuestionsModal({
                 <div className="flex items-center justify-between p-4 lg:p-6 border-b border-gray-200">
                     <div className="flex items-center gap-3">
                         <div className="p-2 bg-red-100 rounded-lg">
-                            <FontAwesomeIcon icon={icons.icon.list} size="lg" color={bgColor} />
+                            <FontAwesomeIcon icon={icons.icon.list} size="lg" className="bg-primary" />
                         </div>
                         <div>
                             <h3 className="text-lg lg:text-xl font-bold text-gray-900">Common Questions</h3>
@@ -71,7 +68,7 @@ function QuestionsModal({
                                             </p>
                                             <p className="text-xs text-gray-500 mt-1">{q.category}</p>
                                         </div>
-                                        <FontAwesomeIcon icon={icons.icon.list} color={bgColor} />
+                                        <FontAwesomeIcon icon={icons.icon.list} className="bg-primary" />
                                     </div>
                                 </button>
                             ))}

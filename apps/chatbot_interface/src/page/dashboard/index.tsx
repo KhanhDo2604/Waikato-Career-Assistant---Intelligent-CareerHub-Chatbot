@@ -15,7 +15,6 @@ import {
 } from 'recharts';
 import { TrendingUp } from 'lucide-react';
 import DatasetManagementTabs from './DatasetManagementTabs ';
-import colors from '../../constants/colors';
 import type { CommonQuestionType, Interaction, MonthlyUserCount } from '../../constants/type/type';
 
 interface DailyUserCount {
@@ -258,14 +257,13 @@ function Dashboard() {
             </div>
         );
     }
-
     return (
         <div className="min-h-screen bg-gray-50 p-6">
             <div className="max-w-8xl mx-auto">
                 {/* Header */}
                 <div className="mb-6 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <div className={`p-2 bg-[${colors.colors.primary}] rounded-lg`}>
+                        <div className={`p-2 rounded-lg bg-primary`}>
                             <TrendingUp className={`text-white`} size={32} />
                         </div>
                         <div>
@@ -312,9 +310,9 @@ function Dashboard() {
                 <div className="grid grid-cols-2 gap-6 mb-6 text-black">
                     {/* Question Types Chart */}
                     <div className="card bg-white shadow-sm">
-                        <div className="card-body p-4 justify-center">
+                        <div className="card-body p-4 ">
                             <h2 className="card-title text-xl mb-4">Question Types (Monthly)</h2>
-                            <div className="w-full flex justify-center">
+                            <div className="w-full flex justify-center items-center">
                                 <ResponsiveContainer width="100%" height={300}>
                                     <PieChart>
                                         <Pie

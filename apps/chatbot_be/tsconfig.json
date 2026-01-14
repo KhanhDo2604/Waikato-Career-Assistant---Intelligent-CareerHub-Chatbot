@@ -5,8 +5,7 @@
     "target": "es2023",
     "outDir": "./dist",
     "rootDir": "./",
-    "esModuleInterop": true,
-    "module": "esnext"
+    "module": "nodenext"
   },
   "include": ["**/*.ts"],
   "exclude": ["dist"],

@@ -1,101 +1,101 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icons from '../../constants/icons';
 import { useDashboard } from '../../hooks/useDashboard';
+import type { Question } from '../../constants/type/type';
+import { QuestionForm } from './components/QuestionForm';
+import { QuestionItem } from './components/QuestionItem';
 
 function DatasetManagementTabs() {
-    const { dashboardState } = useDashboard();
-    const { questions, questionsLoading, commonQuestions } = dashboardState;
+    const { dashboardState, dashboardActions } = useDashboard();
+    const { questions, questionsLoading } = dashboardState;
     // Edit states
     const [editingId, setEditingId] = useState<string | null>(null);
-    const [editQuestion, setEditQuestion] = useState('');
+    const [editingQuestion, setEditingQuestion] = useState<Question | null>(null);
 
     // Add states
     const [isAdding, setIsAdding] = useState(false);
     const [newQuestion, setNewQuestion] = useState('');
     // const [newAnswer, setNewAnswer] = useState('');
 
+    const handleAddQuestion = async (questionData: Partial<Question>) => {
+        // try {
+        //     await dashboardActions.addQuestion(questionData);
+        //     setIsAdding(false);
+        // } catch (error) {
+        //     console.error('Error adding question:', error);
+        // }
+    };
+
+    const handleEditQuestion = async (id: number, questionData: Partial<Question>) => {
+        // try {
+        //     await dashboardActions.updateQuestion(id, questionData);
+        //     setEditingId(null);
+        //     setEditingQuestion(null);
+        // } catch (error) {
+        //     console.error('Error updating question:', error);
+        // }
+    };
+
+    const handleDeleteQuestion = async (id: number) => {
+        // if (confirm('Are you sure you want to delete this question?')) {
+        //     try {
+        //         await dashboardActions.deleteQuestion(id);
+        //     } catch (error) {
+        //         console.error('Error deleting question:', error);
+        //     }
+        // }
+    };
+
+    const handleStartEdit = (question: Question) => {
+        // setEditingId(question.id);
+        // setEditingQuestion(question);
+    };
+
+    const handleCancelEdit = () => {
+        setEditingId(null);
+        setEditingQuestion(null);
+    };
+
+    const handleCancelAdd = () => {
+        setIsAdding(false);
+    };
+
     return (
         <div className="card bg-white shadow-sm">
             <div className="card-body p-4">
-                <h2 className="card-title text-xl mb-4">Dataset & Questions Management</h2>
-
+                <h2 className="card-title text-xl mb-2">Dataset & Questions Management</h2>
+                {/* Add button */}
+                {!isAdding && (
+                    <button onClick={() => setIsAdding(true)} className="btn btn-sm btn-primary gap-2 mb-2 shadow-none">
+                        <FontAwesomeIcon icon={icons.icon.plus} />
+                        Add Common Question
+                    </button>
+                )}
                 {/* Content */}
-                <div className="min-h-[300px] max-h-[400px] overflow-y-auto">
+                <div className="h-80 overflow-y-auto">
                     <div className="space-y-3">
-                        {/* Add button */}
-                        {!isAdding && (
-                            <button onClick={() => setIsAdding(true)} className="btn btn-sm btn-primary gap-2 mb-2">
-                                <FontAwesomeIcon icon={icons.icon.plus} />
-                                Add Common Question
-                            </button>
-                        )}
-
                         {/* Add form */}
                         {isAdding && (
-                            <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg space-y-3">
-                                <input
-                                    type="text"
-                                    placeholder="Enter common question..."
-                                    value={newQuestion}
-                                    onChange={(e) => setNewQuestion(e.target.value)}
-                                    className="input input-bordered w-full"
-                                />
-                                <div className="flex gap-2">
-                                    <button onClick={handleAddCommon} className="btn btn-success btn-sm gap-2">
-                                        Save
-                                    </button>
-                                    <button onClick={handleCancel} className="btn btn-ghost btn-sm gap-2">
-                                        <FontAwesomeIcon icon={icons.icon.cancle} />
-                                        Cancel
-                                    </button>
-                                </div>
-                            </div>
+                            <QuestionForm mode="add" onSubmit={handleAddQuestion} onCancel={handleCancelAdd} />
                         )}
 
                         {/* Common questions list */}
                         {questions.map((item) => (
-                            <div
-                                key={item.id}
-                                className="p-4 bg-gray-50 border border-gray-200 rounded-lg hover:border-gray-300 transition"
-                            >
-                                {editingId === item.id ? (
-                                    <div className="space-y-3">
-                                        <input
-                                            type="text"
-                                            value={editQuestion}
-                                            onChange={(e) => setEditQuestion(e.target.value)}
-                                            className="input input-bordered w-full"
-                                        />
-                                        <div className="flex gap-2">
-                                            <button onClick={() => {}} className="btn btn-success btn-sm gap-2">
-                                                Save
-                                            </button>
-                                            <button onClick={() => {}} className="btn btn-ghost btn-sm gap-2">
-                                                <FontAwesomeIcon icon={icons.icon.cancle} />
-                                                Cancel
-                                            </button>
-                                        </div>
-                                    </div>
+                            <div key={item.id}>
+                                {editingId === item.id && editingQuestion ? (
+                                    <QuestionForm
+                                        mode="edit"
+                                        initialData={editingQuestion}
+                                        onSubmit={(data) => handleEditQuestion(item.id, data)}
+                                        onCancel={handleCancelEdit}
+                                    />
                                 ) : (
-                                    <div className="flex justify-between items-center">
-                                        <p className="text-gray-800">{item.question}</p>
-                                        <div className="flex gap-2">
-                                            <button
-                                                onClick={() => {}}
-                                                className="btn btn-ghost btn-xs text-blue-600 hover:text-blue-800"
-                                            >
-                                                <FontAwesomeIcon icon={icons.icon.edit} />
-                                            </button>
-                                            <button
-                                                onClick={() => {}}
-                                                className="btn btn-ghost btn-xs text-red-600 hover:text-red-800"
-                                            >
-                                                <FontAwesomeIcon icon={icons.icon.bin} />
-                                            </button>
-                                        </div>
-                                    </div>
+                                    <QuestionItem
+                                        question={item}
+                                        onEdit={() => handleStartEdit(item)}
+                                        onDelete={() => handleDeleteQuestion(item.id)}
+                                    />
                                 )}
                             </div>
                         ))}

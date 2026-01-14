@@ -1,9 +1,6 @@
-import colors from '../../../constants/colors';
 import type { ChatMessage } from '../../../constants/type/type';
 
 function MessageTag({ message }: { message: ChatMessage }) {
-    const bgColor = colors.colors.primary;
-
     const renderTextWithLinks = (text: string) => {
         // Regex to detect URLs
         const urlRegex = /(https?:\/\/[^\s]+)/g;
@@ -40,8 +37,7 @@ function MessageTag({ message }: { message: ChatMessage }) {
                         message.sender === 'user'
                             ? 'text-white rounded-br-none'
                             : 'bg-gray-200 text-gray-800 rounded-bl-none'
-                    }`}
-                style={message.sender === 'user' ? { backgroundColor: bgColor } : undefined}
+                    } ${message.sender === 'user' ? 'bg-primary' : undefined}`}
             >
                 <p className="mb-0">{renderTextWithLinks(message.text)}</p>
             </div>

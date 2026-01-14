@@ -5,7 +5,6 @@ import { useChat } from '../../hooks/useChat';
 import MessageTag from './chat_ui/MessageTag';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDashboard } from '../../hooks/useDashboard';
-import colors from '../../constants/colors';
 import QuestionsModal from './chat_ui/QuestionsModal';
 
 function ChatPage() {
@@ -19,7 +18,6 @@ function ChatPage() {
 
     const myCareerUrl = import.meta.env.VITE_MY_CAREER_URL;
     const waikatoUniversityUrl = import.meta.env.VITE_WAIKATO_UNIVERSITY_URL;
-    const bgColor = colors.colors.primary;
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -134,14 +132,12 @@ function ChatPage() {
                                         <div className="bg-white border border-gray-200 shadow-sm rounded-2xl rounded-bl-md px-4 py-3 flex items-center gap-2">
                                             <div className="flex items-center gap-1">
                                                 <span
-                                                    className={`w-2 h-2 rounded-full bg-[${bgColor}] animate-bounce [animation-delay:-0.3s]`}
+                                                    className={`w-2 h-2 rounded-full bg-primary animate-bounce [animation-delay:-0.3s]`}
                                                 />
                                                 <span
-                                                    className={`w-2 h-2 rounded-full bg-[${bgColor}] animate-bounce [animation-delay:-0.15s]`}
+                                                    className={`w-2 h-2 rounded-full bg-primary animate-bounce [animation-delay:-0.15s]`}
                                                 />
-                                                <span
-                                                    className={`w-2 h-2 rounded-full bg-[${bgColor}] animate-bounce`}
-                                                />
+                                                <span className={`w-2 h-2 rounded-full bg-primary animate-bounce`} />
                                             </div>
                                             <span className="text-xs text-gray-400 ml-1">I'm thinking...</span>
                                         </div>

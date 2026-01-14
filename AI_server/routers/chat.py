@@ -140,7 +140,7 @@ async def update_qa_list(req:Request):
     with open('./background_docs/QA_list.json','w',encoding='utf-8') as f:
         json.dump(content, f, ensure_ascii=False, indent=4)
     vectore_store.update_vector_store([item.get("question") for item in content])
-    return {"message": "QA list updated successfully."}
+    return {"message": "Updated successfully."}
 
 @routers.get('/index')
 async def check_index():
@@ -170,7 +170,7 @@ async def add_new_qa(req:Request):
     with open('./background_docs/QA_list.json','w',encoding='utf-8') as f:
         json.dump(content, f, ensure_ascii=False, indent=4)
     vectore_store.update_vector_store([item.get("question") for item in content])
-    return {"message": "add new qa item successfully."}
+    return {"message": "Add new item successfully."}
 
 @routers.delete('/del')
 async def del_qa(req:Request):
@@ -192,7 +192,7 @@ async def del_qa(req:Request):
     with open('./background_docs/QA_list.json','w',encoding='utf-8') as f:
         json.dump(content, f, ensure_ascii=False, indent=4)
     vectore_store.update_vector_store([item.get("question") for item in content])
-    return {"message": "delete qa item successfully."}
+    return {"message": "Delete item successfully."}
 
 @routers.delete('/delete_vector_store')
 async def delete_vector_store():

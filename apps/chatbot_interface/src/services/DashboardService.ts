@@ -35,3 +35,33 @@ export const toggleCommonQuestion = async (
         throw new Error(error);
     }
 };
+
+export const addNewQuestion = async (question: Question) => {
+    try {
+        const res = await http.post('/api/dashboard/add-new-question', question);
+
+        return res.data.message;
+    } catch (error) {
+        throw new Error('Error adding new question', { cause: error });
+    }
+};
+
+export const deleteQuestion = async (questionId: number) => {
+    try {
+        const res = await http.delete('/api/dashboard/delete-question', { data: { questionId } });
+
+        return res.data.message;
+    } catch (error) {
+        throw new Error('Error deleting question', { cause: error });
+    }
+};
+
+export const editQuestion = async (question: Question) => {
+    try {
+        const res = await http.put('/api/dashboard/edit-question', question);
+
+        return res.data.message;
+    } catch (error) {
+        throw new Error('Error editing question', { cause: error });
+    }
+};
