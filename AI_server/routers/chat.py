@@ -39,9 +39,10 @@ async def ask_question(request: RequestModel):
         category = next((item['category'] for item in content if item['question'] == result[0][0].page_content), None)
     else:
         answer = ""
+        category = ""
     
     chat_instance.append_message(question, answer)
-    return {"caategory":category,"answer":answer}
+    return {"category":category,"answer":answer}
 
 @routers.get("/most_relevant")
 async def get_most_relevant(question: str):

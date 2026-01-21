@@ -69,14 +69,13 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
 
                 try {
                     const botReply = await getAnswer(trimmedText);
-                    console.log(botReply);
 
                     const botMessage: ChatMessage =
-                        botReply !== null && botReply.length > 0
+                        botReply.answer && botReply.answer.length > 0
                             ? {
                                   id: (Date.now() + 1).toString(),
                                   sender: 'bot',
-                                  text: botReply,
+                                  text: botReply.answer,
                                   createAt: new Date(),
                               }
                             : {

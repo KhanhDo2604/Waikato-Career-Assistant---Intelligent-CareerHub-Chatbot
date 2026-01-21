@@ -1,6 +1,6 @@
 import http from '../api/http';
 
-export const getAnswer = async (question: string): Promise<string> => {
+export const getAnswer = async (question: string): Promise<{ category: string; answer: string }> => {
     try {
         const trimmed = question.trim();
         if (!trimmed) {

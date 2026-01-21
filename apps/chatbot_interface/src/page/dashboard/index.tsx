@@ -93,10 +93,12 @@ function Dashboard() {
         }
     }, [usageChatBot, selectedMonth, selectedYear]);
 
-    const questionTypesData = Object.entries(questionTypesMonthlyReport).map(([name, value]) => ({
-        name,
-        value,
-    }));
+    const questionTypesData = Object.entries(questionTypesMonthlyReport)
+        .map(([name, value]) => ({
+            name,
+            value,
+        }))
+        .sort((a, b) => (b.value as any) - (a.value as any));
 
     const months = [
         'January',
