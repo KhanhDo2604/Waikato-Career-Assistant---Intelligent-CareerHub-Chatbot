@@ -24,7 +24,7 @@ function QuestionsModal({
                 <div className="flex items-center justify-between p-4 lg:p-6 border-b border-gray-200">
                     <div className="flex items-center gap-3">
                         <div className="p-2 bg-red-100 rounded-lg">
-                            <FontAwesomeIcon icon={icons.icon.list} size="lg" className="bg-primary" />
+                            <FontAwesomeIcon icon={icons.icon.list} size="lg" className="text-primary" />
                         </div>
                         <div>
                             <h3 className="text-lg lg:text-xl font-bold text-gray-900">Common Questions</h3>
@@ -68,7 +68,7 @@ function QuestionsModal({
                                             </p>
                                             <p className="text-xs text-gray-500 mt-1">{q.category}</p>
                                         </div>
-                                        <FontAwesomeIcon icon={icons.icon.list} className="bg-primary" />
+                                        <FontAwesomeIcon icon={icons.icon.list} className="text-primary" />
                                     </div>
                                 </button>
                             ))}

@@ -1,5 +1,6 @@
 import { interactModel } from '../../api/http.js';
-import { AskError } from '../models/type.js';
+import connectToMongoDB from '../db.js';
+import { AskError, InteractionDoc } from '../models/type.js';
 
 // Place to handle chatbot logics
 
@@ -11,6 +12,17 @@ export const handleQuestion = async (userSession: string, question: string) => {
 
         //Lưu data vào database dưới dạng Interaction
         //model nên trả về answer kèm vs category
+        const db = await connectToMongoDB('interactions');
+
+        const insertData: InteractionDoc = {
+            anonSid: userSession,
+            answer: data['answer'],
+            question: question,
+            category: data['category'] || 'General',
+            createdAt: new Date(),
+        };
+        await db.insertOne(insertData);
+
         return data;
     } catch (error: any) {
         const err = error as AskError;
