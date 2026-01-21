@@ -25,8 +25,6 @@ export type Question = {
 export type InteractionDoc = {
     anonSid?: string;
     anon_sid?: string;
-    userType?: 'user' | 'alumni';
-    user_type?: 'user' | 'alumni';
     question?: string;
     answer?: string;
     category?: string;

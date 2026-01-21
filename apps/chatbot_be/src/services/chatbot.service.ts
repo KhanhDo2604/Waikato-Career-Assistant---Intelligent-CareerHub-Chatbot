@@ -9,9 +9,8 @@ export const handleQuestion = async (userSession: string, question: string) => {
 
         const data = await interactModel(payload, '/chat/ask', 'POST');
 
-        //gọi model để xác định category của question
-        //Lưu data vào database
-
+        //Lưu data vào database dưới dạng Interaction
+        //model nên trả về answer kèm vs category
         return data;
     } catch (error: any) {
         const err = error as AskError;

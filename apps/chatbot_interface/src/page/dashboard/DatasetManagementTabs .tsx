@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ReactLoading from 'react-loading';
 import icons from '../../constants/icons';
 import { useDashboard } from '../../hooks/useDashboard';
 import type { Question } from '../../constants/type/type';
@@ -8,48 +9,44 @@ import { QuestionItem } from './components/QuestionItem';
 
 function DatasetManagementTabs() {
     const { dashboardState, dashboardActions } = useDashboard();
-    const { questions, questionsLoading } = dashboardState;
+    const { questions, questionsLoading, isLoading } = dashboardState;
     // Edit states
     const [editingId, setEditingId] = useState<string | null>(null);
     const [editingQuestion, setEditingQuestion] = useState<Question | null>(null);
-
-    // Add states
     const [isAdding, setIsAdding] = useState(false);
-    const [newQuestion, setNewQuestion] = useState('');
-    // const [newAnswer, setNewAnswer] = useState('');
 
     const handleAddQuestion = async (questionData: Partial<Question>) => {
-        // try {
-        //     await dashboardActions.addQuestion(questionData);
-        //     setIsAdding(false);
-        // } catch (error) {
-        //     console.error('Error adding question:', error);
-        // }
+        try {
+            await dashboardActions.addQuestion(questionData);
+            setIsAdding(false);
+        } catch (error) {
+            console.error('Error adding question:', error);
+        }
     };
 
-    const handleEditQuestion = async (id: number, questionData: Partial<Question>) => {
-        // try {
-        //     await dashboardActions.updateQuestion(id, questionData);
-        //     setEditingId(null);
-        //     setEditingQuestion(null);
-        // } catch (error) {
-        //     console.error('Error updating question:', error);
-        // }
+    const handleEditQuestion = async (questionData: Partial<Question>) => {
+        try {
+            await dashboardActions.updateQuestion(questionData);
+            setEditingId(null);
+            setEditingQuestion(null);
+        } catch (error) {
+            console.error('Error updating question:', error);
+        }
     };
 
     const handleDeleteQuestion = async (id: number) => {
-        // if (confirm('Are you sure you want to delete this question?')) {
-        //     try {
-        //         await dashboardActions.deleteQuestion(id);
-        //     } catch (error) {
-        //         console.error('Error deleting question:', error);
-        //     }
-        // }
+        if (confirm('Are you sure you want to delete this question?')) {
+            try {
+                await dashboardActions.deleteQuestion(id);
+            } catch (error) {
+                console.error('Error deleting question:', error);
+            }
+        }
     };
 
     const handleStartEdit = (question: Question) => {
-        // setEditingId(question.id);
-        // setEditingQuestion(question);
+        setEditingId(question.id);
+        setEditingQuestion(question);
     };
 
     const handleCancelEdit = () => {
@@ -87,14 +84,14 @@ function DatasetManagementTabs() {
                                     <QuestionForm
                                         mode="edit"
                                         initialData={editingQuestion}
-                                        onSubmit={(data) => handleEditQuestion(item.id, data)}
+                                        onSubmit={(data) => handleEditQuestion(data)}
                                         onCancel={handleCancelEdit}
                                     />
                                 ) : (
                                     <QuestionItem
                                         question={item}
                                         onEdit={() => handleStartEdit(item)}
-                                        onDelete={() => handleDeleteQuestion(item.id)}
+                                        onDelete={() => handleDeleteQuestion(Number(item.id))}
                                     />
                                 )}
                             </div>
@@ -105,11 +102,13 @@ function DatasetManagementTabs() {
                                 No common questions yet. Click "Add Common Question" to get started.
                             </p>
                         )}
-                        {questionsLoading && (
-                            <div className="text-center text-black py-8">
-                                <span className="loading loading-spinner loading-md">Loading</span>
-                            </div>
-                        )}
+                        {questionsLoading ||
+                            (isLoading && (
+                                <div className="text-center text-black py-8">
+                                    {/* <span className="loading loading-spinner loading-md">Loading</span> */}
+                                    <ReactLoading type={'spin'} color={'#000000'} height={32} width={32} />
+                                </div>
+                            ))}
                     </div>
                 </div>
             </div>

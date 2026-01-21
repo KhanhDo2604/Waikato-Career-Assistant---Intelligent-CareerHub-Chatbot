@@ -82,9 +82,10 @@ export const editQuestionController = async (request: Request, response: Respons
 
 export const questionTypesMonthlyReportController = async (request: Request, response: Response) => {
     try {
-        const { month, year } = request.body;
+        const { month, year } = request.query;
         const report = await questionTypesMonthlyReport(year, month);
-        return response.status(200).json({ report: report.data?.data });
+
+        return response.status(200).json({ report: report.data });
     } catch (error) {
         return { status: 500, message: 'Error fetching question types monthly report' };
     }
@@ -92,8 +93,9 @@ export const questionTypesMonthlyReportController = async (request: Request, res
 
 export const usageChatBotController = async (request: Request, response: Response) => {
     try {
-        const { month, year } = request.body;
+        const { month, year } = request.query;
         const usageData = await usageChatBot(year, month);
+
         return response.status(200).json({ usageData: usageData.data });
     } catch (error) {
         return { status: 500, message: 'Error fetching usage data' };
@@ -102,7 +104,7 @@ export const usageChatBotController = async (request: Request, response: Respons
 
 export const mostCommonTypeQuestionsController = async (request: Request, response: Response) => {
     try {
-        const { month, year } = request.body;
+        const { month, year } = request.query;
         const result = await mostCommonTypeQuestions(year, month);
         return response.status(200).json({ mostCommonTypeQuestions: result.data });
     } catch (error) {

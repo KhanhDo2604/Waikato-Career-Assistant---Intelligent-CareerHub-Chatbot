@@ -2,17 +2,10 @@ export type Sender = 'user' | 'bot';
 
 export interface Interaction {
     id: string;
-    userId: string;
-    userType: 'user' | 'alumni';
     question: string;
-    answer: string;
-    timestamp: string;
-    questionType?: string;
-}
-
-export interface CommonQuestionType {
-    questionType: string;
-    count: number;
+    answer?: string;
+    createdAt: string;
+    category: string;
 }
 
 export type Question = {
@@ -24,11 +17,14 @@ export type Question = {
 };
 
 export interface MonthlyUserCount {
-    month: string;
+    day: number;
     uniqueUsers: number;
-    users: number;
-    alumni: number;
-    total: number;
+    totalInteractions?: number;
+}
+
+export interface QuestionTypeCount {
+    category: string;
+    count: number;
 }
 
 export interface ChatMessage {
@@ -59,6 +55,10 @@ export type DashboardState = {
     questionsLoading: boolean;
     isLoadingCommonQuestions: boolean;
     questionsError?: string;
+    isLoading: boolean;
+    questionTypesMonthlyReport: QuestionTypeCount[];
+    usageChatBot: MonthlyUserCount[];
+    userInteractions: Interaction[];
 };
 
 export type Action =
@@ -70,7 +70,14 @@ export type Action =
     | { type: 'FETCH_QUESTIONS_SUCCESS'; payload: Question[] }
     | { type: 'FETCH_QUESTIONS_ERROR'; payload: string }
     | { type: 'RESET' }
-    | { type: 'UPDATE_COMMON_QUESTIONS'; payload: { newQuestionList: Question[]; commonQuestions: Question[] } };
+    | { type: 'LOADING'; payload: boolean }
+    | { type: 'UPDATE_COMMON_QUESTIONS'; payload: { newQuestionList: Question[]; commonQuestions: Question[] } }
+    | { type: 'ADD_QUESTIONS'; payload: Question }
+    | { type: 'UPDATE_QUESTION'; payload: Question }
+    | { type: 'DELETE_QUESTION'; payload: number }
+    | { type: 'GET_QUESTION_TYPES_MONTHLY_REPORT'; payload: QuestionTypeCount[] }
+    | { type: 'GET_USAGE_CHATBOT'; payload: MonthlyUserCount[] }
+    | { type: 'GET_USER_INTERACTIONS'; payload: Interaction[] };
 
 export type ChatActions = {
     setInputText: (v: string) => void;
@@ -81,6 +88,12 @@ export type ChatActions = {
 export type DashboardActions = {
     getQuestionsFromDB: () => void;
     toggleCommonQuestion: (questionId: number) => void;
+    addQuestion: (questionData: Partial<Question>) => Promise<string>;
+    updateQuestion: (questionData: Partial<Question>) => Promise<string>;
+    deleteQuestion: (id: number) => Promise<string>;
+    getQuestionTypesMonthlyReport: (year: number, month: number) => Promise<QuestionTypeCount[]>;
+    getUsageChatBot: (year: number, month: number) => Promise<MonthlyUserCount[]>;
+    getUserInteractions: () => Promise<Interaction[]>;
 };
 
 export type ChatContextValue = {

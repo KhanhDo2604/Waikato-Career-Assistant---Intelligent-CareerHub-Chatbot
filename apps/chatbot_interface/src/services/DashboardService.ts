@@ -1,5 +1,5 @@
 import http from '../api/http';
-import type { Question } from '../constants/type/type';
+import type { Interaction, MonthlyUserCount, Question, QuestionTypeCount } from '../constants/type/type';
 
 export const getQuestionsFromDB = async (): Promise<Question[]> => {
     try {
@@ -36,11 +36,14 @@ export const toggleCommonQuestion = async (
     }
 };
 
-export const addNewQuestion = async (question: Question) => {
+export const addNewQuestion = async (question: Question): Promise<{ message: string; new_question: Question }> => {
     try {
         const res = await http.post('/api/dashboard/add-new-question', question);
 
-        return res.data.message;
+        if (res.status === 200) {
+            return res.data;
+        }
+        throw new Error('Failed to add new question');
     } catch (error) {
         throw new Error('Error adding new question', { cause: error });
     }
@@ -50,18 +53,67 @@ export const deleteQuestion = async (questionId: number) => {
     try {
         const res = await http.delete('/api/dashboard/delete-question', { data: { questionId } });
 
-        return res.data.message;
+        if (res.status === 200) {
+            return res.data.message;
+        }
+        throw new Error('Failed to delete question');
     } catch (error) {
         throw new Error('Error deleting question', { cause: error });
     }
 };
 
-export const editQuestion = async (question: Question) => {
+export const editQuestion = async (question: Question): Promise<{ message: string; new_question: Question }> => {
     try {
         const res = await http.put('/api/dashboard/edit-question', question);
-
-        return res.data.message;
+        if (res.status === 200) {
+            return res.data;
+        }
+        throw new Error('Failed to edit question');
     } catch (error) {
         throw new Error('Error editing question', { cause: error });
+    }
+};
+
+export const getQuestionTypesMonthlyReport = async (year: number, month: number): Promise<QuestionTypeCount[]> => {
+    try {
+        const res = await http.get('/api/dashboard/get-questions-type', {
+            params: { year, month },
+        });
+
+        return res.data.report;
+    } catch (error) {
+        throw new Error('Error fetching question types monthly report', { cause: error });
+    }
+};
+
+export const getUsageChatBot = async (year: number, month: number): Promise<MonthlyUserCount[]> => {
+    try {
+        const res = await http.get('/api/dashboard/get-usage', { params: { year, month } });
+
+        return res.data.usageData;
+    } catch (error) {
+        throw new Error('Error fetching usage data', { cause: error });
+    }
+};
+
+export const getMostCommonTypeQuestions = async (year: number, month: number) => {
+    try {
+        const res = await http.get('/api/dashboard/most-common-type-questions', {
+            params: { year, month },
+        });
+
+        return res.data.mostCommonTypeQuestions;
+    } catch (error) {
+        throw new Error('Error fetching most common type questions', { cause: error });
+    }
+};
+
+export const getUserInteractions = async (): Promise<Interaction[]> => {
+    try {
+        const res = await http.get('/api/dashboard/user-interactions');
+
+        return res.data.userInteractions;
+    } catch (error) {
+        throw new Error('Error fetching user interactions', { cause: error });
     }
 };
