@@ -160,7 +160,7 @@ function buildDailyUserCounts(
         });
     }
 
-    // To make sure it is not going negative
+    // To make sure the numbers are not going negative
     const fixField = (field: keyof DailyUserCount, target: number) => {
         const currentSum = daily.reduce((sum, d) => sum + (d[field] as number), 0);
         let diff = target - currentSum;
@@ -247,6 +247,11 @@ function Dashboard() {
         'December',
     ];
 
+    const currentYear = 2026;
+    const pastYears = 5;
+
+    const yearOptions = Array.from({ length: pastYears + 1 }, (_, i) => currentYear - pastYears + i);
+
     if (loading) {
         return (
             <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -297,7 +302,7 @@ function Dashboard() {
                             onChange={(e) => setSelectedYear(parseInt(e.target.value, 10))}
                             title="Select a year"
                         >
-                            {Array.from({ length: 10 }, (_, i) => new Date().getFullYear() + i).map((year) => (
+                            {yearOptions.map((year) => (
                                 <option key={year} value={String(year)}>
                                     {year}
                                 </option>
@@ -317,11 +322,11 @@ function Dashboard() {
                                     <PieChart>
                                         <Pie
                                             data={questionTypesData}
-                                            cx="50%"
+                                            cx="45%"
                                             cy="50%"
                                             labelLine={false}
                                             label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-                                            outerRadius={100}
+                                            outerRadius={80}
                                             fill="#8884d8"
                                             dataKey="value"
                                         >
@@ -335,14 +340,14 @@ function Dashboard() {
                                             verticalAlign="middle"
                                             align="right"
                                             wrapperStyle={{
-                                                width: '180px',
-                                                padding: '16px',
+                                                width: '140px',
+                                                padding: '10px',
                                                 border: '1px solid #ddd',
                                                 borderRadius: '12px',
                                                 backgroundColor: '#ffffff',
                                                 boxShadow: '0 3px 10px rgba(0,0,0,0.12)',
-                                                fontSize: '15px',
-                                                lineHeight: '28px',
+                                                fontSize: '13px',
+                                                lineHeight: '22px',
                                             }}
                                         />
                                     </PieChart>
@@ -404,7 +409,7 @@ function Dashboard() {
                                                 value: 'Day of Month',
                                                 position: 'insideBottom',
                                                 offset: -5,
-                                                fontSize: 12,
+                                                fontSize: 10,
                                             }}
                                         />
                                         <YAxis
@@ -634,7 +639,9 @@ function Dashboard() {
                                                     ? 'badge-warning'
                                                     : interaction.questionType === 'Cover Letter'
                                                       ? 'badge-info'
-                                                      : 'badge-ghost'
+                                                      : interaction.questionType === 'Workshop'
+                                                        ? 'bg-pink-300 text-black-700 border border-pink-400'
+                                                        : 'badge-ghost'
                                         }
                                     `}
                                                     >
