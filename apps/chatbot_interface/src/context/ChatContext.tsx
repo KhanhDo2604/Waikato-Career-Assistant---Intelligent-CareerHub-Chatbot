@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { createContext, useEffect, useMemo, useReducer, type ReactNode } from 'react';
-import type { Action, ChatActions, ChatContextValue, ChatMessage, ChatState } from '../constants/type/chat';
-import { getAnswer, getCommonQuestions } from '../services/ChatbotService';
+import { createContext, useMemo, useReducer, type ReactNode } from 'react';
+import type { Action, ChatActions, ChatContextValue, ChatMessage, ChatState } from '../constants/type/type';
+import { getAnswer } from '../services/ChatbotService';
 
 const initialState: ChatState = {
     messages: [
@@ -15,9 +15,6 @@ const initialState: ChatState = {
     inputText: '',
     isBotTyping: false,
     hasStarted: false,
-
-    questions: [],
-    questionsLoading: false,
 };
 
 const chatReducer = (state: ChatState, action: Action): ChatState => {
@@ -30,20 +27,6 @@ const chatReducer = (state: ChatState, action: Action): ChatState => {
             return { ...state, hasStarted: action.payload };
         case 'ADD_MESSAGE':
             return { ...state, messages: [...state.messages, action.payload] };
-        case 'FETCH_QUESTIONS_START':
-            return { ...state, questionsLoading: true, questionsError: undefined };
-        case 'FETCH_QUESTIONS_SUCCESS':
-            return {
-                ...state,
-                questionsLoading: false,
-                questions: action.payload,
-            };
-        case 'FETCH_QUESTIONS_ERROR':
-            return {
-                ...state,
-                questionsLoading: false,
-                questionsError: action.payload,
-            };
         case 'RESET':
             return initialState;
         default:
@@ -57,28 +40,7 @@ export const ChatContext = createContext<ChatContextValue | null>(null);
 export const ChatProvider = ({ children }: { children: ReactNode }) => {
     const [state, dispatch] = useReducer(chatReducer, initialState);
 
-    const fallbackMessage = {
-        text: `Sorry, this question is currently outside the scope of what I can assist with.\nPlease visit the link below to submit your question directly to an administrator for further support.`,
-        link: 'https://mycareer.waikato.ac.nz/students/questions/',
-    };
-
-    useEffect(() => {
-        if (state.questions.length > 0 || state.questionsLoading) return;
-
-        (async () => {
-            try {
-                dispatch({ type: 'FETCH_QUESTIONS_START' });
-                const questions = await getCommonQuestions();
-                dispatch({ type: 'FETCH_QUESTIONS_SUCCESS', payload: questions });
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            } catch (err: any) {
-                dispatch({
-                    type: 'FETCH_QUESTIONS_ERROR',
-                    payload: err?.message || 'Failed to load questions',
-                });
-            }
-        })();
-    }, []);
+    const fallbackMessage = `Sorry, this question is currently outside the scope of what I can assist with.\nPlease visit the link below to submit your question directly to an administrator for further support. \nhttps://mycareer.waikato.ac.nz/students/questions/`;
 
     const actions: ChatActions = useMemo(
         () => ({
@@ -107,9 +69,10 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
 
                 try {
                     const botReply = await getAnswer(trimmedText);
+                    console.log(botReply);
 
                     const botMessage: ChatMessage =
-                        botReply.length > 0
+                        botReply !== null && botReply.length > 0
                             ? {
                                   id: (Date.now() + 1).toString(),
                                   sender: 'bot',
@@ -119,9 +82,8 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
                             : {
                                   id: (Date.now() + 1).toString(),
                                   sender: 'bot',
-                                  text: fallbackMessage.text,
+                                  text: fallbackMessage,
                                   createAt: new Date(),
-                                  link: fallbackMessage.link,
                               };
 
                     dispatch({ type: 'ADD_MESSAGE', payload: botMessage });

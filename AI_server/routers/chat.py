@@ -38,7 +38,7 @@ async def ask_question(request: RequestModel):
         answer = next((item['answer'] for item in content if item['question'] == result[0][0].page_content), None)
         category = next((item['category'] for item in content if item['question'] == result[0][0].page_content), None)
     else:
-        answer = "I am sorry, I don't have the answer to that question. Please try another one or turn to human support."
+        answer = ""
     
     chat_instance.append_message(question, answer)
     return {"caategory":category,"answer":answer}
@@ -141,7 +141,7 @@ async def update_qa_list(req:Request):
     with open('./background_docs/QA_list.json','w',encoding='utf-8') as f:
         json.dump(content, f, ensure_ascii=False, indent=4)
     vectore_store.update_vector_store([item.get("question") for item in content])
-    return {"message": "QA list updated successfully."}
+    return {"message": "Updated successfully."}
 
 @routers.get('/index')
 async def check_index():
@@ -171,7 +171,7 @@ async def add_new_qa(req:Request):
     with open('./background_docs/QA_list.json','w',encoding='utf-8') as f:
         json.dump(content, f, ensure_ascii=False, indent=4)
     vectore_store.update_vector_store([item.get("question") for item in content])
-    return {"message": "add new qa item successfully."}
+    return {"message": "Add new item successfully."}
 
 @routers.delete('/del')
 async def del_qa(req:Request):
@@ -193,7 +193,7 @@ async def del_qa(req:Request):
     with open('./background_docs/QA_list.json','w',encoding='utf-8') as f:
         json.dump(content, f, ensure_ascii=False, indent=4)
     vectore_store.update_vector_store([item.get("question") for item in content])
-    return {"message": "delete qa item successfully."}
+    return {"message": "Delete item successfully."}
 
 @routers.delete('/delete_vector_store')
 async def delete_vector_store():

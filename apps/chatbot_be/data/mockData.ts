@@ -25,9 +25,9 @@ export const commonQuestions = [
     },
     {
         id: 5,
-        question: 'Do I need a CV to apply for internships?',
-        answer: 'Yes, most internship applications require a CV. You can also book a CV check appointment with the Careers Team.',
-        category: 'Internship',
+        question: 'What services does the Careers Team offer?',
+        answer: 'The Careers Team offers services such as CV reviews, interview preparation, career counseling, and job search assistance.',
+        category: 'General',
     },
 ];
 
