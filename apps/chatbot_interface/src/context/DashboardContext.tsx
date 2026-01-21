@@ -1,6 +1,15 @@
 import { createContext, useEffect, useMemo, useReducer, type ReactNode } from 'react';
 import type { Action, DashboardActions, DashboardContextValue, DashboardState } from '../constants/type/type';
-import { getQuestionsFromDB, toggleCommonQuestion } from '../services/DashboardService';
+import {
+    addNewQuestion,
+    deleteQuestion,
+    editQuestion,
+    getQuestionsFromDB,
+    getQuestionTypesMonthlyReport,
+    getUsageChatBot,
+    getUserInteractions,
+    toggleCommonQuestion,
+} from '../services/DashboardService';
 
 const initialState: DashboardState = {
     commonQuestions: [],
@@ -8,6 +17,10 @@ const initialState: DashboardState = {
     questionsLoading: false,
     isLoadingCommonQuestions: false,
     questionsError: undefined,
+    isLoading: false,
+    questionTypesMonthlyReport: [],
+    usageChatBot: [],
+    userInteractions: [],
 };
 
 const dashboardReducer = (state: DashboardState, action: Action): DashboardState => {
@@ -37,8 +50,45 @@ const dashboardReducer = (state: DashboardState, action: Action): DashboardState
                 commonQuestions: action.payload.commonQuestions,
                 questions: action.payload.newQuestionList,
             };
+        case 'ADD_QUESTIONS':
+            return {
+                ...state,
+                questions: [...state.questions, action.payload],
+            };
+        case 'UPDATE_QUESTION':
+            return {
+                ...state,
+                questions: state.questions.map((q) => (q.id === action.payload.id ? action.payload : q)),
+            };
+        case 'DELETE_QUESTION':
+            return {
+                ...state,
+                questions: state.questions.filter((q) => q.id !== action.payload.toString()),
+            };
         case 'RESET':
             return initialState;
+
+        case 'LOADING':
+            return { ...state, isLoading: action.payload };
+
+        case 'GET_QUESTION_TYPES_MONTHLY_REPORT':
+            return {
+                ...state,
+                questionTypesMonthlyReport: action.payload,
+            };
+
+        case 'GET_USAGE_CHATBOT':
+            return {
+                ...state,
+                usageChatBot: action.payload,
+            };
+
+        case 'GET_USER_INTERACTIONS':
+            return {
+                ...state,
+                userInteractions: action.payload,
+            };
+
         default:
             return state;
     }
@@ -90,6 +140,63 @@ export const DashboardProvider = ({ children }: { children: ReactNode }) => {
                         payload: { newQuestionList: result.newQuestionList, commonQuestions: result.commonQuestions },
                     });
                 }
+            },
+            addQuestion: async (questionData) => {
+                dispatch({ type: 'LOADING', payload: true });
+                const result = await addNewQuestion({
+                    id: questionData?.id || '0',
+                    question: questionData?.question || '',
+                    answer: questionData?.answer || '',
+                    category: questionData?.category,
+                    common: questionData?.common || false,
+                });
+
+                dispatch({ type: 'ADD_QUESTIONS', payload: result.new_question });
+                dispatch({ type: 'LOADING', payload: false });
+                return result.message;
+            },
+            updateQuestion: async (questionData) => {
+                dispatch({ type: 'LOADING', payload: true });
+                const result = await editQuestion({
+                    id: questionData?.id || '0',
+                    question: questionData?.question || '',
+                    answer: questionData?.answer || '',
+                    category: questionData?.category,
+                    common: questionData?.common || false,
+                });
+                dispatch({ type: 'UPDATE_QUESTION', payload: result.new_question });
+                dispatch({ type: 'LOADING', payload: false });
+                return result.message;
+            },
+            deleteQuestion: async (id) => {
+                dispatch({ type: 'LOADING', payload: true });
+                const result = await deleteQuestion(id);
+                dispatch({ type: 'DELETE_QUESTION', payload: id });
+                dispatch({ type: 'LOADING', payload: false });
+                return result;
+            },
+            getQuestionTypesMonthlyReport: async (year: number, month: number) => {
+                dispatch({ type: 'LOADING', payload: true });
+                const result = await getQuestionTypesMonthlyReport(year, month);
+                console.log(result);
+
+                dispatch({ type: 'GET_QUESTION_TYPES_MONTHLY_REPORT', payload: result });
+                dispatch({ type: 'LOADING', payload: false });
+                return result;
+            },
+            getUsageChatBot: async (year: number, month: number) => {
+                dispatch({ type: 'LOADING', payload: true });
+                const result = await getUsageChatBot(year, month);
+                dispatch({ type: 'GET_USAGE_CHATBOT', payload: result });
+                dispatch({ type: 'LOADING', payload: false });
+                return result;
+            },
+            getUserInteractions: async () => {
+                dispatch({ type: 'LOADING', payload: true });
+                const result = await getUserInteractions();
+                dispatch({ type: 'GET_USER_INTERACTIONS', payload: result });
+                dispatch({ type: 'LOADING', payload: false });
+                return result;
             },
         }),
         [],

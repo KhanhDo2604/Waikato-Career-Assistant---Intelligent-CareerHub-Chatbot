@@ -1,4 +1,4 @@
-export const interactModel = async (body: Record<string, any>, tail: string, method: string): Promise<string> => {
+export const interactModel = async (body: Record<string, any>, tail: string, method: string) => {
     try {
         const BACKEND_URL = process.env.MODEL_URL;
         if (!BACKEND_URL) {

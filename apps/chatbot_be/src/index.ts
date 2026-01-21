@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import chatbotRoute from './routes/chatbot.route.js';
 import dashboardRoute from './routes/dashboard.route.js';
 import { randomUUID } from 'crypto';
+import { insertMockData } from '../data/mockData.js';
 
 dotenv.config();
 
@@ -67,6 +68,8 @@ app.use((err: any, req: any, res: any, next: any) => {
     console.error('ERROR:', err?.message || err);
     res.status(500).json({ message: err?.message || 'Server error' });
 });
+
+// await insertMockData();
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);

@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react';
 import {
     BarChart,
@@ -15,96 +15,10 @@ import {
 } from 'recharts';
 import { TrendingUp } from 'lucide-react';
 import DatasetManagementTabs from './DatasetManagementTabs ';
-import type { CommonQuestionType, Interaction, MonthlyUserCount } from '../../constants/type/type';
-
-interface DailyUserCount {
-    day: number;
-    uniqueUsers: number;
-    users: number;
-    alumni: number;
-    total: number;
-}
+import { useDashboard } from '../../hooks/useDashboard';
+import type { MonthlyUserCount } from '../../constants/type/type';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d'];
-
-const mockQuestionTypes: Record<string, number> = {
-    CV: 34,
-    Internship: 21,
-    'Job Search': 18,
-    'Cover Letter': 12,
-    General: 14,
-};
-
-const mockCommonQuestions = [
-    { questionType: 'CV', count: 12 },
-    { questionType: 'Internship', count: 9 },
-    { questionType: 'Cover Letter', count: 7 },
-    { questionType: 'Job Search', count: 6 },
-    { questionType: 'Workshop', count: 5 },
-];
-
-const mockUserCounts: MonthlyUserCount[] = [
-    { month: 'Jan', uniqueUsers: 40, users: 55, alumni: 12, total: 107 },
-    { month: 'Feb', uniqueUsers: 60, users: 80, alumni: 20, total: 160 },
-    { month: 'Mar', uniqueUsers: 75, users: 90, alumni: 25, total: 190 },
-    { month: 'Apr', uniqueUsers: 42, users: 58, alumni: 16, total: 116 },
-    { month: 'May', uniqueUsers: 66, users: 84, alumni: 19, total: 169 },
-    { month: 'Jun', uniqueUsers: 51, users: 70, alumni: 15, total: 136 },
-    { month: 'Jul', uniqueUsers: 55, users: 72, alumni: 17, total: 144 },
-    { month: 'Aug', uniqueUsers: 68, users: 88, alumni: 22, total: 178 },
-    { month: 'Sep', uniqueUsers: 62, users: 81, alumni: 19, total: 162 },
-    { month: 'Oct', uniqueUsers: 70, users: 92, alumni: 24, total: 186 },
-    { month: 'Nov', uniqueUsers: 64, users: 83, alumni: 20, total: 167 },
-    { month: 'Dec', uniqueUsers: 48, users: 65, alumni: 14, total: 127 },
-];
-
-const mockInteractions: Interaction[] = [
-    {
-        id: '1',
-        userId: 'u123',
-        userType: 'user',
-        question: 'How do I write a strong CV?',
-        answer: 'Start with a strong summary and highlight key achievements.',
-        timestamp: '2025-01-05T10:15:00Z',
-        questionType: 'CV',
-    },
-    {
-        id: '2',
-        userId: 'u402',
-        userType: 'alumni',
-        question: 'Any tips for job searching in NZ?',
-        answer: 'Try Seek.co.nz and LinkedIn. Tailor your CV for each job.',
-        timestamp: '2025-01-04T14:32:00Z',
-        questionType: 'Job Search',
-    },
-    {
-        id: '3',
-        userId: 'u991',
-        userType: 'user',
-        question: 'How long should my cover letter be?',
-        answer: 'Keep it to one page, with 3-4 strong paragraphs.',
-        timestamp: '2025-01-03T09:10:00Z',
-        questionType: 'Cover Letter',
-    },
-    {
-        id: '4',
-        userId: 'u221',
-        userType: 'user',
-        question: 'Where can I find internships?',
-        answer: 'Check NZUni Talent and your faculty newsletters.',
-        timestamp: '2025-01-02T11:48:00Z',
-        questionType: 'Internship',
-    },
-    {
-        id: '5',
-        userId: 'u556',
-        userType: 'alumni',
-        question: 'When is the next CV workshop?',
-        answer: 'The next CV workshop is on 12 Feb.',
-        timestamp: '2025-01-01T16:22:00Z',
-        questionType: 'Workshop',
-    },
-];
 
 //  For how many days in a month
 function getDaysInMonth(monthIndex: number, year: number): number {
@@ -113,7 +27,7 @@ function getDaysInMonth(monthIndex: number, year: number): number {
 
 // To split the monthly total into different daily values
 function buildDailyUserCounts(
-    monthlyData: MonthlyUserCount[],
+    data: MonthlyUserCount[],
     selectedMonth: number | undefined,
     selectedYear: number,
 ): DailyUserCount[] {
@@ -160,7 +74,7 @@ function buildDailyUserCounts(
         });
     }
 
-    // To make sure the numbers are not going negative
+    // To make sure it is not going negative
     const fixField = (field: keyof DailyUserCount, target: number) => {
         const currentSum = daily.reduce((sum, d) => sum + (d[field] as number), 0);
         let diff = target - currentSum;
@@ -197,37 +111,50 @@ function buildDailyUserCounts(
     daily.forEach((d) => {
         d.total = d.uniqueUsers + d.users + d.alumni;
     });
-
-    return daily;
 }
 
 function Dashboard() {
-    const [questionTypes, setQuestionTypes] = useState<Record<string, number>>(mockQuestionTypes);
-    const [commonQuestions, setCommonQuestions] = useState<CommonQuestionType[]>(mockCommonQuestions);
-    const [interactions, setInteractions] = useState<Interaction[]>(mockInteractions);
-    const [selectedMonth, setSelectedMonth] = useState<number | undefined>(new Date().getMonth());
+    const { dashboardState, dashboardActions } = useDashboard();
+    const { questionTypesMonthlyReport, usageChatBot, userInteractions, isLoading } = dashboardState;
+    const [selectedMonth, setSelectedMonth] = useState<number>(new Date().getMonth());
     const [selectedYear, setSelectedYear] = useState<number>(new Date().getFullYear());
-    const [dailyUserCounts, setDailyUserCounts] = useState<DailyUserCount[]>([]);
-    const [loading, setLoading] = useState(true);
+    const [dailyData, setDailyData] = useState<MonthlyUserCount[]>([]);
 
-    useEffect(() => {
-        loadDashboardData();
-    }, [selectedMonth, selectedYear]);
+    const currentMonth = new Date().getMonth();
 
     const loadDashboardData = async () => {
-        setLoading(true);
         try {
-            setQuestionTypes(mockQuestionTypes);
-            setCommonQuestions(mockCommonQuestions);
-            setInteractions(mockInteractions);
-            const daily = buildDailyUserCounts(mockUserCounts, selectedMonth, selectedYear);
-            setDailyUserCounts(daily);
-        } finally {
-            setLoading(false);
+            const year = selectedYear;
+            const month = selectedMonth !== undefined ? selectedMonth + 1 : undefined;
+
+            // Load all dashboard data
+            await Promise.all([
+                dashboardActions.getQuestionTypesMonthlyReport(year, month ?? 0),
+                dashboardActions.getUsageChatBot(year, month ?? 0),
+                dashboardActions.getUserInteractions(),
+            ]);
+        } catch (error) {
+            console.error('Error loading dashboard data:', error);
         }
     };
 
-    const questionTypesData = Object.entries(questionTypes).map(([name, value]) => ({
+    // Load dashboard data when month/year changes
+    useEffect(() => {
+        loadDashboardData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedMonth, selectedYear]);
+
+    // Update daily data when usage data changes
+    useEffect(() => {
+        if (usageChatBot && usageChatBot.length > 0) {
+            const daily = buildDailyUserCounts(usageChatBot, selectedMonth, selectedYear);
+            setDailyData(daily);
+        } else {
+            setDailyData([]);
+        }
+    }, [usageChatBot, selectedMonth, selectedYear]);
+
+    const questionTypesData = Object.entries(questionTypesMonthlyReport).map(([name, value]) => ({
         name,
         value,
     }));
@@ -252,7 +179,7 @@ function Dashboard() {
 
     const yearOptions = Array.from({ length: pastYears + 1 }, (_, i) => currentYear - pastYears + i);
 
-    if (loading) {
+    if (isLoading) {
         return (
             <div className="min-h-screen bg-gray-50 flex items-center justify-center">
                 <div className="text-center">
@@ -262,6 +189,7 @@ function Dashboard() {
             </div>
         );
     }
+
     return (
         <div className="min-h-screen bg-gray-50 p-6">
             <div className="max-w-8xl mx-auto">
@@ -284,7 +212,7 @@ function Dashboard() {
                             value={selectedMonth === undefined ? 'all' : String(selectedMonth)}
                             onChange={(e) => {
                                 const value = e.target.value;
-                                setSelectedMonth(value === 'all' ? undefined : parseInt(value, 10));
+                                setSelectedMonth(value === 'all' ? currentMonth : parseInt(value, 10));
                             }}
                             title="Select a month"
                         >
@@ -316,7 +244,7 @@ function Dashboard() {
                     {/* Question Types Chart */}
                     <div className="card bg-white shadow-sm">
                         <div className="card-body p-4 ">
-                            <h2 className="card-title text-xl mb-4">Question Types (Monthly)</h2>
+                            <h2 className="card-title text-xl mb-4 ">Question Types (Monthly)</h2>
                             <div className="w-full flex justify-center items-center">
                                 <ResponsiveContainer width="100%" height={300}>
                                     <PieChart>
@@ -387,20 +315,20 @@ function Dashboard() {
                                         : 'All Months'}
                                 </p>
                             </div>
-                            {dailyUserCounts.length > 0 && (
+                            {dailyData.length > 0 && (
                                 <div className="text-right">
                                     <p className="text-xs text-gray-500">Total Users</p>
                                     <p className="text-xl lg:text-2xl font-bold text-green-600">
-                                        {dailyUserCounts.reduce((sum, d) => sum + d.users, 0)}
+                                        {dailyData.reduce((sum, d) => sum + d.uniqueUsers, 0)}
                                     </p>
                                 </div>
                             )}
                         </div>
 
-                        {dailyUserCounts.length > 0 ? (
+                        {dailyData.length > 0 ? (
                             <div className="mt-4">
                                 <ResponsiveContainer width="100%" height={300}>
-                                    <BarChart data={dailyUserCounts}>
+                                    <BarChart data={dailyData}>
                                         <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                                         <XAxis
                                             dataKey="day"
@@ -409,7 +337,7 @@ function Dashboard() {
                                                 value: 'Day of Month',
                                                 position: 'insideBottom',
                                                 offset: -5,
-                                                fontSize: 10,
+                                                fontSize: 12,
                                             }}
                                         />
                                         <YAxis
@@ -427,7 +355,7 @@ function Dashboard() {
                                         />
                                         <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '14px' }} />
                                         <Bar
-                                            dataKey="users"
+                                            dataKey="uniqueUsers"
                                             fill="#00C49F"
                                             name="Regular Users"
                                             radius={[8, 8, 0, 0]}
@@ -465,7 +393,7 @@ function Dashboard() {
                             <div className="p-2 bg-purple-100 rounded-lg">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    className="h-5 w-5 text-purple-600"
+                                    className="h-7 w-7 text-purple-600"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
@@ -484,7 +412,7 @@ function Dashboard() {
                             </div>
                         </div>
 
-                        {commonQuestions.length > 0 ? (
+                        {questionTypesData.length > 0 ? (
                             <div className="overflow-x-auto -mx-4 lg:mx-0">
                                 <table className="table w-full">
                                     <thead>
@@ -501,7 +429,7 @@ function Dashboard() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {commonQuestions.map((item, index) => (
+                                        {questionTypesData.map((item, index) => (
                                             <tr
                                                 key={index}
                                                 className="hover:bg-gray-50 transition-colors border-b border-gray-100 text-black"
@@ -528,12 +456,12 @@ function Dashboard() {
                                                 </td>
                                                 <td className="py-3">
                                                     <span className="badge badge-outline badge-lg text-xs lg:text-sm">
-                                                        {item.questionType}
+                                                        {item.name}
                                                     </span>
                                                 </td>
                                                 <td className="py-3 text-right">
                                                     <span className="inline-flex items-center justify-center min-w-[60px] px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm lg:text-base font-semibold">
-                                                        {item.count}
+                                                        {item.value as any}
                                                     </span>
                                                 </td>
                                             </tr>
@@ -592,7 +520,7 @@ function Dashboard() {
                             </div>
                         </div>
 
-                        {interactions.length > 0 ? (
+                        {userInteractions.length > 0 ? (
                             <div className="overflow-x-auto -mx-4 lg:mx-0">
                                 <table className="table w-full">
                                     <thead>
@@ -609,7 +537,7 @@ function Dashboard() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {interactions.slice(0, 20).map((interaction, index) => (
+                                        {userInteractions.slice(0, 20).map((interaction, index) => (
                                             <tr
                                                 key={interaction.id}
                                                 className="hover:bg-gray-50 transition-colors border-b border-gray-100"
@@ -631,13 +559,13 @@ function Dashboard() {
                                                         className={`
                                         badge badge-sm lg:badge-md text-xs lg:text-sm
                                         ${
-                                            interaction.questionType === 'CV'
+                                            interaction.category === 'CV'
                                                 ? 'badge-primary'
-                                                : interaction.questionType === 'Internship'
+                                                : interaction.category === 'Internship'
                                                   ? 'badge-success'
-                                                  : interaction.questionType === 'Job Search'
+                                                  : interaction.category === 'Job Search'
                                                     ? 'badge-warning'
-                                                    : interaction.questionType === 'Cover Letter'
+                                                    : interaction.category === 'Cover Letter'
                                                       ? 'badge-info'
                                                       : interaction.questionType === 'Workshop'
                                                         ? 'bg-pink-300 text-black-700 border border-pink-400'
@@ -645,19 +573,19 @@ function Dashboard() {
                                         }
                                     `}
                                                     >
-                                                        {interaction.questionType || 'General'}
+                                                        {interaction.category || 'General'}
                                                     </span>
                                                 </td>
 
                                                 <td className="py-3">
                                                     <div className="text-xs lg:text-sm text-gray-600">
-                                                        {new Date(interaction.timestamp).toLocaleDateString('en-NZ', {
+                                                        {new Date(interaction.createdAt).toLocaleDateString('en-NZ', {
                                                             day: '2-digit',
                                                             month: 'short',
                                                             year: 'numeric',
                                                         })}
                                                         <div className="text-xs text-gray-400 mt-0.5">
-                                                            {new Date(interaction.timestamp).toLocaleTimeString(
+                                                            {new Date(interaction.createdAt).toLocaleTimeString(
                                                                 'en-NZ',
                                                                 {
                                                                     hour: '2-digit',
@@ -693,7 +621,7 @@ function Dashboard() {
                             </div>
                         )}
 
-                        {interactions.length > 20 && (
+                        {userInteractions.length > 20 && (
                             <div className="mt-4 text-center">
                                 <button className="btn btn-sm btn-outline gap-2">
                                     <svg

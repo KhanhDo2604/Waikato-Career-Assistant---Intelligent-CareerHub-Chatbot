@@ -36,11 +36,12 @@ async def ask_question(request: RequestModel):
 
     if result[0][1] < 0.4:
         answer = next((item['answer'] for item in content if item['question'] == result[0][0].page_content), None)
+        category = next((item['category'] for item in content if item['question'] == result[0][0].page_content), None)
     else:
         answer = ""
     
     chat_instance.append_message(question, answer)
-    return answer
+    return {"caategory":category,"answer":answer}
 
 @routers.get("/most_relevant")
 async def get_most_relevant(question: str):
@@ -140,7 +141,7 @@ async def update_qa_list(req:Request):
     with open('./background_docs/QA_list.json','w',encoding='utf-8') as f:
         json.dump(content, f, ensure_ascii=False, indent=4)
     vectore_store.update_vector_store([item.get("question") for item in content])
-    return {"message": "Updated successfully."}
+    return {"message": "Updated successfully.", "new_question": new_qa}
 
 @routers.get('/index')
 async def check_index():
@@ -170,7 +171,7 @@ async def add_new_qa(req:Request):
     with open('./background_docs/QA_list.json','w',encoding='utf-8') as f:
         json.dump(content, f, ensure_ascii=False, indent=4)
     vectore_store.update_vector_store([item.get("question") for item in content])
-    return {"message": "Add new item successfully."}
+    return {"message": "Add new item successfully.", "new_question": new_qa}
 
 @routers.delete('/del')
 async def del_qa(req:Request):

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CategoryDropdown } from './CategoryDropdown';
 import type { Question } from '../../../constants/type/type';
 import icons from '../../../constants/icons';
+import { useDashboard } from '../../../hooks/useDashboard';
 
 interface QuestionFormProps {
     mode: 'add' | 'edit';
@@ -13,6 +14,7 @@ interface QuestionFormProps {
 }
 
 export function QuestionForm({ mode, initialData, onSubmit, onCancel }: QuestionFormProps) {
+    const { dashboardState } = useDashboard();
     const [question, setQuestion] = useState('');
     const [answer, setAnswer] = useState('');
     const [category, setCategory] = useState('');
@@ -34,10 +36,11 @@ export function QuestionForm({ mode, initialData, onSubmit, onCancel }: Question
         }
 
         onSubmit({
+            id: (mode === 'edit' ? initialData?.id : dashboardState.questions.length + 1)?.toString(),
             question: question.trim(),
             answer: answer.trim(),
             category,
-            common: true,
+            common: mode === 'edit' ? initialData?.common : false,
         });
 
         // Reset form if adding
