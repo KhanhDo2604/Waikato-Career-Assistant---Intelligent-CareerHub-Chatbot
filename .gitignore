@@ -26,6 +26,7 @@ coverage
 out/
 build
 dist
+__pycache__/
 
 
 # Debug
@@ -38,3 +39,4 @@ yarn-error.log*
 *.pem
 
 AI_server/596AiServer
+AI_server/routers/__pycache__

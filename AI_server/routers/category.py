@@ -131,6 +131,9 @@ async def cat_count(category: str):
     #TODO loop the similarity array and compare the similarity value with theshold. 
     # If the value more than theshold increase the count by 1
     # add your logic here
+    for i in range(len(sim)):
+        if sim[i][0] >= THRESHOLD:
+            count += 1
     return count
 
 @routers.post("/add")
