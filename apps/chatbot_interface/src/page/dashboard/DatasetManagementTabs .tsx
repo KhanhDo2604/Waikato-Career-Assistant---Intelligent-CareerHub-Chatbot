@@ -58,11 +58,19 @@ function DatasetManagementTabs() {
         setIsAdding(false);
     };
 
+    const handleToggleCommon = async (currentQuestion: Question) => {
+        try {
+            await dashboardActions.updateQuestion(currentQuestion);
+        } catch (error) {
+            console.error('Error toggling common question:', error);
+        }
+    };
+
     return (
         <div className="bg-white rounded-xl shadow-md">
             <div className="p-5">
                 {/* Header */}
-                <div className="flex items-center justify-between mb-5 p-4 rounded-lg bg-gradient-to-r from-blue-50 to-indigo-50 border">
+                <div className="flex items-center justify-between mb-5 p-4 rounded-lg bg-linear-to-r from-blue-50 to-indigo-50 border border-gray-400">
                     <div>
                         <h2 className="text-lg font-semibold text-gray-800">Dataset & Questions Management</h2>
                         <p className="text-sm text-gray-600">Manage common questions used by the chatbot</p>
@@ -71,7 +79,7 @@ function DatasetManagementTabs() {
                     {!isAdding && (
                         <button
                             onClick={() => setIsAdding(true)}
-                            className="btn btn-sm bg-blue-600 hover:bg-blue-700 text-white gap-2 shadow-sm"
+                            className="btn btn-sm bg-primary hover:bg-red-700 border-none text-white gap-2 shadow-sm"
                         >
                             <FontAwesomeIcon icon={icons.icon.plus} />
                             Add Question
@@ -84,7 +92,7 @@ function DatasetManagementTabs() {
                     <div className="space-y-4">
                         {/* Add Form */}
                         {isAdding && (
-                            <div className="bg-white border-l-4 border-blue-500 rounded-lg p-4 shadow-md">
+                            <div className="bg-white border-l-4 border-primary rounded-lg p-4 shadow-md">
                                 <QuestionForm mode="add" onSubmit={handleAddQuestion} onCancel={handleCancelAdd} />
                             </div>
                         )}
@@ -104,6 +112,7 @@ function DatasetManagementTabs() {
                                         question={item}
                                         onEdit={() => handleStartEdit(item)}
                                         onDelete={() => handleDeleteQuestion(Number(item.id))}
+                                        onToggleCommon={handleToggleCommon}
                                     />
                                 )}
                             </div>

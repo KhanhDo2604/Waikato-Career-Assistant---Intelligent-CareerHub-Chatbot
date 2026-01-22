@@ -178,7 +178,6 @@ export const DashboardProvider = ({ children }: { children: ReactNode }) => {
             getQuestionTypesMonthlyReport: async (year: number, month: number) => {
                 dispatch({ type: 'LOADING', payload: true });
                 const result = await getQuestionTypesMonthlyReport(year, month);
-                console.log(result);
 
                 dispatch({ type: 'GET_QUESTION_TYPES_MONTHLY_REPORT', payload: result });
                 dispatch({ type: 'LOADING', payload: false });

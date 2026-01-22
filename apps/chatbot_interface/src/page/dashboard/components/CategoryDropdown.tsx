@@ -46,12 +46,12 @@ export function CategoryDropdown({ value, onChange, placeholder = 'Choose catego
             <button
                 type="button"
                 onClick={() => setIsOpen(!isOpen)}
-                className="btn btn-sm lg:btn-md w-full justify-between bg-white shadow-none hover:bg-gray-50"
+                className="btn btn-sm lg:btn-md w-full justify-between bg-white shadow-none hover:bg-gray-50 border-none"
             >
                 <span className={value ? 'text-gray-900' : 'text-gray-400'}>{value || placeholder}</span>
                 <FontAwesomeIcon
                     icon={icons.icon.downChevron}
-                    className={`transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                    className={`transition-transform ${isOpen ? 'rotate-180' : ''} text-black`}
                 />
             </button>
 

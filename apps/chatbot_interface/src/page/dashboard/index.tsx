@@ -30,86 +30,25 @@ function buildDailyUserCounts(
     data: MonthlyUserCount[],
     selectedMonth: number | undefined,
     selectedYear: number,
-): DailyUserCount[] {
-    let baseTotals = { uniqueUsers: 0, users: 0, alumni: 0, total: 0 };
-    let days = 31;
+): MonthlyUserCount[] {
+    const days = selectedMonth !== undefined ? getDaysInMonth(selectedMonth, selectedYear) : 31;
 
-    if (selectedMonth === undefined) {
-        // All months selected
-        monthlyData.forEach((m) => {
-            baseTotals.uniqueUsers += m.uniqueUsers;
-            baseTotals.users += m.users;
-            baseTotals.alumni += m.alumni;
-            baseTotals.total += m.total;
-        });
-        days = 31;
-    } else {
-        const monthRow = monthlyData[selectedMonth];
-        if (!monthRow) return [];
-        baseTotals = {
-            uniqueUsers: monthRow.uniqueUsers,
-            users: monthRow.users,
-            alumni: monthRow.alumni,
-            total: monthRow.total,
-        };
-        days = getDaysInMonth(selectedMonth, selectedYear);
-    }
+    // Map backend data by day
+    const map = new Map<number, MonthlyUserCount>();
+    data.forEach((item) => {
+        map.set(item.day, item);
+    });
 
-    // random weights per day
-    const weights = Array.from({ length: days }, () => Math.random() + 0.3); // To avoid the zeros
-    const sumWeights = weights.reduce((sum, w) => sum + w, 0);
-
-    const daily: DailyUserCount[] = [];
-
-    // For splitting the initial totals
-    for (let i = 0; i < days; i++) {
-        const share = weights[i] / sumWeights;
-
-        daily.push({
-            day: i + 1,
-            uniqueUsers: Math.max(0, Math.round(baseTotals.uniqueUsers * share)),
-            users: Math.max(0, Math.round(baseTotals.users * share)),
-            alumni: Math.max(0, Math.round(baseTotals.alumni * share)),
-            total: 0,
-        });
-    }
-
-    // To make sure it is not going negative
-    const fixField = (field: keyof DailyUserCount, target: number) => {
-        const currentSum = daily.reduce((sum, d) => sum + (d[field] as number), 0);
-        let diff = target - currentSum;
-        const n = daily.length;
-
-        if (diff === 0) return;
-
-        // If we need to add values
-        if (diff > 0) {
-            let i = 0;
-            while (diff > 0 && i < n * 5) {
-                daily[i % n][field] = (daily[i % n][field] as number) + 1;
-                diff--;
-                i++;
+    // Build full array for the chart
+    return Array.from({ length: days }, (_, i) => {
+        const day = i + 1;
+        return (
+            map.get(day) ?? {
+                day,
+                uniqueUsers: 0,
+                totalInteractions: 0,
             }
-        } else {
-            //  if diff < 0, we need to subtract
-            let i = 0;
-            while (diff < 0 && i < n * 5) {
-                const idx = i % n;
-                if ((daily[idx][field] as number) > 0) {
-                    daily[idx][field] = (daily[idx][field] as number) - 1;
-                    diff++;
-                }
-                i++;
-            }
-        }
-    };
-
-    fixField('uniqueUsers', baseTotals.uniqueUsers);
-    fixField('users', baseTotals.users);
-    fixField('alumni', baseTotals.alumni);
-
-    daily.forEach((d) => {
-        d.total = d.uniqueUsers + d.users + d.alumni;
+        );
     });
 }
 
@@ -245,18 +184,18 @@ function Dashboard() {
                 <div className="grid grid-cols-2 gap-6 mb-6 text-black">
                     {/* Question Types Chart */}
                     <div className="card bg-white shadow-sm">
-                        <div className="card-body p-4 ">
+                        <div className="card-body p-4">
                             <h2 className="card-title text-xl mb-4 ">Question Types (Monthly)</h2>
-                            <div className="w-full flex justify-center items-center">
+                            <div className="w-full h-full flex justify-center items-center">
                                 <ResponsiveContainer width="100%" height={300}>
                                     <PieChart>
                                         <Pie
                                             data={questionTypesData}
-                                            cx="45%"
+                                            cx="50%"
                                             cy="50%"
                                             labelLine={false}
                                             label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-                                            outerRadius={80}
+                                            outerRadius={100}
                                             fill="#8884d8"
                                             dataKey="value"
                                         >
@@ -270,14 +209,14 @@ function Dashboard() {
                                             verticalAlign="middle"
                                             align="right"
                                             wrapperStyle={{
-                                                width: '140px',
-                                                padding: '10px',
+                                                width: '180px',
+                                                padding: '16px',
                                                 border: '1px solid #ddd',
                                                 borderRadius: '12px',
                                                 backgroundColor: '#ffffff',
                                                 boxShadow: '0 3px 10px rgba(0,0,0,0.12)',
-                                                fontSize: '13px',
-                                                lineHeight: '22px',
+                                                fontSize: '15px',
+                                                lineHeight: '28px',
                                             }}
                                         />
                                     </PieChart>
@@ -338,7 +277,7 @@ function Dashboard() {
                                             label={{
                                                 value: 'Day of Month',
                                                 position: 'insideBottom',
-                                                offset: -5,
+                                                offset: -1,
                                                 fontSize: 12,
                                             }}
                                         />
@@ -569,7 +508,7 @@ function Dashboard() {
                                                     ? 'badge-warning'
                                                     : interaction.category === 'Cover Letter'
                                                       ? 'badge-info'
-                                                      : interaction.questionType === 'Workshop'
+                                                      : interaction.category === 'Workshop'
                                                         ? 'bg-pink-300 text-black-700 border border-pink-400'
                                                         : 'badge-ghost'
                                         }

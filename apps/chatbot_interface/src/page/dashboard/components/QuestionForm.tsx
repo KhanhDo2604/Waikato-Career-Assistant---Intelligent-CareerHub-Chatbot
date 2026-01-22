@@ -51,60 +51,38 @@ export function QuestionForm({ mode, initialData, onSubmit, onCancel }: Question
         }
     };
 
-    const bgColor = mode === 'add' ? 'bg-blue-50 border-blue-300' : 'bg-amber-50 border-amber-300';
-
     return (
         <div
             className={[
                 'rounded-2xl border bg-white shadow-sm',
                 'p-4 lg:p-5',
-                mode === 'add' ? 'border-blue-200' : 'border-amber-200',
+                mode === 'add' ? 'border-primary-200' : 'border-amber-200',
             ].join(' ')}
         >
             {/* Top header */}
             <div className="flex items-start justify-between gap-3 pb-4 mb-4 border-b border-gray-100">
-                <div className="flex items-start gap-3">
-                    <div
-                        className={[
-                            'mt-0.5 flex h-10 w-10 items-center justify-center rounded-xl',
-                            mode === 'add' ? 'bg-blue-600' : 'bg-amber-500',
-                            'shadow-sm',
-                        ].join(' ')}
-                    >
-                        <FontAwesomeIcon icon={icons.icon.questionCircle} className="text-white" />
-                    </div>
-
-                    <div>
+                <div className="flex flex-col items-start gap-3">
+                    <div className="flex justify-between w-full">
                         <h3 className="text-base lg:text-lg font-semibold text-gray-900">
                             {mode === 'add' ? 'Add a Common Question' : 'Edit Common Question'}
                         </h3>
-                        <p className="text-xs lg:text-sm text-gray-500">
-                            Provide a question, an answer, and choose the most relevant category to include in the
-                            chatbot.
-                        </p>
+                        <span
+                            className={['badge badge-sm', mode === 'add' ? 'badge-primary' : 'badge-warning'].join(' ')}
+                        >
+                            {mode === 'add' ? 'New' : 'Editing'}
+                        </span>
                     </div>
+                    <p className="text-xs lg:text-sm text-gray-500">
+                        Provide a question, an answer, and choose the most relevant category to include in the chatbot.
+                    </p>
                 </div>
-
-                <span className={['badge badge-sm', mode === 'add' ? 'badge-primary' : 'badge-warning'].join(' ')}>
-                    {mode === 'add' ? 'New' : 'Editing'}
-                </span>
             </div>
 
             {/* Form fields */}
             <div className="space-y-4">
                 {/* Question */}
                 <div>
-                    <label className="text-xs font-semibold text-gray-700 flex items-center gap-2 mb-2">
-                        <span
-                            className={[
-                                'inline-flex h-6 w-6 items-center justify-center rounded-lg',
-                                mode === 'add' ? 'bg-blue-50 text-blue-700' : 'bg-amber-50 text-amber-700',
-                            ].join(' ')}
-                        >
-                            <FontAwesomeIcon icon={icons.icon.questionCircle} className="text-[12px]" />
-                        </span>
-                        Question
-                    </label>
+                    <label className="text-xs font-semibold text-gray-700 flex items-center gap-2 mb-2">Question</label>
 
                     <input
                         type="text"
@@ -122,17 +100,7 @@ export function QuestionForm({ mode, initialData, onSubmit, onCancel }: Question
 
                 {/* Answer */}
                 <div>
-                    <label className="text-xs font-semibold text-gray-700 flex items-center gap-2 mb-2">
-                        <span
-                            className={[
-                                'inline-flex h-6 w-6 items-center justify-center rounded-lg',
-                                mode === 'add' ? 'bg-blue-50 text-blue-700' : 'bg-amber-50 text-amber-700',
-                            ].join(' ')}
-                        >
-                            <FontAwesomeIcon icon={icons.icon.questionCircle} className="text-[12px]" />
-                        </span>
-                        Answer
-                    </label>
+                    <label className="text-xs font-semibold text-gray-700 flex items-center gap-2 mb-2">Answer</label>
 
                     <textarea
                         placeholder="Write an answer to add in the chatbot"
@@ -149,12 +117,7 @@ export function QuestionForm({ mode, initialData, onSubmit, onCancel }: Question
 
                 {/* Category */}
                 <div className="pt-1">
-                    <label className="text-xs font-semibold text-gray-700 flex items-center gap-2 mb-2">
-                        <span className="inline-flex h-6 w-6 items-center justify-center rounded-lg bg-indigo-50 text-indigo-700">
-                            <FontAwesomeIcon icon={icons.icon.questionCircle} className="text-[12px]" />
-                        </span>
-                        Category
-                    </label>
+                    <label className="text-xs font-semibold text-gray-700 flex items-center gap-2 mb-2">Category</label>
 
                     {/* Keep your existing component */}
                     <div className="rounded-xl border border-gray-200 bg-gray-50 px-2 py-2 focus-within:ring-2 focus-within:ring-blue-200">
