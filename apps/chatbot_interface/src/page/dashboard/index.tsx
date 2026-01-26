@@ -99,7 +99,6 @@ function Dashboard() {
             value,
         }))
         .sort((a, b) => (b.value as any) - (a.value as any));
-
     const months = [
         'January',
         'February',
@@ -181,7 +180,7 @@ function Dashboard() {
                 </div>
 
                 {/* Charts Grid */}
-                <div className="grid grid-cols-2 gap-6 mb-6 text-black">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6 text-black">
                     {/* Question Types Chart */}
                     <div className="card bg-white shadow-sm">
                         <div className="card-body p-4">

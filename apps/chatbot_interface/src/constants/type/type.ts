@@ -9,7 +9,7 @@ export interface Interaction {
 }
 
 export type Question = {
-    id: string;
+    id: number;
     question: string;
     category?: string;
     answer: string;
@@ -71,7 +71,7 @@ export type Action =
     | { type: 'FETCH_QUESTIONS_ERROR'; payload: string }
     | { type: 'RESET' }
     | { type: 'LOADING'; payload: boolean }
-    | { type: 'UPDATE_COMMON_QUESTIONS'; payload: { newQuestionList: Question[]; commonQuestions: Question[] } }
+    | { type: 'UPDATE_COMMON_QUESTIONS'; payload: { commonQuestions: Question[] } }
     | { type: 'ADD_QUESTIONS'; payload: Question }
     | { type: 'UPDATE_QUESTION'; payload: Question }
     | { type: 'DELETE_QUESTION'; payload: number }
@@ -88,8 +88,8 @@ export type ChatActions = {
 export type DashboardActions = {
     getQuestionsFromDB: () => void;
     toggleCommonQuestion: (questionId: number) => void;
-    addQuestion: (questionData: Partial<Question>) => Promise<string>;
-    updateQuestion: (questionData: Partial<Question>) => Promise<string>;
+    addQuestion: (questionData: Partial<Question>) => Promise<Question>;
+    updateQuestion: (questionData: Partial<Question>) => Promise<Question>;
     deleteQuestion: (id: number) => Promise<string>;
     getQuestionTypesMonthlyReport: (year: number, month: number) => Promise<QuestionTypeCount[]>;
     getUsageChatBot: (year: number, month: number) => Promise<MonthlyUserCount[]>;

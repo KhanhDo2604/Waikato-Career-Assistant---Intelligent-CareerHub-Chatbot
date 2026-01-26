@@ -20,11 +20,11 @@ dashboardRoute.get('/get-common-questions', getCommonQuestionsController);
 
 dashboardRoute.post('/toggle', toggleCommonQuestionController);
 
-dashboardRoute.post('/add-new-question', addNewQuestionController);
+dashboardRoute.post('/question', addNewQuestionController);
 
-dashboardRoute.delete('/delete-question', deleteQuestionController);
+dashboardRoute.delete('/question', deleteQuestionController);
 
-dashboardRoute.put('/edit-question', editQuestionController);
+dashboardRoute.put('/question', editQuestionController);
 
 dashboardRoute.get('/get-questions-type', questionTypesMonthlyReportController);
 

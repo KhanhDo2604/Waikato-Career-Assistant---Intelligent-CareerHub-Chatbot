@@ -36,7 +36,7 @@ export function QuestionForm({ mode, initialData, onSubmit, onCancel }: Question
         }
 
         onSubmit({
-            id: (mode === 'edit' ? initialData?.id : dashboardState.questions.length + 1)?.toString(),
+            id: mode === 'edit' ? Number(initialData?.id) : dashboardState.questions.length + 1,
             question: question.trim(),
             answer: answer.trim(),
             category,

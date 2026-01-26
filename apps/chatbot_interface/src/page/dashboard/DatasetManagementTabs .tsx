@@ -45,7 +45,7 @@ function DatasetManagementTabs() {
     };
 
     const handleStartEdit = (question: Question) => {
-        setEditingId(question.id);
+        setEditingId(question.id.toString());
         setEditingQuestion(question);
     };
 
@@ -98,25 +98,27 @@ function DatasetManagementTabs() {
                         )}
 
                         {/* Common questions list */}
-                        {questions.map((item) => (
-                            <div key={item.id}>
-                                {editingId === item.id && editingQuestion ? (
-                                    <QuestionForm
-                                        mode="edit"
-                                        initialData={editingQuestion}
-                                        onSubmit={(data) => handleEditQuestion(data)}
-                                        onCancel={handleCancelEdit}
-                                    />
-                                ) : (
-                                    <QuestionItem
-                                        question={item}
-                                        onEdit={() => handleStartEdit(item)}
-                                        onDelete={() => handleDeleteQuestion(Number(item.id))}
-                                        onToggleCommon={handleToggleCommon}
-                                    />
-                                )}
-                            </div>
-                        ))}
+                        {questions.map((item) => {
+                            return (
+                                <div key={item.id}>
+                                    {editingId === item.id.toString() && editingQuestion ? (
+                                        <QuestionForm
+                                            mode="edit"
+                                            initialData={editingQuestion}
+                                            onSubmit={(data) => handleEditQuestion(data)}
+                                            onCancel={handleCancelEdit}
+                                        />
+                                    ) : (
+                                        <QuestionItem
+                                            question={item}
+                                            onEdit={() => handleStartEdit(item)}
+                                            onDelete={() => handleDeleteQuestion(Number(item.id))}
+                                            onToggleCommon={handleToggleCommon}
+                                        />
+                                    )}
+                                </div>
+                            );
+                        })}
 
                         {/* Empty State */}
                         {!questionsLoading && questions.length === 0 && !isAdding && (

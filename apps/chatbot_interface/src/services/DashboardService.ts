@@ -36,9 +36,9 @@ export const toggleCommonQuestion = async (
     }
 };
 
-export const addNewQuestion = async (question: Question): Promise<{ message: string; new_question: Question }> => {
+export const addNewQuestion = async (question: Question): Promise<Question> => {
     try {
-        const res = await http.post('/api/dashboard/add-new-question', question);
+        const res = await http.post('/api/dashboard/question', question);
 
         if (res.status === 200) {
             return res.data;
@@ -51,7 +51,7 @@ export const addNewQuestion = async (question: Question): Promise<{ message: str
 
 export const deleteQuestion = async (questionId: number) => {
     try {
-        const res = await http.delete('/api/dashboard/delete-question', { data: { questionId } });
+        const res = await http.delete('/api/dashboard/question', { data: { questionId } });
 
         if (res.status === 200) {
             return res.data.message;
@@ -62,9 +62,9 @@ export const deleteQuestion = async (questionId: number) => {
     }
 };
 
-export const editQuestion = async (question: Question): Promise<{ message: string; new_question: Question }> => {
+export const editQuestion = async (question: Question): Promise<Question> => {
     try {
-        const res = await http.put('/api/dashboard/edit-question', question);
+        const res = await http.put('/api/dashboard/question', question);
         if (res.status === 200) {
             return res.data;
         }
