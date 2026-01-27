@@ -44,6 +44,8 @@ export const toggleCommonQuestionController = async (request: Request, response:
 export const getCommonQuestionsController = async (request: Request, response: Response) => {
     try {
         const questions = await getCommonQuestionsService();
+        console.log(questions);
+
         return response.status(200).json({ commonQuestions: questions });
     } catch (error: Error | any) {
         return { status: 500, message: error.message };
@@ -53,8 +55,8 @@ export const getCommonQuestionsController = async (request: Request, response: R
 export const addNewQuestionController = async (request: Request, response: Response) => {
     try {
         const { id, question, answer, category } = request.body;
-        const message = await addNewQuestionService(id, question, answer, category);
-        return response.status(200).json({ message: message });
+        const newQs = await addNewQuestionService(id, question, answer, category);
+        return response.status(200).json(newQs);
     } catch (error) {
         return { status: 500, message: 'Error adding new question' };
     }
@@ -72,9 +74,9 @@ export const deleteQuestionController = async (request: Request, response: Respo
 
 export const editQuestionController = async (request: Request, response: Response) => {
     try {
-        const { id, question, answer, category } = request.body;
-        const message = await editQuestionService(id, question, answer, category);
-        return response.status(200).json({ message: message });
+        const { id, question, answer, category, common } = request.body;
+        const updatedQs = await editQuestionService(id, question, answer, category, common);
+        return response.status(200).json(updatedQs);
     } catch (error) {
         return { status: 500, message: 'Error editing question' };
     }

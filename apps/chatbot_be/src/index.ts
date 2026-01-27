@@ -69,7 +69,6 @@ app.use((err: any, req: any, res: any, next: any) => {
     res.status(500).json({ message: err?.message || 'Server error' });
 });
 
-
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
     console.log('Allowed origins:', allowedOrigins);

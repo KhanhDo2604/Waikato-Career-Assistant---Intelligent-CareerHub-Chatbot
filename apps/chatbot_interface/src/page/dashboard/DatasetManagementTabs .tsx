@@ -45,7 +45,7 @@ function DatasetManagementTabs() {
     };
 
     const handleStartEdit = (question: Question) => {
-        setEditingId(question.id);
+        setEditingId(question.id.toString());
         setEditingQuestion(question);
     };
 
@@ -58,49 +58,78 @@ function DatasetManagementTabs() {
         setIsAdding(false);
     };
 
+    const handleToggleCommon = async (currentQuestion: Question) => {
+        try {
+            await dashboardActions.updateQuestion(currentQuestion);
+        } catch (error) {
+            console.error('Error toggling common question:', error);
+        }
+    };
+
     return (
-        <div className="card bg-white shadow-sm">
-            <div className="card-body p-4">
-                <h2 className="card-title text-xl mb-2">Dataset & Questions Management</h2>
-                {/* Add button */}
-                {!isAdding && (
-                    <button onClick={() => setIsAdding(true)} className="btn btn-sm btn-primary gap-2 mb-2 shadow-none">
-                        <FontAwesomeIcon icon={icons.icon.plus} />
-                        Add Common Question
-                    </button>
-                )}
+        <div className="bg-white rounded-xl shadow-md">
+            <div className="p-5">
+                {/* Header */}
+                <div className="flex items-center justify-between mb-5 p-4 rounded-lg bg-linear-to-r from-blue-50 to-indigo-50 border border-gray-400">
+                    <div>
+                        <h2 className="text-lg font-semibold text-gray-800">Dataset & Questions Management</h2>
+                        <p className="text-sm text-gray-600">Manage common questions used by the chatbot</p>
+                    </div>
+
+                    {!isAdding && (
+                        <button
+                            onClick={() => setIsAdding(true)}
+                            className="btn btn-sm bg-primary hover:bg-red-700 border-none text-white gap-2 shadow-sm"
+                        >
+                            <FontAwesomeIcon icon={icons.icon.plus} />
+                            Add Question
+                        </button>
+                    )}
+                </div>
+
                 {/* Content */}
-                <div className="h-80 overflow-y-auto">
-                    <div className="space-y-3">
-                        {/* Add form */}
+                <div className="h-[360px] overflow-y-auto pr-1">
+                    <div className="space-y-4">
+                        {/* Add Form */}
                         {isAdding && (
-                            <QuestionForm mode="add" onSubmit={handleAddQuestion} onCancel={handleCancelAdd} />
+                            <div className="bg-white border-l-4 border-primary rounded-lg p-4 shadow-md">
+                                <QuestionForm mode="add" onSubmit={handleAddQuestion} onCancel={handleCancelAdd} />
+                            </div>
                         )}
 
                         {/* Common questions list */}
-                        {questions.map((item) => (
-                            <div key={item.id}>
-                                {editingId === item.id && editingQuestion ? (
-                                    <QuestionForm
-                                        mode="edit"
-                                        initialData={editingQuestion}
-                                        onSubmit={(data) => handleEditQuestion(data)}
-                                        onCancel={handleCancelEdit}
-                                    />
-                                ) : (
-                                    <QuestionItem
-                                        question={item}
-                                        onEdit={() => handleStartEdit(item)}
-                                        onDelete={() => handleDeleteQuestion(Number(item.id))}
-                                    />
-                                )}
-                            </div>
-                        ))}
+                        {questions.map((item) => {
+                            return (
+                                <div key={item.id}>
+                                    {editingId === item.id.toString() && editingQuestion ? (
+                                        <QuestionForm
+                                            mode="edit"
+                                            initialData={editingQuestion}
+                                            onSubmit={(data) => handleEditQuestion(data)}
+                                            onCancel={handleCancelEdit}
+                                        />
+                                    ) : (
+                                        <QuestionItem
+                                            question={item}
+                                            onEdit={() => handleStartEdit(item)}
+                                            onDelete={() => handleDeleteQuestion(Number(item.id))}
+                                            onToggleCommon={handleToggleCommon}
+                                        />
+                                    )}
+                                </div>
+                            );
+                        })}
 
-                        {questions.length === 0 && !isAdding && !questionsLoading && (
-                            <p className="text-center text-gray-400 py-8">
-                                No common questions yet. Click "Add Common Question" to get started.
-                            </p>
+                        {/* Empty State */}
+                        {!questionsLoading && questions.length === 0 && !isAdding && (
+                            <div className="flex flex-col items-center justify-center py-12 text-gray-400 bg-gray-50 rounded-lg border border-dashed">
+                                <FontAwesomeIcon
+                                    icon={icons.icon.questionCircle}
+                                    className="text-3xl mb-3 text-blue-400"
+                                />
+                                <p className="text-sm font-medium">No common questions yet</p>
+                                <p className="text-xs">Click “Add Question” to get started</p>
+                            </div>
                         )}
                         {questionsLoading ||
                             (isLoading && (

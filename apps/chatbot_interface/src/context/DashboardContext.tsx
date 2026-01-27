@@ -48,7 +48,6 @@ const dashboardReducer = (state: DashboardState, action: Action): DashboardState
             return {
                 ...state,
                 commonQuestions: action.payload.commonQuestions,
-                questions: action.payload.newQuestionList,
             };
         case 'ADD_QUESTIONS':
             return {
@@ -63,7 +62,7 @@ const dashboardReducer = (state: DashboardState, action: Action): DashboardState
         case 'DELETE_QUESTION':
             return {
                 ...state,
-                questions: state.questions.filter((q) => q.id !== action.payload.toString()),
+                questions: state.questions.filter((q) => q.id !== action.payload),
             };
         case 'RESET':
             return initialState;
@@ -137,36 +136,47 @@ export const DashboardProvider = ({ children }: { children: ReactNode }) => {
                 if (result.status) {
                     dispatch({
                         type: 'UPDATE_COMMON_QUESTIONS',
-                        payload: { newQuestionList: result.newQuestionList, commonQuestions: result.commonQuestions },
+                        payload: { commonQuestions: result.commonQuestions },
                     });
                 }
             },
             addQuestion: async (questionData) => {
                 dispatch({ type: 'LOADING', payload: true });
+
                 const result = await addNewQuestion({
-                    id: questionData?.id || '0',
+                    id: questionData?.id || 0,
                     question: questionData?.question || '',
                     answer: questionData?.answer || '',
                     category: questionData?.category,
                     common: questionData?.common || false,
                 });
 
-                dispatch({ type: 'ADD_QUESTIONS', payload: result.new_question });
+                dispatch({
+                    type: 'ADD_QUESTIONS',
+                    payload: {
+                        id: result.id ? result.id : 0,
+                        question: result.question,
+                        answer: result.answer,
+                        category: result.category,
+                        common: result.common,
+                    },
+                });
                 dispatch({ type: 'LOADING', payload: false });
-                return result.message;
+                return result;
             },
             updateQuestion: async (questionData) => {
                 dispatch({ type: 'LOADING', payload: true });
                 const result = await editQuestion({
-                    id: questionData?.id || '0',
+                    id: questionData?.id || 0,
                     question: questionData?.question || '',
                     answer: questionData?.answer || '',
                     category: questionData?.category,
                     common: questionData?.common || false,
                 });
-                dispatch({ type: 'UPDATE_QUESTION', payload: result.new_question });
+
+                dispatch({ type: 'UPDATE_QUESTION', payload: result });
                 dispatch({ type: 'LOADING', payload: false });
-                return result.message;
+                return result;
             },
             deleteQuestion: async (id) => {
                 dispatch({ type: 'LOADING', payload: true });
@@ -178,7 +188,6 @@ export const DashboardProvider = ({ children }: { children: ReactNode }) => {
             getQuestionTypesMonthlyReport: async (year: number, month: number) => {
                 dispatch({ type: 'LOADING', payload: true });
                 const result = await getQuestionTypesMonthlyReport(year, month);
-                console.log(result);
 
                 dispatch({ type: 'GET_QUESTION_TYPES_MONTHLY_REPORT', payload: result });
                 dispatch({ type: 'LOADING', payload: false });

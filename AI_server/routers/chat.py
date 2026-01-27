@@ -138,6 +138,7 @@ async def update_qa_list(req:Request):
             qa["category"] = new_qa["category"]
             qa["question"] = new_qa["question"]
             qa["answer"] = new_qa["answer"]
+            qa["common"] = new_qa["common"]
 
     with open('./background_docs/QA_list.json','w',encoding='utf-8') as f:
         json.dump(content, f, ensure_ascii=False, indent=4)

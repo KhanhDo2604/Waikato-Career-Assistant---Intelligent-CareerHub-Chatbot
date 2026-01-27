@@ -126,7 +126,6 @@ function Dashboard() {
             value,
         }))
         .sort((a, b) => (b.value as any) - (a.value as any));
-
     const months = [
         'January',
         'February',
@@ -141,6 +140,11 @@ function Dashboard() {
         'November',
         'December',
     ];
+
+    const currentYear = 2026;
+    const pastYears = 5;
+
+    const yearOptions = Array.from({ length: pastYears + 1 }, (_, i) => currentYear - pastYears + i);
 
     if (isLoading) {
         return (
@@ -193,7 +197,7 @@ function Dashboard() {
                             onChange={(e) => setSelectedYear(parseInt(e.target.value, 10))}
                             title="Select a year"
                         >
-                            {Array.from({ length: 10 }, (_, i) => new Date().getFullYear() + i).map((year) => (
+                            {yearOptions.map((year) => (
                                 <option key={year} value={String(year)}>
                                     {year}
                                 </option>
@@ -203,12 +207,12 @@ function Dashboard() {
                 </div>
 
                 {/* Charts Grid */}
-                <div className="grid grid-cols-2 gap-6 mb-6 text-black">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6 text-black">
                     {/* Question Types Chart */}
                     <div className="card bg-white shadow-sm">
-                        <div className="card-body p-4 ">
+                        <div className="card-body p-4">
                             <h2 className="card-title text-xl mb-4 ">Question Types (Monthly)</h2>
-                            <div className="w-full flex justify-center items-center">
+                            <div className="w-full h-full flex justify-center items-center">
                                 <ResponsiveContainer width="100%" height={300}>
                                     <PieChart>
                                         <Pie
@@ -520,16 +524,19 @@ function Dashboard() {
                                                     <span
                                                         className={`
                                         badge badge-sm lg:badge-md text-xs lg:text-sm
-                                        ${interaction.category === 'CV'
-                                                                ? 'badge-primary'
-                                                                : interaction.category === 'Internship'
-                                                                    ? 'badge-success'
-                                                                    : interaction.category === 'Job Search'
-                                                                        ? 'badge-warning'
-                                                                        : interaction.category === 'Cover Letter'
-                                                                            ? 'badge-info'
-                                                                            : 'badge-ghost'
-                                                            }
+                                        ${
+                                            interaction.category === 'CV'
+                                                ? 'badge-primary'
+                                                : interaction.category === 'Internship'
+                                                  ? 'badge-success'
+                                                  : interaction.category === 'Job Search'
+                                                    ? 'badge-warning'
+                                                    : interaction.category === 'Cover Letter'
+                                                      ? 'badge-info'
+                                                      : interaction.category === 'Workshop'
+                                                        ? 'bg-pink-300 text-black-700 border border-pink-400'
+                                                        : 'badge-ghost'
+                                        }
                                     `}
                                                     >
                                                         {interaction.category || 'General'}

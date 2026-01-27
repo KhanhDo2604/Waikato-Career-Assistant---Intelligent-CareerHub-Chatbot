@@ -65,6 +65,8 @@ export const toggleCommonQuestionService = async (questionId: number) => {
 export const getCommonQuestionsService = async () => {
     try {
         const questions = await readQAFile();
+        console.log(questions);
+
         const commonQuestions = questions.filter((q) => q.common);
         return commonQuestions;
     } catch (error: any) {
@@ -74,11 +76,11 @@ export const getCommonQuestionsService = async () => {
 
 export const addNewQuestionService = async (id: number, question: string, answer: string, category: string) => {
     try {
-        const payload = { id, question, answer, category };
+        const payload = { id, question, answer, category, common: false };
 
-        const data = await interactModel(payload, '/add', 'POST');
+        const data = await interactModel(payload, '/chat/add', 'POST');
 
-        return data;
+        return data.new_question;
     } catch (error) {
         console.error('Error adding new question:', error);
         return { status: 500, message: 'Error adding new question' };
@@ -89,7 +91,7 @@ export const deleteQuestionService = async (questionId: number) => {
     try {
         const payload = { id: questionId };
 
-        const data = await interactModel(payload, '/delete', 'DELETE');
+        const data = await interactModel(payload, '/chat/del', 'DELETE');
 
         return data;
     } catch (error) {
@@ -103,13 +105,14 @@ export const editQuestionService = async (
     newQuestion: string,
     newAnswer: string,
     newCategory: string,
+    common: boolean,
 ) => {
     try {
-        const payload = { id: questionId, question: newQuestion, answer: newAnswer, category: newCategory };
+        const payload = { id: questionId, question: newQuestion, answer: newAnswer, category: newCategory, common };
 
-        const data = await interactModel(payload, '/update_qa', 'PUT');
+        const data = await interactModel(payload, '/chat/update_qa', 'PUT');
 
-        return data;
+        return data.new_question;
     } catch (error) {
         console.log('Error editing question:', error);
         return { status: 500, message: 'Error editing question' };

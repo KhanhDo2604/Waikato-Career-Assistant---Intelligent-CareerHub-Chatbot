@@ -1,4 +1,4 @@
-import { faComment, faUser } from '@fortawesome/free-regular-svg-icons';
+import { faComment, faUser, faCircleQuestion } from '@fortawesome/free-regular-svg-icons';
 import { faArrowUp, faRobot, faList, faPlus, faX, faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons/faChevronDown';
 import { faFacebook, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
@@ -21,6 +21,7 @@ const icon = {
     cancle: faX,
     edit: faPencil,
     bin: faTrash,
+    questionCircle: faCircleQuestion,
 };
 
 export default { icon };
