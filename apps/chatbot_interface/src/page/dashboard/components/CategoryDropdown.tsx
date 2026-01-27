@@ -3,17 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icons from '../../../constants/icons';
 
 const CATEGORIES = [
-    'CV Help',
-    'Cover Letter',
+    'CV & Cover Letter',
+    'Intersnships & Volunteering',
     'Job Search',
-    'Appointment',
-    'EPA',
-    'Internship',
-    'Interview Preparation',
-    'Career Guidance',
-    'Workshop',
-    'General Enquiry',
-];
+    'Career Guidance & Appointment',
+    'Workshops & Events',
+    "General",
+]
 
 interface CategoryDropdownProps {
     value: string;
