@@ -1,3 +1,4 @@
+import re
 from fastapi import APIRouter,Request
 from models.request import RequestModel
 from services.vector_store import Vector_store
@@ -10,6 +11,12 @@ embedding_model = Model(model_name="nomic-embed-text").embedding_model
 vectore_store = Vector_store(embedding_model=embedding_model, index_name="qa_list")
 session_chats = {}
 
+def normalize(text: str) -> str:
+    text = text.lower().strip()
+    text = re.sub(r"[^\w\s]", "", text)
+    text = re.sub(r"\s+", " ", text)
+    return text
+
 @routers.post("/ask")
 async def ask_question(request: RequestModel):
     """
@@ -18,31 +25,56 @@ async def ask_question(request: RequestModel):
     :param requestModel: user_id and question
     :return str: standard answer based on the qa_list
     """
-    with open('./background_docs/QA_list.json','r',encoding='utf-8') as f:
+    question = normalize(request.question)
+
+    with open("./background_docs/QA_list.json", "r", encoding="utf-8") as f:
         content = json.load(f)
 
-    user_id = request.user_id
-    question = request.question
-    if user_id not in session_chats:
-        session_chats[user_id] = Chat(user_id=user_id)
-    chat_instance = session_chats[user_id]
-    
+    question_map = {}
+    documents = []
+
+    for item in content:
+        category = item["category"]
+        answer = item["answer"]
+
+        for q in item["questions"]:
+            q_norm = normalize(q)
+            question_map[q_norm] = {
+                "category": category,
+                "answer": answer,
+            }
+            documents.append(q_norm)
+
     if vectore_store.vector_store_exists():
         vectore_store_instance = vectore_store.get_vector_store()
     else:
-        vectore_store_instance = vectore_store.create_vector_store([item.get("question") for item in content])
-    
-    result = vectore_store_instance.similarity_search_with_score(question, k=1)
+        vectore_store_instance = vectore_store.create_vector_store(documents)
 
-    if result[0][1] < 0.4:
-        answer = next((item['answer'] for item in content if item['question'] == result[0][0].page_content), None)
-        category = next((item['category'] for item in content if item['question'] == result[0][0].page_content), None)
-    else:
-        answer = ""
-        category = ""
-    
-    chat_instance.append_message(question, answer)
-    return {"category":category,"answer":answer}
+    results = vectore_store_instance.similarity_search_with_score(
+        question,
+        k=3
+    )
+
+    if not results:
+        return {"category": "", "answer": ""}
+
+    best_doc, best_score = min(results, key=lambda x: x[1])
+
+    threshold = 0.4 if len(question.split()) < 6 else 0.45
+
+    if best_score >= threshold:
+        return {"category": "", "answer": ""}
+
+    matched_question = best_doc.page_content
+
+    matched = question_map.get(matched_question)
+    if not matched:
+        return {"category": "", "answer": ""}
+
+    return {
+        "category": matched["category"],
+        "answer": matched["answer"],
+    }
 
 @routers.get("/most_relevant")
 async def get_most_relevant(question: str):
@@ -136,7 +168,7 @@ async def update_qa_list(req:Request):
     for qa in content:
         if qa["id"] == new_qa["id"]:
             qa["category"] = new_qa["category"]
-            qa["question"] = new_qa["question"]
+            qa["questions"] = new_qa["questions"]
             qa["answer"] = new_qa["answer"]
             qa["common"] = new_qa["common"]
 

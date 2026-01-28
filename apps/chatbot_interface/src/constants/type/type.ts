@@ -10,7 +10,7 @@ export interface Interaction {
 
 export type Question = {
     id: number;
-    question: string;
+    questions: string[];
     category?: string;
     answer: string;
     common: boolean;

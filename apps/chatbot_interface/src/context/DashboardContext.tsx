@@ -145,7 +145,7 @@ export const DashboardProvider = ({ children }: { children: ReactNode }) => {
 
                 const result = await addNewQuestion({
                     id: questionData?.id || 0,
-                    question: questionData?.question || '',
+                    questions: questionData?.questions || [],
                     answer: questionData?.answer || '',
                     category: questionData?.category,
                     common: questionData?.common || false,
@@ -155,7 +155,7 @@ export const DashboardProvider = ({ children }: { children: ReactNode }) => {
                     type: 'ADD_QUESTIONS',
                     payload: {
                         id: result.id ? result.id : 0,
-                        question: result.question,
+                        questions: result.questions,
                         answer: result.answer,
                         category: result.category,
                         common: result.common,
@@ -168,7 +168,7 @@ export const DashboardProvider = ({ children }: { children: ReactNode }) => {
                 dispatch({ type: 'LOADING', payload: true });
                 const result = await editQuestion({
                     id: questionData?.id || 0,
-                    question: questionData?.question || '',
+                    questions: questionData?.questions || [],
                     answer: questionData?.answer || '',
                     category: questionData?.category,
                     common: questionData?.common || false,

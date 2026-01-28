@@ -8,16 +8,16 @@ const CATEGORIES = [
     'Job Search',
     'Career Guidance & Appointment',
     'Workshops & Events',
-    "General",
-]
+    'General',
+];
 
 interface CategoryDropdownProps {
-    value: string;
+    value: string | undefined;
     onChange: (value: string) => void;
     placeholder?: string;
 }
 
-export function CategoryDropdown({ value, onChange, placeholder = 'Choose category' }: CategoryDropdownProps) {
+export function CategoryDropdown({ value = '', onChange, placeholder = 'Choose category' }: CategoryDropdownProps) {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
 

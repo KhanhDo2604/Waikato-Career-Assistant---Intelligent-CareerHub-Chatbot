@@ -16,7 +16,7 @@ export type AskError = {
 
 export type Question = {
     id: string;
-    question: string;
+    questions: string[];
     category?: string;
     answer: string;
     common: boolean;

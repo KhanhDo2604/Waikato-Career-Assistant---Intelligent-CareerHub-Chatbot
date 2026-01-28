@@ -14,7 +14,7 @@ interface ConfirmDialogProps {
     iconColor?: string;
     previewContent?: {
         label: string;
-        value: string;
+        value: string | string[];
     };
     onConfirm: () => void;
     onCancel: () => void;
@@ -34,6 +34,7 @@ export function ConfirmDialog({
     onConfirm,
     onCancel,
 }: ConfirmDialogProps) {
+    const previewValue = Array.isArray(previewContent?.value) ? previewContent.value.join(', ') : previewContent?.value;
     if (!isOpen) return null;
 
     return (
@@ -56,7 +57,12 @@ export function ConfirmDialog({
                     {previewContent && (
                         <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                             <p className="text-xs font-semibold text-gray-700 mb-1">{previewContent.label}</p>
-                            <p className="text-sm text-gray-800 wrap-break-words">{previewContent.value}</p>
+                            <p
+                                className="text-sm text-gray-800 wrap-break-words whitespace-normal"
+                                title={previewValue}
+                            >
+                                {previewValue}
+                            </p>
                         </div>
                     )}
                 </div>

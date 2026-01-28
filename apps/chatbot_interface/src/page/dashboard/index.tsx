@@ -54,7 +54,7 @@ function buildDailyUserCounts(
 
 function Dashboard() {
     const { dashboardState, dashboardActions } = useDashboard();
-    const { questions, questionTypesMonthlyReport, usageChatBot, userInteractions, isLoading } = dashboardState;
+    const { questionTypesMonthlyReport, usageChatBot, userInteractions, isLoading } = dashboardState;
     const [selectedMonth, setSelectedMonth] = useState<number>(new Date().getMonth());
     const [selectedYear, setSelectedYear] = useState<number>(new Date().getFullYear());
     const [dailyData, setDailyData] = useState<MonthlyUserCount[]>([]);
@@ -91,34 +91,6 @@ function Dashboard() {
             setDailyData([]);
         }
     }, [usageChatBot, selectedMonth, selectedYear]);
-
-        if (!questions || questions.length === 0) return;
-    useEffect(() => {
-        if (questions.length === 0) return;
-      
-        const grouped = questions.map(q => ({
-          ...q,
-          category:
-            ['CV Help', 'Cover Letter'].includes(q.category ?? '')
-              ? 'Applications'
-              : ['Job Search', 'Internship'].includes(q.category ?? '')
-              ? 'Employment'
-              : 'Other',
-            }));
-    
-    
-    }, [questions]);
-
-    const CATEGORIES = [
-        'CV & Cover Letter',
-        'Intersnships & Volunteering',
-        'Job Search',
-        'Career Guidance & Appointment',
-        'Workshops & Events',
-        "General",
-    ]
-
-    // access to QA_list.json --> modify "category" field to group similar question types, based on CATEGORIES array
 
     const questionTypesData = Object.entries(questionTypesMonthlyReport)
         .map(([name, value]) => ({
@@ -406,14 +378,15 @@ function Dashboard() {
                                                         <span
                                                             className={`
                                             w-7 h-7 lg:w-8 lg:h-8 rounded-full flex items-center justify-center text-xs lg:text-sm font-bold
-                                            ${index === 0
-                                                                    ? 'bg-yellow-100 text-yellow-700'
-                                                                    : index === 1
-                                                                        ? 'bg-gray-200 text-gray-700'
-                                                                        : index === 2
-                                                                            ? 'bg-orange-100 text-orange-700'
-                                                                            : 'bg-blue-50 text-blue-700'
-                                                                }
+                                            ${
+                                                index === 0
+                                                    ? 'bg-yellow-100 text-yellow-700'
+                                                    : index === 1
+                                                      ? 'bg-gray-200 text-gray-700'
+                                                      : index === 2
+                                                        ? 'bg-orange-100 text-orange-700'
+                                                        : 'bg-blue-50 text-blue-700'
+                                            }
                                         `}
                                                         >
                                                             {index + 1}

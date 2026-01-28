@@ -2,6 +2,7 @@
 import { createContext, useMemo, useReducer, type ReactNode } from 'react';
 import type { Action, ChatActions, ChatContextValue, ChatMessage, ChatState } from '../constants/type/type';
 import { getAnswer } from '../services/ChatbotService';
+import { isFarewell, isGreeting } from '../utils/helper';
 
 const initialState: ChatState = {
     messages: [
@@ -41,6 +42,8 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
     const [state, dispatch] = useReducer(chatReducer, initialState);
 
     const fallbackMessage = `Sorry, this question is currently outside the scope of what I can assist with.\nPlease visit the link below to submit your question directly to an administrator for further support. \nhttps://mycareer.waikato.ac.nz/students/questions/`;
+    const greetingReply =
+        "Hi 👋 I'm here to help! You can ask me about CV reviews, job searching, applications, and more.";
 
     const actions: ChatActions = useMemo(
         () => ({
@@ -64,6 +67,32 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
 
                 dispatch({ type: 'ADD_MESSAGE', payload: userMessage });
                 dispatch({ type: 'SET_INPUT', payload: '' });
+
+                if (isGreeting(trimmedText)) {
+                    const botMessage: ChatMessage = {
+                        id: (Date.now() + 1).toString(),
+                        sender: 'bot',
+                        text: greetingReply,
+                        createAt: new Date(),
+                    };
+
+                    dispatch({ type: 'ADD_MESSAGE', payload: botMessage });
+                    return;
+                }
+
+                if (isFarewell(trimmedText)) {
+                    const farewellReply =
+                        "You're welcome! Feel free to reach out if you need anything else. Have a great day!";
+                    const botMessage: ChatMessage = {
+                        id: (Date.now() + 1).toString(),
+                        sender: 'bot',
+                        text: farewellReply,
+                        createAt: new Date(),
+                    };
+
+                    dispatch({ type: 'ADD_MESSAGE', payload: botMessage });
+                    return;
+                }
 
                 dispatch({ type: 'SET_TYPING', payload: true });
 

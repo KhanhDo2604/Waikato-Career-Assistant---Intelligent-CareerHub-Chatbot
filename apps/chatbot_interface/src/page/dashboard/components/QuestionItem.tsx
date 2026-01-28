@@ -17,6 +17,9 @@ export function QuestionItem({ question, onEdit, onDelete, onToggleCommon }: Que
 
     const isCommon = question.common;
 
+    const primaryQuestion = question.questions ?? [];
+    const variantCount = question.questions?.length ?? 0;
+
     const handleToggleConfirm = () => {
         onToggleCommon?.({
             ...question,
@@ -34,6 +37,7 @@ export function QuestionItem({ question, onEdit, onDelete, onToggleCommon }: Que
         <>
             <div className="p-4 bg-gray-50 border border-gray-200 rounded-lg hover:border-gray-300 transition">
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+                    {/* Common checkbox */}
                     <div className="flex items-center pt-1">
                         <input
                             type="checkbox"
@@ -44,20 +48,36 @@ export function QuestionItem({ question, onEdit, onDelete, onToggleCommon }: Que
                         />
                     </div>
 
+                    {/* Content */}
                     <div className="flex-1 min-w-0">
-                        <p className="text-sm lg:text-base text-gray-800 font-medium wrap-break-words mb-1">
-                            {question.question}
+                        {/* Primary question */}
+                        <p
+                            className="text-sm lg:text-base text-gray-800 font-medium truncate mb-1"
+                            title={primaryQuestion.join(', ')}
+                        >
+                            {primaryQuestion.join(', ')}
                         </p>
 
+                        {/* Variants info */}
+                        {variantCount > 1 && (
+                            <p className="text-xs text-gray-400 mb-1">
+                                + {variantCount - 1} variant
+                                {variantCount > 2 ? 's' : ''}
+                            </p>
+                        )}
+
+                        {/* Category */}
                         <p className="text-xs text-gray-500 mb-2">
                             <span className="badge badge-outline badge-sm">{question.category}</span>
                         </p>
 
+                        {/* Answer preview */}
                         <p className="text-xs lg:text-sm text-gray-600 wrap-break-words line-clamp-2">
                             {question.answer}
                         </p>
                     </div>
 
+                    {/* Actions */}
                     <div className="flex gap-2 shrink-0">
                         <button
                             onClick={onEdit}
@@ -94,7 +114,7 @@ export function QuestionItem({ question, onEdit, onDelete, onToggleCommon }: Que
                 iconColor="text-primary"
                 previewContent={{
                     label: 'Question:',
-                    value: question.question,
+                    value: primaryQuestion,
                 }}
                 onConfirm={handleToggleConfirm}
                 onCancel={toggleDialog.close}
@@ -112,7 +132,7 @@ export function QuestionItem({ question, onEdit, onDelete, onToggleCommon }: Que
                 iconColor="text-red-600"
                 previewContent={{
                     label: 'Question to delete:',
-                    value: question.question,
+                    value: primaryQuestion,
                 }}
                 onConfirm={handleDeleteConfirm}
                 onCancel={deleteDialog.close}

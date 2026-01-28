@@ -1,20 +1,3 @@
-//Data structure
-// common_questions (
-//   question: string,
-//   answer: string,
-//   category: string,      // 'CV', 'Internship', 'Appointment', ...
-//   createdAt: Timestamp,
-//   updatedAt: Timestamp
-// );
-
-// CREATE TABLE interactions (
-//   anonSid: string,        // store UUID from HttpOnly cookie
-//   question: string,
-//   answer: string,
-//   category?: string,      // snapshot: 'CV', 'Job Search', ...
-//   createdAt: Timestamp
-// );
-
 import { promises as fs } from 'fs';
 import path from 'path';
 
@@ -74,7 +57,7 @@ export const getCommonQuestionsService = async () => {
     }
 };
 
-export const addNewQuestionService = async (id: number, question: string, answer: string, category: string) => {
+export const addNewQuestionService = async (id: number, question: string[], answer: string, category: string) => {
     try {
         const payload = { id, question, answer, category, common: false };
 
@@ -102,7 +85,7 @@ export const deleteQuestionService = async (questionId: number) => {
 
 export const editQuestionService = async (
     questionId: number,
-    newQuestion: string,
+    newQuestion: string[],
     newAnswer: string,
     newCategory: string,
     common: boolean,

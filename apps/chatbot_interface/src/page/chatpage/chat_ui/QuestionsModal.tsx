@@ -46,7 +46,7 @@ function QuestionsModal({
                             {commonQuestions.map((q, index) => (
                                 <button
                                     key={q.id}
-                                    onClick={() => handleQuestionClick(q.question)}
+                                    onClick={() => handleQuestionClick(q.questions[0])}
                                     className="w-full text-left p-4 rounded-xl bg-gray-50 hover:bg-red-50 
                                                 border border-gray-200 hover:border-red-300
                                                 transition-all group"
@@ -64,7 +64,7 @@ function QuestionsModal({
                                                 className="text-sm lg:text-base text-gray-800 group-hover:text-red-900 
                                                         font-medium transition-colors wrap-break-words"
                                             >
-                                                {q.question}
+                                                {q.questions[0]}
                                             </p>
                                             <p className="text-xs text-gray-500 mt-1">{q.category}</p>
                                         </div>

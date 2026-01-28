@@ -90,12 +90,12 @@ function ChatPage() {
                                             <div key={q.id}>
                                                 <button
                                                     type="button"
-                                                    onClick={() => actions.sendMessage(q.question)}
+                                                    onClick={() => actions.sendMessage(q.questions[0])}
                                                     className="w-full text-left text-sm text-gray-700 hover:text-gray-900 
                                                         transition-colors cursor-pointer underline-offset-4 
                                                         hover:underline decoration-gray-300"
                                                 >
-                                                    {q.question}
+                                                    {q.questions[0]}
                                                 </button>
                                                 {index < Math.min(commonQuestions.length, 5) - 1 && (
                                                     <hr className="block my-3 bg-black" />
