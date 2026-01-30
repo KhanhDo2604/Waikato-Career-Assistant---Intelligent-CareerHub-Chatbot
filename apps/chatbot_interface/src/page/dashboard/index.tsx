@@ -70,7 +70,7 @@ function Dashboard() {
             await Promise.all([
                 dashboardActions.getQuestionTypesMonthlyReport(year, month ?? 0),
                 dashboardActions.getUsageChatBot(year, month ?? 0),
-                dashboardActions.getUserInteractions(),
+                dashboardActions.getUserInteractions(year, month ?? 0),
             ]);
         } catch (error) {
             console.error('Error loading dashboard data:', error);
@@ -98,6 +98,7 @@ function Dashboard() {
             value,
         }))
         .sort((a, b) => (b.value as any) - (a.value as any));
+
     const months = [
         'January',
         'February',
@@ -185,40 +186,60 @@ function Dashboard() {
                         <div className="card-body p-4">
                             <h2 className="card-title text-xl mb-4 ">Question Types (Monthly)</h2>
                             <div className="w-full h-full flex justify-center items-center">
-                                <ResponsiveContainer width="100%" height={300}>
-                                    <PieChart>
-                                        <Pie
-                                            data={questionTypesData}
-                                            cx="50%"
-                                            cy="50%"
-                                            labelLine={false}
-                                            label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-                                            outerRadius={100}
-                                            fill="#8884d8"
-                                            dataKey="value"
+                                {questionTypesData.length > 0 ? (
+                                    <ResponsiveContainer width="100%" height={300}>
+                                        <PieChart>
+                                            <Pie
+                                                data={questionTypesData}
+                                                cx="30%"
+                                                cy="50%"
+                                                labelLine={false}
+                                                label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                                                outerRadius={100}
+                                                fill="#8884d8"
+                                                dataKey="value"
+                                            >
+                                                {questionTypesData.map((_, index) => (
+                                                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                                ))}
+                                            </Pie>
+                                            <Tooltip />
+                                            <Legend
+                                                layout="vertical"
+                                                verticalAlign="top"
+                                                align="right"
+                                                wrapperStyle={{
+                                                    width: '180px',
+                                                    padding: '16px',
+                                                    border: '1px solid #ddd',
+                                                    borderRadius: '12px',
+                                                    backgroundColor: '#ffffff',
+                                                    boxShadow: '0 3px 10px rgba(0,0,0,0.12)',
+                                                    fontSize: '15px',
+                                                    lineHeight: '28px',
+                                                }}
+                                            />
+                                        </PieChart>
+                                    </ResponsiveContainer>
+                                ) : (
+                                    <div className="h-auto flex flex-col items-center justify-center text-gray-400">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="h-16 w-16 mb-3 opacity-50"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
                                         >
-                                            {questionTypesData.map((_, index) => (
-                                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                                            ))}
-                                        </Pie>
-                                        <Tooltip />
-                                        <Legend
-                                            layout="vertical"
-                                            verticalAlign="middle"
-                                            align="right"
-                                            wrapperStyle={{
-                                                width: '180px',
-                                                padding: '16px',
-                                                border: '1px solid #ddd',
-                                                borderRadius: '12px',
-                                                backgroundColor: '#ffffff',
-                                                boxShadow: '0 3px 10px rgba(0,0,0,0.12)',
-                                                fontSize: '15px',
-                                                lineHeight: '28px',
-                                            }}
-                                        />
-                                    </PieChart>
-                                </ResponsiveContainer>
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={1.5}
+                                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                                            />
+                                        </svg>
+                                        <p className="text-sm font-medium">No data available</p>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -303,7 +324,7 @@ function Dashboard() {
                                 </ResponsiveContainer>
                             </div>
                         ) : (
-                            <div className="h-[300px] flex flex-col items-center justify-center text-gray-400">
+                            <div className="h-auto flex flex-col items-center justify-center text-gray-400">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     className="h-16 w-16 mb-3 opacity-50"
@@ -454,7 +475,7 @@ function Dashboard() {
                                 </div>
                                 <div>
                                     <h2 className="text-lg lg:text-xl font-bold text-gray-800">Recent Interactions</h2>
-                                    <p className="text-xs lg:text-sm text-gray-500">Latest user conversations</p>
+                                    <p className="text-xs lg:text-sm text-gray-500">Top 5 latest user conversations</p>
                                 </div>
                             </div>
                         </div>

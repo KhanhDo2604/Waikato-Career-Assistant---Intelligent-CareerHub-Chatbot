@@ -108,9 +108,11 @@ export const getMostCommonTypeQuestions = async (year: number, month: number) =>
     }
 };
 
-export const getUserInteractions = async (): Promise<Interaction[]> => {
+export const getUserInteractions = async (year: number, month: number): Promise<Interaction[]> => {
     try {
-        const res = await http.get('/api/dashboard/user-interactions');
+        const res = await http.get('/api/dashboard/user-interactions', {
+            params: { year, month },
+        });
 
         return res.data.userInteractions;
     } catch (error) {

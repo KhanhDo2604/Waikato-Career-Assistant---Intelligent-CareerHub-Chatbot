@@ -93,7 +93,7 @@ export type DashboardActions = {
     deleteQuestion: (id: number) => Promise<string>;
     getQuestionTypesMonthlyReport: (year: number, month: number) => Promise<QuestionTypeCount[]>;
     getUsageChatBot: (year: number, month: number) => Promise<MonthlyUserCount[]>;
-    getUserInteractions: () => Promise<Interaction[]>;
+    getUserInteractions: (year: number, month: number) => Promise<Interaction[]>;
 };
 
 export type ChatContextValue = {

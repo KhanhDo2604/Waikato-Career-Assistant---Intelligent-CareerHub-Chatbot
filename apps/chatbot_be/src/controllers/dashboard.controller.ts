@@ -44,7 +44,6 @@ export const toggleCommonQuestionController = async (request: Request, response:
 export const getCommonQuestionsController = async (request: Request, response: Response) => {
     try {
         const questions = await getCommonQuestionsService();
-        console.log(questions);
 
         return response.status(200).json({ commonQuestions: questions });
     } catch (error: Error | any) {
@@ -54,8 +53,8 @@ export const getCommonQuestionsController = async (request: Request, response: R
 
 export const addNewQuestionController = async (request: Request, response: Response) => {
     try {
-        const { id, question, answer, category } = request.body;
-        const newQs = await addNewQuestionService(id, question, answer, category);
+        const { id, questions, answer, category } = request.body;
+        const newQs = await addNewQuestionService(id, questions, answer, category);
         return response.status(200).json(newQs);
     } catch (error) {
         return { status: 500, message: 'Error adding new question' };
@@ -74,8 +73,8 @@ export const deleteQuestionController = async (request: Request, response: Respo
 
 export const editQuestionController = async (request: Request, response: Response) => {
     try {
-        const { id, question, answer, category, common } = request.body;
-        const updatedQs = await editQuestionService(id, question, answer, category, common);
+        const { id, questions, answer, category, common } = request.body;
+        const updatedQs = await editQuestionService(id, questions, answer, category, common);
         return response.status(200).json(updatedQs);
     } catch (error) {
         return { status: 500, message: 'Error editing question' };
@@ -116,7 +115,8 @@ export const mostCommonTypeQuestionsController = async (request: Request, respon
 
 export const userInteractionsController = async (request: Request, response: Response) => {
     try {
-        const result = await userInteractions();
+        const { month, year } = request.query;
+        const result = await userInteractions(year, month);
         return response.status(200).json({ userInteractions: result.data });
     } catch (error) {
         return { status: 500, message: 'Error fetching user interactions' };

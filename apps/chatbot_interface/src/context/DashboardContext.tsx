@@ -200,9 +200,9 @@ export const DashboardProvider = ({ children }: { children: ReactNode }) => {
                 dispatch({ type: 'LOADING', payload: false });
                 return result;
             },
-            getUserInteractions: async () => {
+            getUserInteractions: async (year: number, month: number) => {
                 dispatch({ type: 'LOADING', payload: true });
-                const result = await getUserInteractions();
+                const result = await getUserInteractions(year, month);
                 dispatch({ type: 'GET_USER_INTERACTIONS', payload: result });
                 dispatch({ type: 'LOADING', payload: false });
                 return result;

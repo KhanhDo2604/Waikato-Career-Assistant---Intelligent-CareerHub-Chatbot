@@ -5,17 +5,53 @@ from services.vector_store import Vector_store
 from services.model import Model
 from services.chat import Chat
 import json
+from typing import Dict
 
 routers = APIRouter(prefix="/chat", tags=["chat"])
 embedding_model = Model(model_name="nomic-embed-text").embedding_model
 vectore_store = Vector_store(embedding_model=embedding_model, index_name="qa_list")
 session_chats = {}
 
+QUESTION_MAP: Dict[str, dict] = {}
+
 def normalize(text: str) -> str:
     text = text.lower().strip()
     text = re.sub(r"[^\w\s]", "", text)
     text = re.sub(r"\s+", " ", text)
     return text
+
+def rebuild_vector_store():
+    """
+    Rebuild vector store & question map from QA_list.json
+    MUST be called after any dataset change
+    """
+    global QUESTION_MAP
+
+    with open("./background_docs/QA_list.json", "r", encoding="utf-8") as f:
+        content = json.load(f)
+
+    documents = []
+    question_map = {}
+
+    for item in content:
+        category = item["category"]
+        answer = item["answer"]
+
+        for q in item.get("questions", []):
+            q_norm = normalize(q)
+            documents.append(q_norm)
+            question_map[q_norm] = {
+                "category": category,
+                "answer": answer,
+            }
+
+    if vectore_store.vector_store_exists():
+        vectore_store.delete_vector_store()
+
+    vectore_store.create_vector_store(documents)
+
+    QUESTION_MAP = question_map
+
 
 @routers.post("/ask")
 async def ask_question(request: RequestModel):
@@ -27,28 +63,10 @@ async def ask_question(request: RequestModel):
     """
     question = normalize(request.question)
 
-    with open("./background_docs/QA_list.json", "r", encoding="utf-8") as f:
-        content = json.load(f)
+    if not vectore_store.vector_store_exists():
+        rebuild_vector_store()
 
-    question_map = {}
-    documents = []
-
-    for item in content:
-        category = item["category"]
-        answer = item["answer"]
-
-        for q in item["questions"]:
-            q_norm = normalize(q)
-            question_map[q_norm] = {
-                "category": category,
-                "answer": answer,
-            }
-            documents.append(q_norm)
-
-    if vectore_store.vector_store_exists():
-        vectore_store_instance = vectore_store.get_vector_store()
-    else:
-        vectore_store_instance = vectore_store.create_vector_store(documents)
+    vectore_store_instance = vectore_store.get_vector_store()
 
     results = vectore_store_instance.similarity_search_with_score(
         question,
@@ -62,12 +80,14 @@ async def ask_question(request: RequestModel):
 
     threshold = 0.4 if len(question.split()) < 6 else 0.45
 
+    print(f"[DEBUG] Best score: {best_score} | Threshold: {threshold}")
+
     if best_score >= threshold:
         return {"category": "", "answer": ""}
 
     matched_question = best_doc.page_content
+    matched = QUESTION_MAP.get(matched_question)
 
-    matched = question_map.get(matched_question)
     if not matched:
         return {"category": "", "answer": ""}
 
@@ -111,6 +131,17 @@ async def get_chat_history(user_id: str):
     else:
         return {"message": "No chat history found for this user."}
     
+@routers.get('/index')
+async def check_index():
+    """
+    return the latest index of dataset and plus one.
+    because this index will be used for add feature. So the index of new qa item
+    is latest index of dataset plus one.
+    """
+    with open('./background_docs/QA_list.json','r',encoding='utf-8') as f:
+        content = json.load(f)
+    return len(content)+1   
+
 @routers.get('/reset')
 async def reset_chat_history(user_id: str):
     """
@@ -161,10 +192,13 @@ async def update_qa_list(req:Request):
     :return dict: success message
     """
     new_qa = await req.json()
+    
     with open('./background_docs/QA_list.json','r',encoding='utf-8') as f:
         content = json.load(f)
+
     if new_qa["id"] not in {qa["id"] for qa in content}:
         return {"message":"the update index not in dataset"}
+    
     for qa in content:
         if qa["id"] == new_qa["id"]:
             qa["category"] = new_qa["category"]
@@ -174,19 +208,11 @@ async def update_qa_list(req:Request):
 
     with open('./background_docs/QA_list.json','w',encoding='utf-8') as f:
         json.dump(content, f, ensure_ascii=False, indent=4)
-    vectore_store.update_vector_store([item.get("question") for item in content])
+
+    rebuild_vector_store()
     return {"message": "Updated successfully.", "new_question": new_qa}
 
-@routers.get('/index')
-async def check_index():
-    """
-    return the latest index of dataset and plus one.
-    because this index will be used for add feature. So the index of new qa item
-    is latest index of dataset plus one.
-    """
-    with open('./background_docs/QA_list.json','r',encoding='utf-8') as f:
-        content = json.load(f)
-    return len(content)+1
+
 
 @routers.post('/add')
 async def add_new_qa(req:Request):
@@ -197,14 +223,18 @@ async def add_new_qa(req:Request):
     :return dic: success message 
     """
     new_qa = await req.json()
+
     with open('./background_docs/QA_list.json','r',encoding='utf-8') as f:
         content = json.load(f)
+
     if new_qa["id"] != len(content) + 1:
         return {"message": "index error"}
+    
     content.append(new_qa)
     with open('./background_docs/QA_list.json','w',encoding='utf-8') as f:
         json.dump(content, f, ensure_ascii=False, indent=4)
-    vectore_store.update_vector_store([item.get("question") for item in content])
+
+    rebuild_vector_store()
     return {"message": "Add new item successfully.", "new_question": new_qa}
 
 @routers.delete('/del')

@@ -3,6 +3,7 @@ import type { Question } from '../../../constants/type/type';
 import icons from '../../../constants/icons';
 import { ConfirmDialog } from './ConfirmDialog';
 import { useConfirmDialog } from '../../../hooks/useConfirmDialog';
+import { useDashboard } from '../../../hooks/useDashboard';
 
 interface QuestionItemProps {
     question: Question;
@@ -12,6 +13,9 @@ interface QuestionItemProps {
 }
 
 export function QuestionItem({ question, onEdit, onDelete, onToggleCommon }: QuestionItemProps) {
+    const { dashboardState } = useDashboard();
+    const { commonQuestions } = dashboardState;
+
     const toggleDialog = useConfirmDialog();
     const deleteDialog = useConfirmDialog();
 
@@ -42,7 +46,15 @@ export function QuestionItem({ question, onEdit, onDelete, onToggleCommon }: Que
                         <input
                             type="checkbox"
                             checked={isCommon}
-                            onChange={toggleDialog.open}
+                            onChange={() => {
+                                if (commonQuestions.length >= 5 && !isCommon) {
+                                    alert(
+                                        'You can only have 5 common questions. Please remove one before adding another.',
+                                    );
+                                    return;
+                                }
+                                toggleDialog.open();
+                            }}
                             className="checkbox checkbox-primary checkbox-sm rounded"
                             title={isCommon ? 'Common question' : 'Mark as common'}
                         />

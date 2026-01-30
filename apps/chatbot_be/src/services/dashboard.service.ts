@@ -57,10 +57,9 @@ export const getCommonQuestionsService = async () => {
     }
 };
 
-export const addNewQuestionService = async (id: number, question: string[], answer: string, category: string) => {
+export const addNewQuestionService = async (id: number, questions: string[], answer: string, category: string) => {
     try {
-        const payload = { id, question, answer, category, common: false };
-
+        const payload = { id, questions, answer, category, common: false };
         const data = await interactModel(payload, '/chat/add', 'POST');
 
         return data.new_question;
@@ -91,7 +90,7 @@ export const editQuestionService = async (
     common: boolean,
 ) => {
     try {
-        const payload = { id: questionId, question: newQuestion, answer: newAnswer, category: newCategory, common };
+        const payload = { id: questionId, questions: newQuestion, answer: newAnswer, category: newCategory, common };
 
         const data = await interactModel(payload, '/chat/update_qa', 'PUT');
 
@@ -267,12 +266,22 @@ export const mostCommonTypeQuestions = async (year?: number, month?: number, top
 /**
  * Get Recent User Interactions (question and Date)
  */
-export const userInteractions = async (limit = 5) => {
+export const userInteractions = async (year?: number, month?: number, limit = 5) => {
     try {
+        if (!year) return { status: 400, message: 'year is required' };
+
         const collection = await connectToMongoDB('interactions');
 
+        const dateConstraints = buildDateConstraints(year, month);
+
         const interactions = await collection
-            .find({ createdAt: { $exists: true, $type: 'date' } })
+            .find({
+                createdAt: {
+                    ...dateConstraints.createdAt,
+                    $exists: true,
+                    $type: 'date',
+                },
+            })
             .sort({ createdAt: -1 })
             .limit(limit)
             .toArray();

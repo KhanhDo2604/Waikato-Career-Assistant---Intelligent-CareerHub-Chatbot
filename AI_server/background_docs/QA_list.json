@@ -1,330 +1,338 @@
 [
-  {
-    "id": 1,
-    "category": "Career Guidance & Appointment",
-    "questions": [
-      "job offer negotiation chat",
-      "negotiating job offers",
-      "how to negotiate a job offer",
-      "tips for negotiating job offers",
-      "advice on job offer negotiation",
-      "strategies for negotiating job offers",
-      "best practices for job offer negotiation",
-      "guidance on negotiating job offers",
-      "help with job offer negotiation",
-      "how can I become a registered teacher in NZ ,what are my alternative options if I do not the meet the reqirements"
-    ],
-    "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions. Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1",
-    "common": false
-  },
-  {
-    "id": 2,
-    "category": "Career Guidance & Appointment",
-    "questions": [
-      "can career employability connect me with aquaculture companies in London, Australia, or New zealand ?",
-      "I tried to drop-in my session for my cv but its not working. What can I do ?",
-      "how to book a career consultation appointment",
-      "career drop-in session",
-      "book an appointment with career consultant",
-      "career advice appointment",
-      "how to get career advice",
-      "career guidance session",
-      "Online appointments",
-      "book one-on-one session",
-      "one-on-one appointment"
-    ],
-    "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions. Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1",
-    "common": false
-  },
-  {
-    "id": 3,
-    "category": "Intersnships & Volunteering",
-    "questions": [
-      "I have an internship what do I do now",
-      "I am studying Finance with a minor in Economics and Business Analytics .I found Zespri \"summer intern-biosecurity \" role for my WSAFE396 internship.The description says economic/business is accepted,but I'm unsure because the role is called biosecurity.Is this is called biosecurity.Is this intership eligible for my WL programme?"
-    ],
-    "answer": "Please connect with the WMS WIL Team msc@waikato.ac.nz. Or look athttps://www.waikato.ac.nz/about/faculties-schools/management/student-experience/work-integrated-learning/",
-    "common": false
-  },
-  {
-    "id": 4,
-    "category": "General",
-    "questions": [
-      "How can I get the Employability Plus Award certificate after earning enough points for the Gold award ?",
-      "What is the process to receive the Employability Plus Award certificate after achieving Gold status ?",
-      "Can you guide me on how to obtain the Employability Plus Award certificate after reaching Gold level ?",
-      "What steps do I need to follow to get the Employability Plus Award certificate after earning Gold points ?",
-      "How do I claim my Employability Plus Award certificate after accumulating enough points for Gold ?"
-    ],
-    "answer": "The award automatically tracks your progress. When you complete each section (Community, University, and Employability), you'll receive a certificate for Bronze, Silver, and Gold.\nOnce you finish the entire award, you'll get a final named certificate. You can also download it anytime from the last section of the award called “Congratulations.”\nPlease note it may take a few seconds to appear",
-    "common": false
-  },
-  {
-    "id": 5,
-    "category": "Career Guidance & Appointment",
-    "questions": [
-      "Can I speak to someone for careers advice ?",
-      "How do I get career advice ?",
-      "Where can I find career advice ?",
-      "Who can I talk to for career advice ?",
-      "Can you help me with career advice ?"
-    ],
-    "answer": "You can book a one on one career support/advice appoitment here > https://mycareer.waikato.ac.nz/students/appointments/app/?siteId=1",
-    "common": false
-  },
-  {
-    "id": 6,
-    "category": "CV & Cover Letter",
-    "questions": [
-      "I already prepared my cv and I want some feedback.what should I do? CV feedback, CV review, CV help, CV assistance, CV critique, CV evaluation",
-      "I would like to get my CV reviewed again after making the recommended changes.",
-      "I want help making my CV and cover letter shine, but none of the booking times suit me.can I do the appointment online or receive written feedback ?",
-      "Can I get my CV reviewed ?",
-      "How can I get feedback on my CV ?",
-      "Where can I get help with my CV ?",
-      "CV and cover letter review",
-      "CV and cover letter help",
-      "CV and cover letter assistance",
-      "review my old CV and cover letter",
-      "CV",
-      "cover letter"
-    ],
-    "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1",
-    "common": false
-  },
-  {
-    "id": 7,
-    "category": "Job Search",
-    "questions": [
-      "To search about jobs",
-      "How to search jobs",
-      "Where to search jobs",
-      "Guide me to search jobs",
-      "Help me to search jobs",
-      "Job search process"
-    ],
-    "answer": "Please click the given link and  then please enter the details as required such as keywords, job type, contract type, and location and then click on search button.\nhttps://mycareer.waikato.ac.nz/students/jobs",
-    "common": false
-  },
-  {
-    "id": 8,
-    "category": "General",
-    "questions": [
-      "For getting information about the resources",
-      "How to search resources",
-      "Where to search resources",
-      "Guide me to search resources",
-      "Help me to search resources",
-      "Resource search process",
-      "How can I find resources on MyCareer ?",
-      "Where do I search for resources on MyCareer ?",
-      "Give me the steps to search for resources on MyCareer ?"
-    ],
-    "answer": "Please click on the link give below and then write the keywords and click on search button.\nhttps://mycareer.waikato.ac.nz/students/resources/search/?order=Relevance&topicsUseAnd=true&search=",
-    "common": false
-  },
-  {
-    "id": 9,
-    "category": "Career Guidance & Appointment",
-    "questions": [
-      "Can you confirm if I successfully booked my appointment Drop-ins ?"
-    ],
-    "answer": "I can't do this for you.You can instantly check your booking status by logging into MyCareer → “Appointments” tab.Still unsure or nothing shows? Email mycareer@waikato.ac.nz with your student ID and we'll verify for you.",
-    "common": false
-  },
-  {
-    "id": 10,
-    "category": "Intersnships & Volunteering",
-    "questions": [
-      "How do I join a voluntary opportunity ?",
-      "I want to volunteer ,what are the steps ?",
-      "What do I need to do to start volunteering ?",
-      "How can I get involved in volunteering ?",
-      "Can you guide me on how to volunteer ?",
-      "What are the requirements for volunteering ?",
-      "Where can I find volunteer opportunities ?",
-      "How do I sign up for volunteering ?",
-      "What is the process to become a volunteer ?",
-      "How can I start volunteering through Employability Plus ?"
-    ],
-    "answer": "Great to hear you'd like to volunteer!\nFirst, please join the Employability Plus Award. Once you've joined, you'll receive a welcome email with all the steps to begin your volunteering journey, including watching or attending an induction session.\nJoin here EPA: https://mycareer.waikato.ac.nz/s/epa",
-    "common": false
-  },
-  {
-    "id": 11,
-    "category": "General",
-    "questions": [
-      "I have attended two drop-in sessions with the Careers and Employability team. Do these count for EPA points ?",
-      "Do drop-in sessions and one-on-one appointments count toward EPA points ?",
-      "Can I earn EPA points by attending drop-in sessions and one-on-one appointments ?",
-      "How can I earn EPA points through drop-in sessions and one-on-one appointments ?",
-      "Are drop-in sessions and one-on-one appointments eligible for EPA points ?"
-    ],
-    "answer": "Sorry, drop-in sessions and one-on-one appointments don't count toward EPA points.\nYou can earn points by attending workshops. You can view the workshop schedule here: https://mycareer.waikato.ac.nz/students/events?eventTypeIds=9&page=1&studentSiteId=1",
-    "common": false
-  },
-  {
-    "id": 12,
-    "category": "General",
-    "questions": [
-      "Do the EPA induction and Language Buddy training count for EPA points ? Do I need to fill out the EPA involvement form ?",
-      "Can I earn EPA points for completing the EPA induction and Language Buddy training ? Do I need to submit the EPA involvement form ?",
-      "Are the EPA induction and Language Buddy training eligible for EPA points ? Do I need to complete the EPA involvement form ?",
-      "How can I earn EPA points through the EPA induction and Language Buddy training ? Do I need to fill out the EPA involvement form ?",
-      "Do I need to submit the EPA involvement form to get points for the EPA induction and Language Buddy training ?"
-    ],
-    "answer": "Yes, you can collect points for both of these. They are each worth 2 points. Please watch the induction video (from 14.30sec)",
-    "common": false
-  },
-  {
-    "id": 13,
-    "category": "General",
-    "questions": [
-      "I signed up for the EPA and my status says submitted. Will I be able to create my profile once approved ?",
-      "After signing up for the EPA, my status shows as submitted. Can I create my profile once it's approved ?",
-      "What does it mean when my EPA status is submitted ? Will I be able to create my profile after approval ?",
-      "Can I create my EPA profile after my status changes from submitted to approved ?"
-    ],
-    "answer": "No profile is needed. You can now watch the induction video or attend an in person induction session which will advise on how to get started.",
-    "common": false
-  },
-  {
-    "id": 14,
-    "category": "CV & Cover Letter",
-    "questions": [
-      "Are resume templates available to use ?",
-      "Where can I find resume templates ?",
-      "Do you provide resume templates ?",
-      "Can you share resume templates ?",
-      "How can I access resume templates ?",
-      "Is there any resume template I can use ?",
-      "Is there a CV template available?"
-    ],
-    "answer": "We provide full support in CV preperation. Please view our CV workflow and this will take you through a step by step guide. https://mycareer.waikato.ac.nz/students/Workflows/Detail/2",
-    "common": false
-  },
-  {
-    "id": 15,
-    "category": "CV & Cover Letter",
-    "questions": [
-      "I can't find CV360 for internship applications.",
-      "CV360",
-      "cv360"
-    ],
-    "answer": "We no longer offer the CV360 tool, as it was part of a previous system we no longer use.\nWe now support CVs through our CV Workflow. You can view and follow all the steps here https://mycareer.waikato.ac.nz/students/Workflows/Detail/2",
-    "common": false
-  },
-  {
-    "id": 16,
-    "category": "General",
-    "questions": ["To get any information about Employability Plus Award"],
-    "answer": "Please click on the link as given below and add all the information required and then click the submit button\nhttps://mycareer.waikato.ac.nz/Form.aspx?id=101",
-    "common": true
-  },
-  {
-    "id": 17,
-    "category": "CV & Cover Letter",
-    "questions": [
-      "For any CV related help such as CV Workshop, Tips, Feedback and other additional resources"
-    ],
-    "answer": "Please click the link below and you will find all the related information about CV. You will find different  collapsible panel related to these topics just click on the arrow and you will find further information about the topics.\nhttps://mycareer.waikato.ac.nz/students/Workflows/Detail/2",
-    "common": true
-  },
-  {
-    "id": 18,
-    "category": "CV & Cover Letter",
-    "questions": ["How do to upload my CV on MyWIL ?"],
-    "answer": "Once you have your CV, log into your MyWIL account, go to the 'Forms' tab, click 'Edit', and submit the 'CV Review Form'.",
-    "common": true
-  },
-  {
-    "id": 19,
-    "category": "CV & Cover Letter",
-    "questions": ["How to prepare Cover Letter ?"],
-    "answer": "Please click the link given below and click on view document option and a power point presentation about how to make cover letter will open please read that and you will get all information about the cover letter.\nhttps://mycareer.waikato.ac.nz/students/docs/detail/8?filename=Cover-Letter-and-Verbs.pdf",
-    "common": true
-  },
-  {
-    "id": 20,
-    "category": "CV & Cover Letter",
-    "questions": [
-      "Would you recommend pasting a CV template into ChatGPT so it can help fill it out ?"
-    ],
-    "answer": "No, we do not advise doing this.Book and attend the workshop \"AI Assit - Upgrade your Application Game \" through the events link https://mycareer.waikato.ac.nz/students/events or/and Downlaod the Tip sheet \"Using AI\" https://mycareer.waikato.ac.nz/students/docs/detail/39?filename=Using-AI.pdf",
-    "common": true
-  },
-  {
-    "id": 21,
-    "category": "CV & Cover Letter",
-    "questions": [
-      "Do I need to submit a general cover letter in MyWIL for the Internship prgramme, or should I write a separate Cover letter for each of my referance?",
-      "cover letter submission for internships"
-    ],
-    "answer": "Your cover letter does not need to be submitted for review in MyWIL. Your cover letter will be sent to your internship selections when you follow the instructions in the 'Step 3: Internships' tab. Any review of your cover letter can be done through your MyCareer portal.Information can be seen through this link https://www.waikato.ac.nz/about/faculties-schools/management/student-experience/work-integrated-learning/",
-    "common": false
-  },
-  {
-    "id": 23,
-    "category": "General",
-    "questions": ["How do I add points ?"],
-    "answer": "To add points to your award, please make sure you've signed up for the EPA. https://mycareer.waikato.ac.nz/s/epa\nThen watch the induction session here https://mycareer.waikato.ac.nz/students/links/detail/3 — it walks you through the whole process (the section on adding roles starts at 14:30).\nIf you still need help, email employabilityplus@waikato.ac.nz",
-    "common": false
-  },
-  {
-    "id": 23,
-    "category": "CV & Cover Letter",
-    "questions": [
-      "How do to upload my CV on MyWIL ?",
-      "How to upload CV on MyWIL ?",
-      "CV upload on MyWIL"
-    ],
-    "answer": "Once you have your CV, log into your MyWIL account, go to the 'Forms' tab, click 'Edit', and submit the 'CV Review Form'.",
-    "common": true
-  },
-  {
-    "id": 24,
-    "category": "Intersnships & Volunteering",
-    "questions": [
-      "How do I register as a volunteer for the Volunteer Expo ?",
-      "Volunteer Expo registration process",
-      "Steps to register for Volunteer Expo",
-      "How to sign up for Volunteer Expo",
-      "Volunteer Expo sign-up procedure"
-    ],
-    "answer": "Volunteer roles are sent out to the Employability Plus group via email. If you would like to join the award you can sign up here > https://mycareer.waikato.ac.nz/s/epa",
-    "common": false
-  },
-  {
-    "id": 25,
-    "category": "General",
-    "questions": [
-      "Do the EPA induction and Language Buddy training count for EPA points ? Do I need to fill out the EPA involvement form ?",
-      "Can I earn EPA points for completing the EPA induction and Language Buddy training ? Do I need to submit the EPA involvement form ?",
-      "Are the EPA induction and Language Buddy training eligible for EPA points ? Do I need to complete the EPA involvement form ?",
-      "How can I earn EPA points through the EPA induction and Language Buddy training ? Do I need to fill out the EPA involvement form ?",
-      "Do I need to submit the EPA involvement form to get points for the EPA induction and Language Buddy training ?"
-    ],
-    "answer": "Yes, you can collect points for both of these. They are each worth 2 points. Please watch the induction video (from 14.30sec)",
-    "common": false
-  },
-  {
-    "id": 26,
-    "category": "Workshops & Events",
-    "questions": [
-      "How to get Event related information?",
-      "Where can I find event information?",
-      "How do I access event details?",
-      "How to get Workshop related information?",
-      "Where can I find workshop information?",
-      "How do I access workshop details?",
-      "Where to find events and workshops ?",
-      "How to search events and workshops ?",
-      "Where can I get information about events and workshops ?",
-      "How do I find details about events and workshops ?",
-      "workshop",
-      "event"
-    ],
-    "answer": "Please click the link below and you will find the events or you can also search the events by writing the keywords and you can also choose the type of events, date start, endorsements, locations and date added.\nhttps://mycareer.waikato.ac.nz/students/events?eventTypeIds=9&page=1&studentSiteId=1",
-    "common": false
-  }
+    {
+        "id": 1,
+        "category": "Career Guidance & Appointment",
+        "questions": [
+            "job offer negotiation chat",
+            "negotiating job offers",
+            "how to negotiate a job offer",
+            "tips for negotiating job offers",
+            "advice on job offer negotiation",
+            "strategies for negotiating job offers",
+            "best practices for job offer negotiation",
+            "guidance on negotiating job offers",
+            "help with job offer negotiation",
+            "how can I become a registered teacher in NZ ,what are my alternative options if I do not the meet the reqirements"
+        ],
+        "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions. Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1",
+        "common": false
+    },
+    {
+        "id": 2,
+        "category": "Career Guidance & Appointment",
+        "questions": [
+            "can career employability connect me with aquaculture companies in London, Australia, or New zealand ?",
+            "I tried to drop in my session for my cv but its not working. What can I do ?",
+            "how to book a career consultation appointment",
+            "career drop in session",
+            "book an appointment with career consultant",
+            "career advice appointment",
+            "how to get career advice",
+            "career guidance session",
+            "Online appointments",
+            "book one on one session",
+            "one on one appointment",
+            "drop in session"
+        ],
+        "answer": "You can speak to a Career Consultant (for 15 minutes) and ask any career-related questions. Each drop-in session is two hours long. Students cannot book in advance. Students are able to sign in to allocated time slots once they arrive at the drop in or wait to be let into the teams meeting if online Drop in thimes can be found through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1",
+        "common": false
+    },
+    {
+        "id": 3,
+        "category": "Intersnships & Volunteering",
+        "questions": [
+            "I have an internship what do I do now",
+            "I am studying Finance with a minor in Economics and Business Analytics .I found Zespri \"summer intern-biosecurity \" role for my WSAFE396 internship.The description says economic/business is accepted,but I'm unsure because the role is called biosecurity.Is this is called biosecurity.Is this intership eligible for my WL programme?"
+        ],
+        "answer": "Please connect with the WMS WIL Team msc@waikato.ac.nz. Or look athttps://www.waikato.ac.nz/about/faculties-schools/management/student-experience/work-integrated-learning/",
+        "common": false
+    },
+    {
+        "id": 4,
+        "category": "General",
+        "questions": [
+            "How can I get the Employability Plus Award certificate after earning enough points for the Gold award ?",
+            "What is the process to receive the Employability Plus Award certificate after achieving Gold status ?",
+            "Can you guide me on how to obtain the Employability Plus Award certificate after reaching Gold level ?",
+            "What steps do I need to follow to get the Employability Plus Award certificate after earning Gold points ?",
+            "How do I claim my Employability Plus Award certificate after accumulating enough points for Gold ?"
+        ],
+        "answer": "The award automatically tracks your progress. When you complete each section (Community, University, and Employability), you'll receive a certificate for Bronze, Silver, and Gold.\nOnce you finish the entire award, you'll get a final named certificate. You can also download it anytime from the last section of the award called “Congratulations.”\nPlease note it may take a few seconds to appear",
+        "common": false
+    },
+    {
+        "id": 5,
+        "category": "Career Guidance & Appointment",
+        "questions": [
+            "Can I speak to someone for careers advice ?",
+            "How do I get career advice ?",
+            "Where can I find career advice ?",
+            "Who can I talk to for career advice ?",
+            "Can you help me with career advice ?"
+        ],
+        "answer": "You can book a one on one career support/advice appoitment here > https://mycareer.waikato.ac.nz/students/appointments/app/?siteId=1",
+        "common": false
+    },
+    {
+        "id": 6,
+        "category": "CV & Cover Letter",
+        "questions": [
+            "I already prepared my cv and I want some feedback.what should I do? CV feedback, CV review, CV help, CV assistance, CV critique, CV evaluation",
+            "I would like to get my CV reviewed again after making the recommended changes.",
+            "I want help making my CV and cover letter shine, but none of the booking times suit me.can I do the appointment online or receive written feedback ?",
+            "Can I get my CV reviewed ?",
+            "How can I get feedback on my CV ?",
+            "Where can I get help with my CV ?",
+            "CV and cover letter review",
+            "CV and cover letter help",
+            "CV and cover letter assistance",
+            "review my old CV and cover letter",
+            "CV",
+            "cover letter"
+        ],
+        "answer": "Please upload your Documents into the 'Application Support portal\" as per instructions or attend a Drop in. See times through this link https://mycareer.waikato.ac.nz/students/appointments/app/topic/5?siteId=1",
+        "common": false
+    },
+    {
+        "id": 7,
+        "category": "Job Search",
+        "questions": [
+            "To search about jobs",
+            "How to search jobs",
+            "Where to search jobs",
+            "Guide me to search jobs",
+            "Help me to search jobs",
+            "Job search process"
+        ],
+        "answer": "Please click the given link and  then please enter the details as required such as keywords, job type, contract type, and location and then click on search button.\nhttps://mycareer.waikato.ac.nz/students/jobs",
+        "common": false
+    },
+    {
+        "id": 8,
+        "category": "General",
+        "questions": [
+            "For getting information about the resources",
+            "How to search resources",
+            "Where to search resources",
+            "Guide me to search resources",
+            "Help me to search resources",
+            "Resource search process",
+            "How can I find resources on MyCareer ?",
+            "Where do I search for resources on MyCareer ?",
+            "Give me the steps to search for resources on MyCareer ?"
+        ],
+        "answer": "Please click on the link give below and then write the keywords and click on search button.\nhttps://mycareer.waikato.ac.nz/students/resources/search/?order=Relevance&topicsUseAnd=true&search=",
+        "common": false
+    },
+    {
+        "id": 9,
+        "category": "Career Guidance & Appointment",
+        "questions": [
+            "Can you confirm if I successfully booked my appointment Drop-ins ?"
+        ],
+        "answer": "I can't do this for you.You can instantly check your booking status by logging into MyCareer → “Appointments” tab.Still unsure or nothing shows? Email mycareer@waikato.ac.nz with your student ID and we'll verify for you.",
+        "common": false
+    },
+    {
+        "id": 10,
+        "category": "Intersnships & Volunteering",
+        "questions": [
+            "How do I join a voluntary opportunity ?",
+            "I want to volunteer ,what are the steps ?",
+            "What do I need to do to start volunteering ?",
+            "How can I get involved in volunteering ?",
+            "Can you guide me on how to volunteer ?",
+            "What are the requirements for volunteering ?",
+            "Where can I find volunteer opportunities ?",
+            "How do I sign up for volunteering ?",
+            "What is the process to become a volunteer ?",
+            "How can I start volunteering through Employability Plus ?"
+        ],
+        "answer": "Great to hear you'd like to volunteer!\nFirst, please join the Employability Plus Award. Once you've joined, you'll receive a welcome email with all the steps to begin your volunteering journey, including watching or attending an induction session.\nJoin here EPA: https://mycareer.waikato.ac.nz/s/epa",
+        "common": false
+    },
+    {
+        "id": 11,
+        "category": "General",
+        "questions": [
+            "I have attended two drop in sessions with the Careers and Employability team. Do these count for EPA points ?",
+            "Do drop in sessions and one-on-one appointments count toward EPA points ?",
+            "Can I earn EPA points by attending drop in sessions and one on one appointments ?",
+            "How can I earn EPA points through drop in sessions and one on one appointments ?",
+            "Are drop in sessions and one on one appointments eligible for EPA points ?"
+        ],
+        "answer": "Sorry, drop-in sessions and one-on-one appointments don't count toward EPA points.\nYou can earn points by attending workshops. You can view the workshop schedule here: https://mycareer.waikato.ac.nz/students/events?eventTypeIds=9&page=1&studentSiteId=1",
+        "common": false
+    },
+    {
+        "id": 12,
+        "category": "General",
+        "questions": [
+            "Do the EPA induction and Language Buddy training count for EPA points ? Do I need to fill out the EPA involvement form ?",
+            "Can I earn EPA points for completing the EPA induction and Language Buddy training ? Do I need to submit the EPA involvement form ?",
+            "Are the EPA induction and Language Buddy training eligible for EPA points ? Do I need to complete the EPA involvement form ?",
+            "How can I earn EPA points through the EPA induction and Language Buddy training ? Do I need to fill out the EPA involvement form ?",
+            "Do I need to submit the EPA involvement form to get points for the EPA induction and Language Buddy training ?"
+        ],
+        "answer": "Yes, you can collect points for both of these. They are each worth 2 points. Please watch the induction video (from 14.30sec)",
+        "common": false
+    },
+    {
+        "id": 13,
+        "category": "General",
+        "questions": [
+            "I signed up for the EPA and my status says submitted. Will I be able to create my profile once approved ?",
+            "After signing up for the EPA, my status shows as submitted. Can I create my profile once it's approved ?",
+            "What does it mean when my EPA status is submitted ? Will I be able to create my profile after approval ?",
+            "Can I create my EPA profile after my status changes from submitted to approved ?"
+        ],
+        "answer": "No profile is needed. You can now watch the induction video or attend an in person induction session which will advise on how to get started.",
+        "common": false
+    },
+    {
+        "id": 14,
+        "category": "CV & Cover Letter",
+        "questions": [
+            "Are resume templates available to use ?",
+            "Where can I find resume templates ?",
+            "Do you provide resume templates ?",
+            "Can you share resume templates ?",
+            "How can I access resume templates ?",
+            "Is there any resume template I can use ?",
+            "Is there a CV template available?"
+        ],
+        "answer": "We provide full support in CV preperation. Please view our CV workflow and this will take you through a step by step guide. https://mycareer.waikato.ac.nz/students/Workflows/Detail/2",
+        "common": false
+    },
+    {
+        "id": 15,
+        "category": "CV & Cover Letter",
+        "questions": [
+            "I can't find CV360 for internship applications.",
+            "CV360",
+            "cv360"
+        ],
+        "answer": "We no longer offer the CV360 tool, as it was part of a previous system we no longer use.\nWe now support CVs through our CV Workflow. You can view and follow all the steps here https://mycareer.waikato.ac.nz/students/Workflows/Detail/2",
+        "common": false
+    },
+    {
+        "id": 16,
+        "category": "General",
+        "questions": [
+            "To get any information about Employability Plus Award"
+        ],
+        "answer": "Please click on the link as given below and add all the information required and then click the submit button\nhttps://mycareer.waikato.ac.nz/Form.aspx?id=101",
+        "common": true
+    },
+    {
+        "id": 17,
+        "category": "CV & Cover Letter",
+        "questions": [
+            "For any CV related help such as CV Workshop, Tips, Feedback and other additional resources"
+        ],
+        "answer": "Please click the link below and you will find all the related information about CV. You will find different  collapsible panel related to these topics just click on the arrow and you will find further information about the topics.\nhttps://mycareer.waikato.ac.nz/students/Workflows/Detail/2",
+        "common": true
+    },
+    {
+        "id": 18,
+        "category": "CV & Cover Letter",
+        "questions": [
+            "How do to upload my CV on MyWIL ?"
+        ],
+        "answer": "Once you have your CV, log into your MyWIL account, go to the 'Forms' tab, click 'Edit', and submit the 'CV Review Form'.",
+        "common": true
+    },
+    {
+        "id": 19,
+        "category": "CV & Cover Letter",
+        "questions": [
+            "How to prepare Cover Letter ?"
+        ],
+        "answer": "Please click the link given below and click on view document option and a power point presentation about how to make cover letter will open please read that and you will get all information about the cover letter.\nhttps://mycareer.waikato.ac.nz/students/docs/detail/8?filename=Cover-Letter-and-Verbs.pdf",
+        "common": true
+    },
+    {
+        "id": 20,
+        "category": "CV & Cover Letter",
+        "questions": [
+            "Would you recommend pasting a CV template into ChatGPT so it can help fill it out ?"
+        ],
+        "answer": "No, we do not advise doing this.Book and attend the workshop \"AI Assit - Upgrade your Application Game \" through the events link https://mycareer.waikato.ac.nz/students/events or/and Downlaod the Tip sheet \"Using AI\" https://mycareer.waikato.ac.nz/students/docs/detail/39?filename=Using-AI.pdf",
+        "common": true
+    },
+    {
+        "id": 21,
+        "category": "CV & Cover Letter",
+        "questions": [
+            "Do I need to submit a general cover letter in MyWIL for the Internship prgramme, or should I write a separate Cover letter for each of my referance?",
+            "cover letter submission for internships"
+        ],
+        "answer": "Your cover letter does not need to be submitted for review in MyWIL. Your cover letter will be sent to your internship selections when you follow the instructions in the 'Step 3: Internships' tab. Any review of your cover letter can be done through your MyCareer portal.Information can be seen through this link https://www.waikato.ac.nz/about/faculties-schools/management/student-experience/work-integrated-learning/",
+        "common": false
+    },
+    {
+        "id": 22,
+        "category": "General",
+        "questions": [
+            "How do I add points ?"
+        ],
+        "answer": "To add points to your award, please make sure you've signed up for the EPA. https://mycareer.waikato.ac.nz/s/epa\nThen watch the induction session here https://mycareer.waikato.ac.nz/students/links/detail/3 — it walks you through the whole process (the section on adding roles starts at 14:30).\nIf you still need help, email employabilityplus@waikato.ac.nz",
+        "common": false
+    },
+    {
+        "id": 23,
+        "category": "CV & Cover Letter",
+        "questions": [
+            "How do to upload my CV on MyWIL ?",
+            "How to upload CV on MyWIL ?",
+            "CV upload on MyWIL"
+        ],
+        "answer": "Once you have your CV, log into your MyWIL account, go to the 'Forms' tab, click 'Edit', and submit the 'CV Review Form'.",
+        "common": false
+    },
+    {
+        "id": 24,
+        "category": "Intersnships & Volunteering",
+        "questions": [
+            "How do I register as a volunteer for the Volunteer Expo ?",
+            "Volunteer Expo registration process",
+            "Steps to register for Volunteer Expo",
+            "How to sign up for Volunteer Expo",
+            "Volunteer Expo sign-up procedure"
+        ],
+        "answer": "Volunteer roles are sent out to the Employability Plus group via email. If you would like to join the award you can sign up here > https://mycareer.waikato.ac.nz/s/epa",
+        "common": false
+    },
+    {
+        "id": 25,
+        "category": "General",
+        "questions": [
+            "Do the EPA induction and Language Buddy training count for EPA points ? Do I need to fill out the EPA involvement form ?",
+            "Can I earn EPA points for completing the EPA induction and Language Buddy training ? Do I need to submit the EPA involvement form ?",
+            "Are the EPA induction and Language Buddy training eligible for EPA points ? Do I need to complete the EPA involvement form ?",
+            "How can I earn EPA points through the EPA induction and Language Buddy training ? Do I need to fill out the EPA involvement form ?",
+            "Do I need to submit the EPA involvement form to get points for the EPA induction and Language Buddy training ?"
+        ],
+        "answer": "Yes, you can collect points for both of these. They are each worth 2 points. Please watch the induction video (from 14.30sec)",
+        "common": false
+    },
+    {
+        "id": 26,
+        "category": "Workshops & Events",
+        "questions": [
+            "How to get Event related information?",
+            "Where can I find event information?",
+            "How do I access event details?",
+            "How to get Workshop related information?",
+            "Where can I find workshop information?",
+            "How do I access workshop details?",
+            "Where to find events and workshops ?",
+            "How to search events and workshops ?",
+            "Where can I get information about events and workshops ?",
+            "How do I find details about events and workshops ?",
+            "workshop"
+        ],
+        "answer": "Please click the link below and you will find the events or you can also search the events by writing the keywords and you can also choose the type of events, date start, endorsements, locations and date added.\nhttps://mycareer.waikato.ac.nz/students/events?eventTypeIds=9&page=1&studentSiteId=1",
+        "common": false
+    }
 ]
