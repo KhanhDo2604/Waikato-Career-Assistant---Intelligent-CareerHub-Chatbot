@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 
-import { Question } from '../models/type';
+import { Question } from '../models/type.js';
 import { fileURLToPath } from 'url';
 
 import { interactModel } from '../../api/http.js';

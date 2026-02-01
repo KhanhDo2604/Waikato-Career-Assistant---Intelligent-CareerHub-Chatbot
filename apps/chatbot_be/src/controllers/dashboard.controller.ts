@@ -10,7 +10,7 @@ import {
     questionTypesMonthlyReport,
     usageChatBot,
     userInteractions,
-} from '../services/dashboard.service';
+} from '../services/dashboard.service.js';
 
 export const getQuestionsFromDBController = async (request: Request, response: Response) => {
     try {
@@ -84,7 +84,7 @@ export const editQuestionController = async (request: Request, response: Respons
 export const questionTypesMonthlyReportController = async (request: Request, response: Response) => {
     try {
         const { month, year } = request.query;
-        const report = await questionTypesMonthlyReport(year, month);
+        const report = await questionTypesMonthlyReport(Number(year), Number(month));
 
         return response.status(200).json({ report: report.data });
     } catch (error) {
@@ -95,7 +95,7 @@ export const questionTypesMonthlyReportController = async (request: Request, res
 export const usageChatBotController = async (request: Request, response: Response) => {
     try {
         const { month, year } = request.query;
-        const usageData = await usageChatBot(year, month);
+        const usageData = await usageChatBot(Number(year), Number(month));
 
         return response.status(200).json({ usageData: usageData.data });
     } catch (error) {
@@ -106,7 +106,7 @@ export const usageChatBotController = async (request: Request, response: Respons
 export const mostCommonTypeQuestionsController = async (request: Request, response: Response) => {
     try {
         const { month, year } = request.query;
-        const result = await mostCommonTypeQuestions(year, month);
+        const result = await mostCommonTypeQuestions(Number(year), Number(month));
         return response.status(200).json({ mostCommonTypeQuestions: result.data });
     } catch (error) {
         return { status: 500, message: 'Error fetching most common type questions' };
@@ -116,7 +116,7 @@ export const mostCommonTypeQuestionsController = async (request: Request, respon
 export const userInteractionsController = async (request: Request, response: Response) => {
     try {
         const { month, year } = request.query;
-        const result = await userInteractions(year, month);
+        const result = await userInteractions(Number(year), Number(month));
         return response.status(200).json({ userInteractions: result.data });
     } catch (error) {
         return { status: 500, message: 'Error fetching user interactions' };
