@@ -1,16 +1,10 @@
 import { promises as fs } from 'fs';
 import path from 'path';
-
 import { Question } from '../models/type.js';
-import { fileURLToPath } from 'url';
-
 import { interactModel } from '../../api/http.js';
 import connectToMongoDB from '../db.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const DATA_PATH = path.resolve(__dirname, '../../../../AI_server/background_docs/QA_list.json');
+const DATA_PATH = path.resolve(process.cwd(), 'AI_server/background_docs/QA_list.json');
 
 export async function readQAFile(): Promise<Question[]> {
     const raw = await fs.readFile(DATA_PATH, 'utf-8');

@@ -2,11 +2,9 @@ import http from '../api/http';
 import type { Interaction, MonthlyUserCount, Question, QuestionTypeCount } from '../constants/type/type';
 
 export const getQuestionsFromDB = async (): Promise<Question[]> => {
-    console.log(`Haha ${import.meta.env.VITE_BACKEND_URL}`);
-    
     try {
         const res = await http.get('/api/dashboard/questions');
-        
+
         return res.data.questions.data;
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {

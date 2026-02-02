@@ -29,10 +29,10 @@ RUN npm run build
 FROM nginx:alpine
 
 # Remove nginx default configuration
-RUN rm /etc/nginx/conf.d/default.conf
+RUN rm /etc/nginx/nginx.conf
 
 # Copy custom nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
 # Remove default nginx static assets
 RUN rm -rf /usr/share/nginx/html/*
