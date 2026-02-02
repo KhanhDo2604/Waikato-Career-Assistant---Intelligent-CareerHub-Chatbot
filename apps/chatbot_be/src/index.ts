@@ -7,12 +7,12 @@ import chatbotRoute from './routes/chatbot.route.js';
 import dashboardRoute from './routes/dashboard.route.js';
 import { randomUUID } from 'crypto';
 
-
 dotenv.config();
 
 const app = express();
 
 const PORT = Number(process.env.PORT);
+const HOST = process.env.HOST || '0.0.0.0';
 
 const allowedOrigins = [process.env.CLIENT_URL, 'http://localhost:5173', 'http://127.0.0.1:5173'].filter(
     Boolean,
@@ -69,7 +69,7 @@ app.use((err: any, req: any, res: any, next: any) => {
     res.status(500).json({ message: err?.message || 'Server error' });
 });
 
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+app.listen(PORT, HOST, () => {
+    console.log(`Server running on ${HOST}:${PORT}`);
     console.log('Allowed origins:', allowedOrigins);
 });
